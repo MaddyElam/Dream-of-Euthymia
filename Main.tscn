@@ -1,0 +1,391 @@
+[gd_scene load_steps=41 format=4 uid="uid://bjj0dctpdlnxr"]
+
+[ext_resource type="Texture2D" uid="uid://dp2l5p4vfqc5g" path="res://Art/TutorialResources/Meadow_Parallax-3.png" id="1_2itix"]
+[ext_resource type="Texture2D" uid="uid://c5mwevb3hvkpv" path="res://Art/TutorialResources/Meadow_Parallax-1.png" id="1_ogpss"]
+[ext_resource type="Script" uid="uid://dbcwx7d72gl0s" path="res://Scripts/parallax_clouds.gd" id="2_pragk"]
+[ext_resource type="Texture2D" uid="uid://chjvwo5ljt24h" path="res://Art/TutorialResources/Meadow_Parallax-2.png" id="2_uks1a"]
+[ext_resource type="Texture2D" uid="uid://da7p052rbvf46" path="res://Art/TutorialResources/Meadow_Parallax-4.png" id="4_cranc"]
+[ext_resource type="Texture2D" uid="uid://chk1inoyhnbrn" path="res://Art/TutorialResources/Meadow_Parallax-5.png" id="5_ob8qu"]
+[ext_resource type="Texture2D" uid="uid://4xn83eu6us6n" path="res://Art/TutorialResources/Meadow_Parallax-6.png" id="6_8dtqm"]
+[ext_resource type="Shader" uid="uid://bkdmk4qbc3j0d" path="res://Shaders/tutorial_grass.gdshader" id="8_fpfj3"]
+[ext_resource type="TileSet" uid="uid://b3cc1y7j5kij" path="res://Art/TutorialResources/TutorialMeadowTileset.tres" id="9_j4qnp"]
+[ext_resource type="Texture2D" uid="uid://ci6ak4ak84wgm" path="res://Art/TutorialResources/Tutorial_Meadow_Tileset_200px_by_200px.png" id="10_5tuhn"]
+[ext_resource type="Texture2D" uid="uid://u3qg8i104yjn" path="res://Art/TutorialResources/Old_Fence_B.png" id="10_hhcpw"]
+[ext_resource type="Texture2D" uid="uid://4t8ecp0h4tg1" path="res://Art/TutorialResources/Meadow_Parallax_Fg.png" id="11_cem6n"]
+[ext_resource type="PackedScene" uid="uid://ct2wlnw5oi0ra" path="res://Scenes/Player_Bird.tscn" id="11_fjkij"]
+[ext_resource type="Script" uid="uid://cu5n5xwxra7dj" path="res://Scripts/terrain_info.gd" id="12_2gh4u"]
+[ext_resource type="Texture2D" uid="uid://b0g0pft7lco8y" path="res://Art/TutorialResources/Grass_Blade_R.png" id="13_devvj"]
+[ext_resource type="Texture2D" uid="uid://cyk6jayibye5h" path="res://Art/TutorialResources/Butterfly_Sheet.png" id="14_3b0ty"]
+[ext_resource type="PackedScene" uid="uid://bx16qb55s5xfa" path="res://Scenes/enemy_control.tscn" id="14_kjvhd"]
+[ext_resource type="PackedScene" uid="uid://cl7ridg77w8cv" path="res://Scenes/UI/cursor_gpu_particles_2d.tscn" id="15_j4qnp"]
+[ext_resource type="PackedScene" uid="uid://bgoes0fn7nmog" path="res://Scenes/UI/PauseMenu.tscn" id="16_ix4f7"]
+[ext_resource type="PackedScene" uid="uid://dqn434s77upla" path="res://Scenes/Player_Cat.tscn" id="24_hhcpw"]
+[ext_resource type="PackedScene" uid="uid://sdbjlxaxbvd8" path="res://Scenes/Tutorial/pinwheel.tscn" id="28_hri7i"]
+
+[sub_resource type="Environment" id="Environment_kjvhd"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 8.0
+glow_hdr_scale = 2.23
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sc1dx"]
+resource_local_to_scene = true
+shader = ExtResource("8_fpfj3")
+shader_parameter/speed = 3.0
+shader_parameter/distance = 20.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kh7g4"]
+resource_local_to_scene = true
+shader = ExtResource("8_fpfj3")
+shader_parameter/speed = 4.0
+shader_parameter/distance = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wd8no"]
+resource_local_to_scene = true
+shader = ExtResource("8_fpfj3")
+shader_parameter/speed = 3.0
+shader_parameter/distance = 10.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xro6k"]
+resource_local_to_scene = true
+shader = ExtResource("8_fpfj3")
+shader_parameter/speed = 2.0
+shader_parameter/distance = 10.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bf3cx"]
+resource_local_to_scene = true
+shader = ExtResource("8_fpfj3")
+shader_parameter/speed = 2.0
+shader_parameter/distance = 10.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_st253"]
+resource_local_to_scene = true
+shader = ExtResource("8_fpfj3")
+shader_parameter/speed = 4.0
+shader_parameter/distance = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_43fkk"]
+resource_local_to_scene = true
+shader = ExtResource("8_fpfj3")
+shader_parameter/speed = 1.0
+shader_parameter/distance = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fsnqc"]
+resource_local_to_scene = true
+shader = ExtResource("8_fpfj3")
+shader_parameter/speed = 2.0
+shader_parameter/distance = 10.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4qc8q"]
+resource_local_to_scene = true
+shader = ExtResource("8_fpfj3")
+shader_parameter/speed = 2.0
+shader_parameter/distance = 15.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1rqof"]
+resource_local_to_scene = true
+shader = ExtResource("8_fpfj3")
+shader_parameter/speed = 2.0
+shader_parameter/distance = 20.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3pmdt"]
+resource_local_to_scene = true
+shader = ExtResource("8_fpfj3")
+shader_parameter/speed = 2.0
+shader_parameter/distance = 40.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hv88u"]
+resource_local_to_scene = true
+shader = ExtResource("8_fpfj3")
+shader_parameter/speed = 2.5
+shader_parameter/distance = 20.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_baiks"]
+texture = ExtResource("10_5tuhn")
+texture_region_size = Vector2i(150, 150)
+0:0/0 = 0
+0:0/0/material = SubResource("ShaderMaterial_kh7g4")
+1:0/0 = 0
+1:0/0/material = SubResource("ShaderMaterial_bf3cx")
+2:0/0 = 0
+2:0/0/material = SubResource("ShaderMaterial_43fkk")
+3:0/0 = 0
+3:0/0/material = SubResource("ShaderMaterial_fsnqc")
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-75, -75, 75, -75, 75, 75, -75, 75)
+8:0/0 = 0
+0:1/0 = 0
+0:1/0/material = SubResource("ShaderMaterial_wd8no")
+1:1/0 = 0
+1:1/0/material = SubResource("ShaderMaterial_st253")
+2:1/0 = 0
+3:1/0 = 0
+3:1/0/material = SubResource("ShaderMaterial_4qc8q")
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+7:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-75, -75, 75, -75, 75, 75, -75, 75)
+8:1/0 = 0
+0:2/0 = 0
+0:2/0/material = SubResource("ShaderMaterial_xro6k")
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+3:2/0/material = SubResource("ShaderMaterial_1rqof")
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(75, 0, 75, 75, -75, 75)
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-75, -1, 75, -75, 75, 75, -75, 75)
+3:3/0 = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-75, -75, 75, -75, 75, 75, -75, 75)
+4:3/0 = 0
+4:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-75, -75, 75, -75, 75, 75, -75, 75)
+5:3/0 = 0
+5:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-75, -75, 75, -75, 75, 75, -75, 75)
+6:3/0 = 0
+6:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-75, -75, 75, 0, 75, 75, -75, 75)
+7:3/0 = 0
+7:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-75, 0, 75, 75, -75, 75)
+0:4/0 = 0
+1:4/0 = 0
+1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-75, -75, 75, -75, 75, 75, -75, 75)
+2:4/0 = 0
+2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-75, -75, 75, -75, 75, 75, -75, 75)
+3:4/0 = 0
+4:4/0 = 0
+4:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-75, -75, 75, -75, 75, 75, -75, 75)
+5:4/0 = 0
+5:4/0/material = SubResource("ShaderMaterial_3pmdt")
+6:4/0 = 0
+6:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-75, -75, 75, -75, 75, 75, -75, 75)
+7:4/0 = 0
+7:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-75, -75, 75, -75, 75, 75, -75, 75)
+8:4/0 = 0
+8:4/0/material = SubResource("ShaderMaterial_hv88u")
+
+[sub_resource type="TileSet" id="TileSet_2gh4u"]
+tile_size = Vector2i(150, 150)
+physics_layer_0/collision_layer = 3
+physics_layer_0/collision_mask = 15
+sources/2 = SubResource("TileSetAtlasSource_baiks")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bg4s2"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_hhcpw"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.841026, 0), -3.44302, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mxvw5"]
+curve = SubResource("Curve_hhcpw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xrxkg"]
+particle_flag_disable_z = true
+angle_min = -30.6
+angle_max = 60.6
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 400.0
+initial_velocity_max = 400.0
+gravity = Vector3(0, 98, 0)
+scale_min = 0.1
+scale_max = 0.3
+scale_curve = SubResource("CurveTexture_mxvw5")
+anim_speed_min = 10.0
+anim_speed_max = 15.0
+
+[node name="Root_Node2D" type="Node2D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kjvhd")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+offset = Vector2(675, 300)
+transform = Transform2D(1, 0, 0, 1, 675, 300)
+scroll_ignore_camera_zoom = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(5400, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("1_ogpss")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(5400, 0)
+script = ExtResource("2_pragk")
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+texture = ExtResource("2_uks1a")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(5400, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource("1_2itix")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(5400, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
+texture = ExtResource("4_cranc")
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.4, 0.4)
+motion_mirroring = Vector2(5400, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
+texture = ExtResource("5_ob8qu")
+
+[node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, 100)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(5400, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer6"]
+texture = ExtResource("6_8dtqm")
+
+[node name="ParallaxForeground" type="ParallaxBackground" parent="ParallaxBackground"]
+layer = 1
+offset = Vector2(675, 750)
+transform = Transform2D(1, 0, 0, 1, 675, 750)
+scroll_ignore_camera_zoom = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground/ParallaxForeground"]
+motion_scale = Vector2(2, 2)
+motion_mirroring = Vector2(5400, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxForeground/ParallaxLayer"]
+material = SubResource("ShaderMaterial_sc1dx")
+texture = ExtResource("11_cem6n")
+
+[node name="Pinwheel2" parent="." instance=ExtResource("28_hri7i")]
+position = Vector2(-562, 408)
+rotation = 0.218166
+
+[node name="Wheel" parent="Pinwheel2" index="1"]
+self_modulate = Color(0.77, 0.996167, 1, 1)
+
+[node name="AnimationPlayer" parent="Pinwheel2" index="2"]
+root_node = NodePath("../../Pinwheel2")
+
+[node name="Area2D" parent="Pinwheel2" index="3"]
+visible = false
+
+[node name="Pinwheel3" parent="." instance=ExtResource("28_hri7i")]
+position = Vector2(-808, 456)
+rotation = -0.165806
+
+[node name="Wheel" parent="Pinwheel3" index="1"]
+self_modulate = Color(1, 0.946333, 0.77, 1)
+
+[node name="AnimationPlayer" parent="Pinwheel3" index="2"]
+root_node = NodePath("../../Pinwheel3")
+
+[node name="Area2D" parent="Pinwheel3" index="3"]
+visible = false
+
+[node name="Old_Fence" type="Sprite2D" parent="."]
+position = Vector2(-651, 545)
+texture = ExtResource("10_hhcpw")
+
+[node name="BGDecor" type="TileMapLayer" parent="."]
+position = Vector2(0, 675)
+tile_map_data = PackedByteArray("AAAAAP//AgABAAEAAAAFAP//AgACAAAAAAAVAP//AgACAAEAAAACAP//AgABAAAAAAAEAP//AgAFAAEAAAADAP//AgAEAAEAAAABAP//AgAAAAEAAAAWAP//AgAAAAAAAAD5////AgAAAAAAAAD9////AgAFAAIAAAD6////AgAFAAIAAAD2////AgAFAAIAAAD4////AgADAAIAAAD1////AgAIAAQAAADz////AgAEAAAAAAD+////AgAAAAAAAAD3////AgADAAAAAAD8////AgADAAAAAAD0////AgAFAAAAAAA=")
+tile_set = SubResource("TileSet_2gh4u")
+
+[node name="Pinwheel" parent="." instance=ExtResource("28_hri7i")]
+position = Vector2(-1214, 618)
+
+[node name="Wheel" parent="Pinwheel" index="1"]
+self_modulate = Color(1, 0.77, 0.888833, 1)
+
+[node name="Area2D" parent="Pinwheel" index="3"]
+visible = false
+
+[node name="Terrain" type="TileMapLayer" parent="." node_paths=PackedStringArray("particle_emitters")]
+position = Vector2(0, 675)
+tile_map_data = PackedByteArray("AAAAAAAAAgAEAAMAAAABAAAAAgAEAAMAAAACAAAAAgAEAAMAAAADAAAAAgAEAAMAAAAEAAAAAgAEAAMAAAAFAAAAAgAEAAMAAAAHAAAAAgAEAAMAAAAIAAAAAgAEAAMAAAAJAAAAAgAEAAMAAAALAAAAAgAEAAMAAAAKAAAAAgAEAAMAAAAUAAAAAgAEAAMAAAATAAAAAgAEAAMAAAASAAAAAgAEAAMAAAARAAAAAgAEAAMAAAAQAAAAAgAEAAMAAAAPAAAAAgAEAAMAAAAMAAAAAgAEAAMAAAANAAAAAgAEAAMAAAAOAAAAAgAEAAMAAAAVAAAAAgAEAAMAAAAWAAAAAgAEAAMAAAAAAAEAAgAEAAQAAAAAAAIAAgAEAAQAAAAAAAMAAgAEAAQAAAABAAEAAgAEAAQAAAABAAIAAgAEAAQAAAABAAMAAgAEAAQAAAACAAEAAgAEAAQAAAACAAIAAgAEAAQAAAACAAMAAgAEAAQAAAADAAEAAgAEAAQAAAADAAIAAgAEAAQAAAADAAMAAgAEAAQAAAAEAAEAAgAEAAQAAAAEAAIAAgAEAAQAAAAEAAMAAgAEAAQAAAAFAAEAAgAEAAQAAAAFAAIAAgAEAAQAAAAFAAMAAgAEAAQAAAAGAAEAAgAEAAQAAAAGAAIAAgAEAAQAAAAGAAMAAgAEAAQAAAAHAAEAAgAEAAQAAAAHAAIAAgAEAAQAAAAHAAMAAgAEAAQAAAAIAAEAAgAEAAQAAAAIAAIAAgAEAAQAAAAIAAMAAgAEAAQAAAAJAAEAAgAEAAQAAAAJAAIAAgAEAAQAAAAJAAMAAgAEAAQAAAAKAAEAAgAEAAQAAAAKAAIAAgAEAAQAAAAKAAMAAgAEAAQAAAALAAEAAgAEAAQAAAALAAIAAgAEAAQAAAALAAMAAgAEAAQAAAAMAAEAAgAEAAQAAAAMAAIAAgAEAAQAAAAMAAMAAgAEAAQAAAANAAEAAgAEAAQAAAANAAIAAgAEAAQAAAANAAMAAgAEAAQAAAAOAAEAAgAEAAQAAAAOAAIAAgAEAAQAAAAOAAMAAgAEAAQAAAAPAAEAAgAEAAQAAAAPAAIAAgAEAAQAAAAPAAMAAgAEAAQAAAAQAAEAAgAEAAQAAAAQAAIAAgAEAAQAAAAQAAMAAgAEAAQAAAARAAEAAgAEAAQAAAARAAIAAgAEAAQAAAARAAMAAgAEAAQAAAASAAEAAgAEAAQAAAASAAIAAgAEAAQAAAASAAMAAgAEAAQAAAATAAEAAgAEAAQAAAATAAIAAgAEAAQAAAATAAMAAgAEAAQAAAAUAAEAAgAEAAQAAAAUAAIAAgAEAAQAAAAUAAMAAgAEAAQAAAAVAAEAAgAEAAQAAAAVAAIAAgAEAAQAAAAVAAMAAgAEAAQAAAAWAAEAAgAEAAQAAAAWAAIAAgAEAAQAAAAWAAMAAgAEAAQAAAAIAP//AgAHAAEAAAAKAP//AgAHAAEAAAALAP//AgAHAAEAAAAMAP//AgAHAAAAAAAIAP3/AgAHAAAAAAAKAP7/AgAHAAAAAAALAPz/AgAHAAAAAAALAP3/AgAHAAEAAAALAP7/AgAHAAEAAAAIAP7/AgAHAAEAAAAHAP3/AgAGAAAAAAAJAP7/AgAGAAAAAAAKAPz/AgAGAAAAAAAKAP3/AgAGAAEAAAAJAP//AgAGAAEAAAAHAP//AgAGAAEAAAAHAP7/AgAGAAEAAAAJAP3/AgAIAAAAAAAMAPz/AgAIAAAAAAANAP//AgAIAAAAAAAMAP3/AgAIAAEAAAAMAP7/AgAIAAEAAAAXAAAAAgABAAQAAAAXAP//AgABAAMAAAAYAP//AgACAAMAAAAYAAAAAgACAAQAAAAXAAEAAgAEAAQAAAAYAAEAAgAEAAQAAAAZAAEAAgAEAAQAAAAZAAAAAgAEAAQAAAAZAP7/AgABAAMAAAAaAP7/AgACAAMAAAAbAP3/AgABAAMAAAAcAP3/AgACAAMAAAAdAP3/AgADAAMAAAAeAP3/AgAEAAMAAAAfAP3/AgAEAAMAAAAgAP3/AgAEAAMAAAAhAP3/AgAEAAMAAAAiAP3/AgAEAAMAAAAjAP3/AgAEAAMAAAAdAP7/AgAEAAQAAAAeAP7/AgAEAAQAAAAfAP7/AgAEAAQAAAAgAP7/AgAEAAQAAAAhAP7/AgAEAAQAAAAiAP7/AgAEAAQAAAAjAP7/AgAEAAQAAAAXAAIAAgAEAAQAAAAXAAMAAgAEAAQAAAAYAAMAAgAEAAQAAAAZAAMAAgAEAAQAAAAaAAMAAgAEAAQAAAAaAAIAAgAEAAQAAAAbAAIAAgAEAAQAAAAcAAIAAgAEAAQAAAAcAAMAAgAEAAQAAAAdAAMAAgAEAAQAAAAeAAMAAgAEAAQAAAAbAAMAAgAEAAQAAAAYAAIAAgAEAAQAAAAZAAIAAgAEAAQAAAAaAAEAAgAEAAQAAAAaAAAAAgAEAAQAAAAbAAAAAgAEAAQAAAAcAAAAAgAEAAQAAAAdAAAAAgAEAAQAAAAeAAAAAgAEAAQAAAAeAP//AgAEAAQAAAAfAP//AgAEAAQAAAAgAP//AgAEAAQAAAAdAP//AgAEAAQAAAAbAAEAAgAEAAQAAAAcAAEAAgAEAAQAAAAdAAEAAgAEAAQAAAAeAAEAAgAEAAQAAAAfAAEAAgAEAAQAAAAfAAAAAgAEAAQAAAAgAAAAAgAEAAQAAAAhAAAAAgAEAAQAAAAhAP//AgAEAAQAAAAiAP//AgAEAAQAAAAjAP//AgAEAAQAAAAjAAAAAgAEAAQAAAAjAAEAAgAEAAQAAAAjAAIAAgAEAAQAAAAiAAIAAgAEAAQAAAAhAAIAAgAEAAQAAAAgAAIAAgAEAAQAAAAfAAIAAgAEAAQAAAAeAAIAAgAEAAQAAAAdAAIAAgAEAAQAAAAgAAEAAgAEAAQAAAAhAAEAAgAEAAQAAAAiAAAAAgAEAAQAAAAiAAEAAgAEAAQAAAAfAAMAAgAEAAQAAAAgAAMAAgAEAAQAAAAhAAMAAgAEAAQAAAAiAAMAAgAEAAQAAAAjAAMAAgAEAAQAAAAaAP//AgACAAQAAAAZAP//AgABAAQAAAAbAP7/AgABAAQAAAAcAP7/AgACAAQAAAAbAP//AgAEAAQAAAAcAP//AgAEAAQAAAAGAAAAAgAEAAMAAAD//wAAAgAEAAMAAAD+/wAAAgAEAAMAAAD9/wAAAgAEAAMAAAD8/wAAAgAEAAMAAAD7/wAAAgAEAAMAAAD6/wAAAgAEAAMAAAD5/wAAAgAEAAMAAAD4/wAAAgAEAAMAAAD3/wAAAgAEAAMAAAD2/wAAAgAEAAMAAAD1/wAAAgAHAAQAAAD0/wAAAgAGAAQAAADz/wAAAgAEAAQAAADy/wAAAgAEAAQAAAD//wEAAgAEAAQAAAD+/wEAAgAEAAQAAAD9/wEAAgAEAAQAAAD8/wEAAgAEAAQAAAD7/wIAAgAEAAQAAAD6/wMAAgAEAAQAAAD5/wMAAgAEAAQAAAD4/wMAAgAEAAQAAAD6/wIAAgAEAAQAAAD7/wEAAgAEAAQAAAD+/wIAAgAEAAQAAAD//wIAAgAEAAQAAAD9/wMAAgAEAAQAAAD8/wMAAgAEAAQAAAD7/wMAAgAEAAQAAAD8/wIAAgAEAAQAAAD9/wIAAgAEAAQAAAD//wMAAgAEAAQAAAD+/wMAAgAEAAQAAAD6/wEAAgAEAAQAAAD5/wEAAgAEAAQAAAD4/wEAAgAEAAQAAAD3/wEAAgAEAAQAAAD2/wEAAgAEAAQAAAD1/wEAAgAEAAQAAAD1/wIAAgAEAAQAAAD0/wEAAgAEAAQAAADz/wEAAgAEAAQAAADy/wEAAgAEAAQAAADy/wIAAgAEAAQAAADz/wMAAgAEAAQAAAD0/wMAAgAEAAQAAAD1/wMAAgAEAAQAAAD2/wIAAgAEAAQAAAD0/wIAAgAEAAQAAADz/wIAAgAEAAQAAADy/wMAAgAEAAQAAAD4/wIAAgAEAAQAAAD5/wIAAgAEAAQAAAD3/wIAAgAEAAQAAAD2/wMAAgAEAAQAAAD3/wMAAgAEAAQAAADy////AgAEAAMAAADz////AgAFAAMAAAD0////AgAGAAMAAAD1////AgAHAAMAAADy//3/AgAHAAAAAADy//7/AgAHAAEAAADz//3/AgAIAAAAAADz//7/AgAIAAEAAADx//3/AgAGAAAAAADx//7/AgAGAAEAAAAjAPv/AgAHAAAAAAAjAPz/AgAHAAEAAAAiAPv/AgAGAAAAAAAiAPz/AgAGAAEAAAAkAPv/AgAIAAAAAAAkAPz/AgAIAAEAAAA=")
+tile_set = ExtResource("9_j4qnp")
+script = ExtResource("12_2gh4u")
+terrain_particles = {
+Vector2i(1, 3): ExtResource("13_devvj"),
+Vector2i(2, 3): ExtResource("13_devvj"),
+Vector2i(3, 3): ExtResource("13_devvj"),
+Vector2i(4, 3): ExtResource("13_devvj"),
+Vector2i(5, 3): ExtResource("13_devvj"),
+Vector2i(6, 3): ExtResource("13_devvj"),
+Vector2i(7, 3): ExtResource("13_devvj")
+}
+particle_emitters = [NodePath("GPUParticles2D"), NodePath("GPUParticles2D2"), NodePath("GPUParticles2D3")]
+randomize_particle_emitters = true
+particle_emitter_tiles = Array[Vector2]([Vector2(1, 3), Vector2(2, 3), Vector2(3, 3), Vector2(4, 3), Vector2(5, 3), Vector2(6, 3), Vector2(7, 3)])
+particle_emitter_amount_range = Vector2i(3, 7)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Terrain"]
+material = SubResource("CanvasItemMaterial_bg4s2")
+emitting = false
+amount = 10
+texture = ExtResource("14_3b0ty")
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.49
+process_material = SubResource("ParticleProcessMaterial_xrxkg")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Terrain"]
+material = SubResource("CanvasItemMaterial_bg4s2")
+emitting = false
+amount = 10
+texture = ExtResource("14_3b0ty")
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.49
+process_material = SubResource("ParticleProcessMaterial_xrxkg")
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="Terrain"]
+material = SubResource("CanvasItemMaterial_bg4s2")
+emitting = false
+amount = 10
+texture = ExtResource("14_3b0ty")
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.49
+process_material = SubResource("ParticleProcessMaterial_xrxkg")
+
+[node name="EnemyControl" parent="." instance=ExtResource("14_kjvhd")]
+
+[node name="Player_Bird" parent="." node_paths=PackedStringArray("player_cat_ref") instance=ExtResource("11_fjkij")]
+player_cat_ref = NodePath("../Player_Cat")
+
+[node name="FGDecor" type="TileMapLayer" parent="."]
+z_index = 2
+position = Vector2(38, 699)
+tile_map_data = PackedByteArray("AAAEAP//AgAAAAEAAAABAP//AgADAAEAAAACAP//AgACAAAAAAAVAP//AgAAAAIAAAAYAP//AgACAAIAAAAaAP7/AgACAAIAAAAcAP3/AgACAAIAAAAXAP//AgABAAIAAAAZAP7/AgABAAIAAAAbAP3/AgABAAIAAAAdAPz/AgADAAIAAAAhAPz/AgAEAAIAAAAeAPz/AgABAAAAAAAgAPz/AgABAAAAAAAiAPz/AgAFAAIAAAAfAPz/AgADAAAAAAAjAPz/AgADAAAAAAAPAP//AgACAAAAAAAQAP//AgADAAIAAAARAP//AgAAAAIAAAASAP//AgAAAAEAAAAOAP//AgACAAAAAAANAP//AgABAAAAAAAMAP//AgAAAAAAAAATAP//AgAAAAAAAAAUAP//AgAAAAAAAAAJAP//AgADAAAAAAAIAP//AgAFAAIAAAAGAP//AgAAAAIAAAAFAP//AgAAAAEAAAD2////AgAAAAEAAAD+////AgACAAAAAAD3////AgABAAAAAAD8////AgAAAAAAAAADAP//AgADAAAAAAD5////AgADAAAAAAD7////AgADAAEAAAA=")
+tile_set = SubResource("TileSet_2gh4u")
+
+[node name="PauseMenu" parent="." instance=ExtResource("16_ix4f7")]
+visible = false
+
+[node name="CursorParticles" parent="." instance=ExtResource("15_j4qnp")]
+process_mode = 3
+
+[node name="Player_Cat" parent="." node_paths=PackedStringArray("player_bird_ref") instance=ExtResource("24_hhcpw")]
+player_bird_ref = NodePath("../Player_Bird")
+
+[editable path="Pinwheel2"]
+[editable path="Pinwheel3"]
+[editable path="Pinwheel"]

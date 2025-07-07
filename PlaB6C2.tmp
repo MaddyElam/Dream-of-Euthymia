@@ -1,0 +1,879 @@
+[gd_scene load_steps=125 format=3 uid="uid://di4jydly4a0uv"]
+
+[ext_resource type="Script" path="res://UmbraResources/Umbra_Movement.gd" id="2_8ipag"]
+[ext_resource type="Texture2D" uid="uid://c5ceww60s2f5w" path="res://UmbraResources/Umbra_Sprites_Right_C.png" id="3_cj57l"]
+[ext_resource type="Texture2D" uid="uid://dg4uk2u14mc2m" path="res://UmbraResources/Umbra_Normals_Right.png" id="4_3mekn"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_t3gbs"]
+diffuse_texture = ExtResource("3_cj57l")
+normal_texture = ExtResource("4_3mekn")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ahd6o"]
+radius = 13.3345
+height = 31.9473
+
+[sub_resource type="Animation" id="Animation_foi5j"]
+resource_name = "Air_Injured"
+length = 0.2499
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Umbra_CharacterBody2D/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833, 0.1666),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_5eu63"]
+resource_name = "Back_Leg_Swipe"
+length = 0.375004
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Umbra_CharacterBody2D/Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833334, 0.166667, 0.291667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(4, 4), Vector2i(5, 4), Vector2i(6, 4), Vector2i(7, 4)]
+}
+
+[sub_resource type="Animation" id="Animation_82iup"]
+resource_name = "Blink"
+length = 0.5415
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Umbra_CharacterBody2D/Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833, 0.1666, 0.2499, 0.2916, 0.3749, 0.4582),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(5, 1), Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2kp6s"]
+resource_name = "Crouch"
+length = 0.6249
+loop_mode = 1
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Umbra_CharacterBody2D/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.2083, 0.3333, 0.4166, 0.5416),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [28, 29, 30, 31, 32, 33]
+}
+
+[sub_resource type="Animation" id="Animation_mkqfo"]
+resource_name = "Crouch_Injured"
+length = 0.250004
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Umbra_CharacterBody2D/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833334, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_yc7mr"]
+resource_name = "Crouch_Swipe"
+length = 0.291671
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Umbra_CharacterBody2D/Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833334, 0.166667, 0.208333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(4, 8), Vector2i(5, 8), Vector2i(6, 8), Vector2i(7, 8)]
+}
+
+[sub_resource type="Animation" id="Animation_8mpgd"]
+resource_name = "Fall"
+length = 0.4998
+loop_mode = 1
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Umbra_CharacterBody2D/Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833, 0.1666, 0.2499, 0.3332, 0.4165),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(8, 5), Vector2i(9, 5), Vector2i(8, 5), Vector2i(9, 5), Vector2i(8, 5), Vector2i(9, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_s5emu"]
+resource_name = "Hiss"
+length = 1.1662
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Umbra_CharacterBody2D/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833, 0.1666, 0.2499, 0.3332, 0.4165, 0.4998, 0.5831, 0.6664, 0.7497, 0.833, 0.9163, 0.9996, 1.0829),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [42, 43, 44, 45, 46, 45, 46, 45, 46, 45, 46, 44, 43, 42]
+}
+
+[sub_resource type="Animation" id="Animation_6e7eu"]
+resource_name = "Idle"
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Umbra_CharacterBody2D/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [19]
+}
+
+[sub_resource type="Animation" id="Animation_vlv0a"]
+resource_name = "Idle_Crouch"
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Umbra_CharacterBody2D/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [28]
+}
+
+[sub_resource type="Animation" id="Animation_dqrdd"]
+resource_name = "Injured"
+length = 0.2916
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Umbra_CharacterBody2D/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0417, 0.125, 0.2083),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [56, 57, 58, 59]
+}
+
+[sub_resource type="Animation" id="Animation_w4akj"]
+resource_name = "Jump"
+length = 0.4582
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Umbra_CharacterBody2D/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833, 0.1666, 0.2499, 0.3332, 0.3749),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [70, 71, 72, 73, 74, 75]
+}
+
+[sub_resource type="Animation" id="Animation_8r4v2"]
+resource_name = "Jump_To_Fall"
+length = 0.3332
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Umbra_CharacterBody2D/Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833, 0.1666, 0.2499),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(6, 5), Vector2i(7, 5), Vector2i(8, 5), Vector2i(9, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_v6ndi"]
+resource_name = "Land"
+length = 0.25
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Umbra_CharacterBody2D/Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833, 0.125, 0.1667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(10, 5), Vector2i(11, 5), Vector2i(12, 5), Vector2i(13, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_cpjv6"]
+resource_name = "RESET"
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Umbra_CharacterBody2D/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [19]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Umbra_CharacterBody2D/Sprite2D:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(5, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_wvfln"]
+resource_name = "Roll"
+length = 0.4167
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Umbra_CharacterBody2D/Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0417, 0.125, 0.1667, 0.2084, 0.2501, 0.3334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 6), Vector2i(1, 6), Vector2i(2, 6), Vector2i(3, 6), Vector2i(4, 6), Vector2i(5, 6), Vector2i(6, 6)]
+}
+
+[sub_resource type="Animation" id="Animation_aghld"]
+resource_name = "Run"
+length = 0.4582
+loop_mode = 1
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Umbra_CharacterBody2D/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833, 0.125, 0.2083, 0.2916, 0.3749),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [98, 99, 100, 101, 102, 103]
+}
+
+[sub_resource type="Animation" id="Animation_cdcll"]
+resource_name = "Running_Swipe"
+length = 0.291671
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Umbra_CharacterBody2D/Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833334, 0.166667, 0.208333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(4, 9), Vector2i(5, 9), Vector2i(6, 9), Vector2i(7, 9)]
+}
+
+[sub_resource type="Animation" id="Animation_d2ueb"]
+resource_name = "Standing_Swipe"
+length = 0.2916
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Umbra_CharacterBody2D/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833, 0.1666, 0.2083),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [126, 127, 128, 129]
+}
+
+[sub_resource type="Animation" id="Animation_acyqi"]
+resource_name = "Swipe_Up"
+length = 0.2916
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Umbra_CharacterBody2D/Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833, 0.1666, 0.2083),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 8), Vector2i(1, 8), Vector2i(2, 8), Vector2i(3, 8)]
+}
+
+[sub_resource type="Animation" id="Animation_mom68"]
+resource_name = "Tail"
+length = 0.6249
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Umbra_CharacterBody2D/Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833, 0.1666, 0.2083, 0.25, 0.3333, 0.4583, 0.5416),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(5, 1), Vector2i(6, 1), Vector2i(7, 1), Vector2i(8, 1), Vector2i(9, 1), Vector2i(10, 1), Vector2i(11, 1), Vector2i(5, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_yhlgg"]
+resource_name = "Turn"
+length = 0.4998
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Umbra_CharacterBody2D/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833, 0.1666, 0.2499, 0.3332, 0.4165),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [140, 141, 142, 143, 144, 145]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u8gg4"]
+_data = {
+"Air_Injured": SubResource("Animation_foi5j"),
+"Back_Leg_Swipe": SubResource("Animation_5eu63"),
+"Blink": SubResource("Animation_82iup"),
+"Crouch": SubResource("Animation_2kp6s"),
+"Crouch_Injured": SubResource("Animation_mkqfo"),
+"Crouch_Swipe": SubResource("Animation_yc7mr"),
+"Fall": SubResource("Animation_8mpgd"),
+"Hiss": SubResource("Animation_s5emu"),
+"Idle": SubResource("Animation_6e7eu"),
+"Idle_Crouch": SubResource("Animation_vlv0a"),
+"Injured": SubResource("Animation_dqrdd"),
+"Jump": SubResource("Animation_w4akj"),
+"Jump_To_Fall": SubResource("Animation_8r4v2"),
+"Land": SubResource("Animation_v6ndi"),
+"RESET": SubResource("Animation_cpjv6"),
+"Roll": SubResource("Animation_wvfln"),
+"Run": SubResource("Animation_aghld"),
+"Running_Swipe": SubResource("Animation_cdcll"),
+"Standing_Swipe": SubResource("Animation_d2ueb"),
+"Swipe_Up": SubResource("Animation_acyqi"),
+"Tail": SubResource("Animation_mom68"),
+"Turn": SubResource("Animation_yhlgg")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tfk7l"]
+animation = &"Back_Leg_Swipe"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d8u2f"]
+animation = &"Blink"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j2tfu"]
+animation = &"Crouch"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6v45g"]
+animation = &"Crouch_Swipe"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2sh41"]
+animation = &"Fall"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0erl4"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8mat1"]
+animation = &"Idle_Crouch"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0ge2u"]
+animation = &"Jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i56xg"]
+animation = &"Jump_To_Fall"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_evaek"]
+animation = &"Land"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u7gek"]
+animation = &"Roll"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1rl17"]
+animation = &"Run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r5hyl"]
+animation = &"Running_Swipe"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ol7ut"]
+animation = &"Standing_Swipe"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5hv0e"]
+animation = &"Swipe_Up"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y0gog"]
+animation = &"Tail"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3a0vh"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cwnv2"]
+advance_mode = 2
+advance_expression = "can_idle_anim && current_idle_anim == BLINK_ANIM"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g3rqa"]
+advance_mode = 2
+advance_expression = "can_idle_anim && current_idle_anim == TAIL_ANIM"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3u7md"]
+advance_mode = 2
+advance_expression = "direction and !airborne and !rolling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_31a27"]
+advance_mode = 2
+advance_expression = "jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2ymkl"]
+advance_mode = 2
+advance_expression = "jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_whs7j"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "velocity.y > 0"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2paua"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "airborne"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3vhls"]
+advance_mode = 2
+advance_expression = "airborne && !jumping && velocity.y > FALL_VELOCITY_THRESHOLD"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lo8q3"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u73s0"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7s1qb"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "!airborne"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o5s6a"]
+advance_mode = 2
+advance_expression = "!airborne"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s3nm7"]
+advance_mode = 2
+advance_expression = "!airborne"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3srp2"]
+advance_mode = 2
+advance_expression = "airborne && !jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3t5pc"]
+advance_mode = 2
+advance_expression = "!crouching && !direction"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lgx5w"]
+advance_mode = 2
+advance_expression = "rolling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_06uub"]
+advance_mode = 2
+advance_expression = "attacking && airborne "
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3v157"]
+advance_mode = 2
+advance_expression = "attacking "
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mimmi"]
+advance_mode = 2
+advance_expression = "attacking "
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sba0c"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "airborne"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2r35t"]
+advance_mode = 2
+advance_expression = "!direction 
+"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_asov2"]
+advance_mode = 2
+advance_expression = "!crouching && direction"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0xsdr"]
+advance_mode = 2
+advance_expression = "crouching && direction"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4klfx"]
+advance_mode = 2
+advance_expression = "crouching && !direction"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1ssys"]
+advance_mode = 2
+advance_expression = "!crouching && !direction"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ool0o"]
+advance_mode = 2
+advance_expression = "crouching && !direction"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3xrgh"]
+advance_mode = 2
+advance_expression = "direction"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ipgf4"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ur6ik"]
+advance_mode = 2
+advance_expression = "attacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p7yyf"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g4pyx"]
+advance_mode = 2
+advance_expression = "attacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u3u61"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vbbkn"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "!direction"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_euwf2"]
+advance_mode = 2
+advance_expression = "direction && !airborne"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xc7xv"]
+advance_mode = 2
+advance_expression = "jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ami40"]
+advance_mode = 2
+advance_expression = "jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c4i1i"]
+advance_mode = 2
+advance_expression = "airborne"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3by55"]
+advance_mode = 2
+advance_expression = "rolling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ow0xw"]
+advance_mode = 2
+advance_expression = "attacking && !direction"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8vgdv"]
+advance_mode = 2
+advance_expression = "attacking && direction"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2suul"]
+advance_mode = 2
+advance_expression = "rolling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l07q2"]
+advance_mode = 2
+advance_expression = "rolling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_04u0k"]
+advance_mode = 2
+advance_expression = "rolling
+"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0uq2y"]
+advance_mode = 2
+advance_expression = "jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_b7vdu"]
+advance_mode = 2
+advance_expression = "jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_emnqd"]
+advance_mode = 2
+advance_expression = "jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hm3j5"]
+advance_mode = 2
+advance_expression = "attacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rlkr0"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "direction"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_crc8g"]
+advance_mode = 2
+advance_expression = "attacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ma8sd"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "!direction
+"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1klxb"]
+advance_mode = 2
+advance_expression = "!crouching && !direction"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0jkee"]
+advance_mode = 2
+advance_expression = "jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pnmb8"]
+advance_mode = 2
+advance_expression = "!crouching && direction"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ubxpg"]
+advance_mode = 2
+advance_expression = "direction"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u2hbi"]
+advance_mode = 2
+advance_expression = "direction"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dsyf6"]
+advance_mode = 2
+advance_expression = "airborne && !jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_atgp4"]
+advance_mode = 2
+advance_expression = "jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kdfoa"]
+advance_mode = 2
+advance_expression = "jumping
+"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_y4jn5"]
+advance_mode = 2
+advance_expression = "airborne && !jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tukxl"]
+advance_mode = 2
+advance_expression = "crouching"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fgdsh"]
+advance_mode = 2
+advance_expression = "crouching
+"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_y6sit"]
+advance_mode = 2
+advance_expression = "attacking
+"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_edu33"]
+advance_mode = 2
+advance_expression = "attacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ne5vs"]
+advance_mode = 2
+advance_expression = "attacking && attack_anim_number == BACK_SWIPE_NUMBER"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uglfx"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "!attacking && direction && !airborne"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g33a3"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "!attacking && !direction && !airborne"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_81qsq"]
+advance_mode = 2
+advance_expression = "attacking && attack_anim_number == BACK_SWIPE_NUMBER"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6g32k"]
+advance_mode = 2
+advance_expression = "attacking && attack_anim_number == BACK_SWIPE_NUMBER"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bcn3u"]
+advance_mode = 2
+advance_expression = "attacking && attack_anim_number == BACK_SWIPE_NUMBER"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8j5o1"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "airborne"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4icdn"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "!attacking && !direction"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_y8wfb"]
+advance_mode = 2
+advance_expression = "attacking && attack_anim_number == BACK_SWIPE_NUMBER"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2kqqq"]
+advance_mode = 2
+advance_expression = "attacking "
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sjbou"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "!attacking && direction && !airborne"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1kti7"]
+advance_mode = 2
+advance_expression = "attacking && attack_anim_number == BACK_SWIPE_NUMBER"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iwfsh"]
+advance_mode = 2
+advance_expression = "!airborne"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7cffe"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "!airborne"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yxklg"]
+advance_mode = 2
+advance_expression = "jumping"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_3sk3k"]
+states/Back_Leg_Swipe/node = SubResource("AnimationNodeAnimation_tfk7l")
+states/Back_Leg_Swipe/position = Vector2(1473.38, 675.467)
+states/Blink/node = SubResource("AnimationNodeAnimation_d8u2f")
+states/Blink/position = Vector2(200, -95.4036)
+states/Crouch/node = SubResource("AnimationNodeAnimation_j2tfu")
+states/Crouch/position = Vector2(1139.03, -76)
+states/Crouch_Swipe/node = SubResource("AnimationNodeAnimation_6v45g")
+states/Crouch_Swipe/position = Vector2(1061.03, -283.404)
+states/End/position = Vector2(1386, -95.4036)
+states/Fall/node = SubResource("AnimationNodeAnimation_2sh41")
+states/Fall/position = Vector2(462, 210.443)
+states/Idle/node = SubResource("AnimationNodeAnimation_0erl4")
+states/Idle/position = Vector2(552.03, -50)
+states/Idle_Crouch/node = SubResource("AnimationNodeAnimation_8mat1")
+states/Idle_Crouch/position = Vector2(824.03, -264.404)
+states/Jump/node = SubResource("AnimationNodeAnimation_0ge2u")
+states/Jump/position = Vector2(813.651, 168.467)
+states/Jump_To_Fall/node = SubResource("AnimationNodeAnimation_i56xg")
+states/Jump_To_Fall/position = Vector2(287.03, 687)
+states/Land/node = SubResource("AnimationNodeAnimation_evaek")
+states/Land/position = Vector2(182, 384)
+states/Roll/node = SubResource("AnimationNodeAnimation_u7gek")
+states/Roll/position = Vector2(1359.38, 257.443)
+states/Run/node = SubResource("AnimationNodeAnimation_1rl17")
+states/Run/position = Vector2(1050, 199.443)
+states/Running_Swipe/node = SubResource("AnimationNodeAnimation_r5hyl")
+states/Running_Swipe/position = Vector2(1327.65, 425)
+states/Standing_Swipe/node = SubResource("AnimationNodeAnimation_ol7ut")
+states/Standing_Swipe/position = Vector2(609.651, -389)
+states/Swipe_Up/node = SubResource("AnimationNodeAnimation_5hv0e")
+states/Swipe_Up/position = Vector2(982.03, 646)
+states/Tail/node = SubResource("AnimationNodeAnimation_y0gog")
+states/Tail/position = Vector2(282, -150)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_3a0vh"), "Idle", "Blink", SubResource("AnimationNodeStateMachineTransition_cwnv2"), "Idle", "Tail", SubResource("AnimationNodeStateMachineTransition_g3rqa"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_3u7md"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_31a27"), "Run", "Jump", SubResource("AnimationNodeStateMachineTransition_2ymkl"), "Jump", "Jump_To_Fall", SubResource("AnimationNodeStateMachineTransition_whs7j"), "Jump_To_Fall", "Fall", SubResource("AnimationNodeStateMachineTransition_2paua"), "Run", "Fall", SubResource("AnimationNodeStateMachineTransition_3vhls"), "Blink", "Idle", SubResource("AnimationNodeStateMachineTransition_lo8q3"), "Tail", "Idle", SubResource("AnimationNodeStateMachineTransition_u73s0"), "Jump", "Land", SubResource("AnimationNodeStateMachineTransition_7s1qb"), "Jump_To_Fall", "Land", SubResource("AnimationNodeStateMachineTransition_o5s6a"), "Fall", "Land", SubResource("AnimationNodeStateMachineTransition_s3nm7"), "Idle", "Fall", SubResource("AnimationNodeStateMachineTransition_3srp2"), "Crouch", "Idle", SubResource("AnimationNodeStateMachineTransition_3t5pc"), "Run", "Roll", SubResource("AnimationNodeStateMachineTransition_lgx5w"), "Jump", "Swipe_Up", SubResource("AnimationNodeStateMachineTransition_06uub"), "Jump_To_Fall", "Swipe_Up", SubResource("AnimationNodeStateMachineTransition_3v157"), "Fall", "Swipe_Up", SubResource("AnimationNodeStateMachineTransition_mimmi"), "Swipe_Up", "Fall", SubResource("AnimationNodeStateMachineTransition_sba0c"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_2r35t"), "Crouch", "Run", SubResource("AnimationNodeStateMachineTransition_asov2"), "Run", "Crouch", SubResource("AnimationNodeStateMachineTransition_0xsdr"), "Idle", "Idle_Crouch", SubResource("AnimationNodeStateMachineTransition_4klfx"), "Idle_Crouch", "Idle", SubResource("AnimationNodeStateMachineTransition_1ssys"), "Crouch", "Idle_Crouch", SubResource("AnimationNodeStateMachineTransition_ool0o"), "Idle_Crouch", "Crouch", SubResource("AnimationNodeStateMachineTransition_3xrgh"), "Roll", "Idle", SubResource("AnimationNodeStateMachineTransition_ipgf4"), "Idle", "Standing_Swipe", SubResource("AnimationNodeStateMachineTransition_ur6ik"), "Standing_Swipe", "Idle", SubResource("AnimationNodeStateMachineTransition_p7yyf"), "Run", "Running_Swipe", SubResource("AnimationNodeStateMachineTransition_g4pyx"), "Running_Swipe", "Run", SubResource("AnimationNodeStateMachineTransition_u3u61"), "Running_Swipe", "Idle", SubResource("AnimationNodeStateMachineTransition_vbbkn"), "Standing_Swipe", "Running_Swipe", SubResource("AnimationNodeStateMachineTransition_euwf2"), "Standing_Swipe", "Jump", SubResource("AnimationNodeStateMachineTransition_xc7xv"), "Land", "Jump", SubResource("AnimationNodeStateMachineTransition_ami40"), "Land", "Fall", SubResource("AnimationNodeStateMachineTransition_c4i1i"), "Land", "Roll", SubResource("AnimationNodeStateMachineTransition_3by55"), "Land", "Standing_Swipe", SubResource("AnimationNodeStateMachineTransition_ow0xw"), "Land", "Running_Swipe", SubResource("AnimationNodeStateMachineTransition_8vgdv"), "Jump", "Roll", SubResource("AnimationNodeStateMachineTransition_2suul"), "Fall", "Roll", SubResource("AnimationNodeStateMachineTransition_l07q2"), "Jump_To_Fall", "Roll", SubResource("AnimationNodeStateMachineTransition_04u0k"), "Idle_Crouch", "Jump", SubResource("AnimationNodeStateMachineTransition_0uq2y"), "Crouch", "Jump", SubResource("AnimationNodeStateMachineTransition_b7vdu"), "Running_Swipe", "Jump", SubResource("AnimationNodeStateMachineTransition_emnqd"), "Crouch", "Crouch_Swipe", SubResource("AnimationNodeStateMachineTransition_hm3j5"), "Crouch_Swipe", "Crouch", SubResource("AnimationNodeStateMachineTransition_rlkr0"), "Idle_Crouch", "Crouch_Swipe", SubResource("AnimationNodeStateMachineTransition_crc8g"), "Crouch_Swipe", "Idle_Crouch", SubResource("AnimationNodeStateMachineTransition_ma8sd"), "Crouch_Swipe", "Idle", SubResource("AnimationNodeStateMachineTransition_1klxb"), "Crouch_Swipe", "Jump", SubResource("AnimationNodeStateMachineTransition_0jkee"), "Crouch_Swipe", "Run", SubResource("AnimationNodeStateMachineTransition_pnmb8"), "Blink", "Run", SubResource("AnimationNodeStateMachineTransition_ubxpg"), "Tail", "Run", SubResource("AnimationNodeStateMachineTransition_u2hbi"), "Tail", "Fall", SubResource("AnimationNodeStateMachineTransition_dsyf6"), "Tail", "Jump", SubResource("AnimationNodeStateMachineTransition_atgp4"), "Blink", "Jump", SubResource("AnimationNodeStateMachineTransition_kdfoa"), "Blink", "Fall", SubResource("AnimationNodeStateMachineTransition_y4jn5"), "Blink", "Idle_Crouch", SubResource("AnimationNodeStateMachineTransition_tukxl"), "Tail", "Idle_Crouch", SubResource("AnimationNodeStateMachineTransition_fgdsh"), "Blink", "Standing_Swipe", SubResource("AnimationNodeStateMachineTransition_y6sit"), "Tail", "Standing_Swipe", SubResource("AnimationNodeStateMachineTransition_edu33"), "Run", "Back_Leg_Swipe", SubResource("AnimationNodeStateMachineTransition_ne5vs"), "Back_Leg_Swipe", "Run", SubResource("AnimationNodeStateMachineTransition_uglfx"), "Back_Leg_Swipe", "Idle", SubResource("AnimationNodeStateMachineTransition_g33a3"), "Land", "Back_Leg_Swipe", SubResource("AnimationNodeStateMachineTransition_81qsq"), "Jump", "Back_Leg_Swipe", SubResource("AnimationNodeStateMachineTransition_6g32k"), "Idle", "Back_Leg_Swipe", SubResource("AnimationNodeStateMachineTransition_bcn3u"), "Back_Leg_Swipe", "Fall", SubResource("AnimationNodeStateMachineTransition_8j5o1"), "Swipe_Up", "Idle", SubResource("AnimationNodeStateMachineTransition_4icdn"), "Jump_To_Fall", "Back_Leg_Swipe", SubResource("AnimationNodeStateMachineTransition_y8wfb"), "Land", "Swipe_Up", SubResource("AnimationNodeStateMachineTransition_2kqqq"), "Swipe_Up", "Run", SubResource("AnimationNodeStateMachineTransition_sjbou"), "Fall", "Back_Leg_Swipe", SubResource("AnimationNodeStateMachineTransition_1kti7"), "Swipe_Up", "Land", SubResource("AnimationNodeStateMachineTransition_iwfsh"), "Land", "Idle", SubResource("AnimationNodeStateMachineTransition_7cffe"), "Back_Leg_Swipe", "Jump", SubResource("AnimationNodeStateMachineTransition_yxklg")]
+graph_offset = Vector2(120.377, -79.5019)
+
+[node name="Umbra_CharacterBody2D" type="CharacterBody2D"]
+position = Vector2(-1504, 0)
+scale = Vector2(0.3, 0.3)
+script = ExtResource("2_8ipag")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("CanvasTexture_t3gbs")
+hframes = 14
+vframes = 11
+frame = 19
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-66, 222)
+rotation = 1.5708
+scale = Vector2(15, 14.3987)
+shape = SubResource("CapsuleShape2D_ahd6o")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_u8gg4")
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(2, 2)
+position_smoothing_enabled = true
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+deterministic = false
+reset_on_save = false
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeStateMachine_3sk3k")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../AnimationPlayer")

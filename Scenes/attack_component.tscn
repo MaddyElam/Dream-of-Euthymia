@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1e44hwokn5d0"]
+
+[ext_resource type="Script" uid="uid://b0b1a00mm0hx7" path="res://Scripts/AttackComponent.gd" id="1_1mchj"]
+
+[node name="AttackComponent" type="Area2D"]
+collision_layer = 512
+collision_mask = 0
+script = ExtResource("1_1mchj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+debug_color = Color(0.986367, 0, 0.324332, 0.42)
+
+[node name="Cooldown_Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="area_entered" from="." to="." method="_on_attack_range_area_entered"]
+[connection signal="timeout" from="Cooldown_Timer" to="." method="_on_cooldown_timer_timeout"]

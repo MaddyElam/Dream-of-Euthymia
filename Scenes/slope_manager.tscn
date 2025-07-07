@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvqco4sv4rcil"]
+
+[ext_resource type="Script" uid="uid://bkl7vuop21e4h" path="res://Scripts/SlopeManager.gd" id="1_161im"]
+
+[node name="SlopeManager" type="RayCast2D"]
+collision_mask = 3
+script = ExtResource("1_161im")

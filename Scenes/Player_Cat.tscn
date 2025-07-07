@@ -1,0 +1,2009 @@
+[gd_scene load_steps=142 format=3 uid="uid://dqn434s77upla"]
+
+[ext_resource type="Script" uid="uid://cogu4vwsf7m11" path="res://Scripts/player_cat_movement.gd" id="1_ycb3p"]
+[ext_resource type="Script" uid="uid://bxeg32cyr2ngn" path="res://Scripts/Line2D_TrailingParts.gd" id="2_a5dnt"]
+[ext_resource type="PackedScene" uid="uid://d0jj3ylkygcwj" path="res://Scenes/health_component.tscn" id="3_vp671"]
+[ext_resource type="PackedScene" uid="uid://dkt52a3ky6bsl" path="res://Scenes/hitbox_component.tscn" id="4_6gepx"]
+[ext_resource type="PackedScene" uid="uid://b1e44hwokn5d0" path="res://Scenes/attack_component.tscn" id="5_0qoma"]
+[ext_resource type="Script" uid="uid://bm6dm6tjts2so" path="res://Scripts/camera_shake.gd" id="6_dfobm"]
+[ext_resource type="Shader" uid="uid://bg0dg1ceiur62" path="res://Shaders/Player_Cat_Health.tres" id="6_imehw"]
+[ext_resource type="Shader" uid="uid://ysggofqjquj0" path="res://Shaders/Trail_Tail.tres" id="15_a5dnt"]
+[ext_resource type="Script" uid="uid://dcftrw86b80dp" path="res://Scripts/slash_trail.gd" id="15_y7oij"]
+[ext_resource type="Texture2D" uid="uid://b4dwkwtb0g6u5" path="res://Art/CatResources/Slash_Alpha_2.png" id="16_4pv3c"]
+[ext_resource type="Texture2D" uid="uid://chjee115q41mx" path="res://Art/CatResources/Cat_Head_Prototype.png" id="17_583vg"]
+[ext_resource type="PackedScene" uid="uid://c5fnsxobaf38o" path="res://Scenes/ground_particles.tscn" id="18_lqd1b"]
+[ext_resource type="Script" uid="uid://b2ij3ieg8qx30" path="res://Scripts/player_cat_health.gd" id="19_gnf74"]
+[ext_resource type="Shader" uid="uid://ccat2ubc1xwd7" path="res://Shaders/Damage_Flicker.gdshader" id="19_yvgxb"]
+[ext_resource type="Script" uid="uid://xibxir2gy3tp" path="res://addons/soupik/modifications/soup_group.gd" id="20_gnf74"]
+[ext_resource type="Texture2D" uid="uid://1y8f1aw7koim" path="res://Art/UIResources/HealthGlass_Alpha_5.png" id="20_wr4nh"]
+[ext_resource type="Texture2D" uid="uid://71fm1qth2efq" path="res://Art/UIResources/Glass_Noise.png" id="21_pst0c"]
+[ext_resource type="Script" uid="uid://bi3fqnl3865q7" path="res://addons/soupik/modifications/soup_two_bone_ik.gd" id="21_yvgxb"]
+[ext_resource type="Script" uid="uid://d2lrxokihxias" path="res://Scripts/paw_to_floor_snap.gd" id="22_ermt0"]
+[ext_resource type="Texture2D" uid="uid://ddvhhyblpxn3a" path="res://Art/UIResources/HealthGlass_5.png" id="22_gnf74"]
+[ext_resource type="Script" uid="uid://dvaxad664jqrc" path="res://addons/soupik/modifications/soup_look_at.gd" id="22_habd7"]
+[ext_resource type="Script" uid="uid://cot1l22ykr5ed" path="res://Scripts/floor_detector.gd" id="22_wr4nh"]
+[ext_resource type="Script" uid="uid://d0ghs5xfa202x" path="res://Scripts/paw_to_floor_ray.gd" id="22_yvgxb"]
+[ext_resource type="Script" uid="uid://ml8odl6nyp6o" path="res://Scripts/step_targets_shift.gd" id="24_ermt0"]
+[ext_resource type="Texture2D" uid="uid://dkhgt0ha53ujh" path="res://Art/BirdResources/Sparks.png" id="24_yvgxb"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yvgxb"]
+animation = &"Attack_BackDownSwipe"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_habd7"]
+animation = &"Attack_BackKick"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_db3pd"]
+animation = &"Attack_BackSwipeUp"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ermt0"]
+animation = &"Attack_FrontForwardSwipe"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5c6m7"]
+animation = &"Climb"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_veqjv"]
+animation = &"Climb_Cycle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gnf74"]
+animation = &"Drift"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pc25d"]
+animation = &"Fall"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_583vg"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vq6c3"]
+animation = &"Jump_Horizontal"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ckcwr"]
+animation = &"Jump_Vertical"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_spfg7"]
+animation = &"Land_Heavy"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fbuha"]
+animation = &"Land_Light"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0uxdi"]
+animation = &"Roll"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pst0c"]
+animation = &"Run_Default"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wr4nh"]
+animation = &"Run_Sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wr4nh"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gnf74"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "running && abs(velocity.x) > 0 && (is_on_floor() || touching_floor)
+"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yvgxb"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "!running || velocity.x == 0 || !(is_on_floor() || touching_floor)"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ermt0"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "abs(velocity.x) >= SPRINT_SPEED"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_habd7"]
+advance_mode = 2
+advance_expression = "drifting && on_floor_adv()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_db3pd"]
+advance_mode = 2
+advance_expression = "abs(velocity.x) == 0 && !running && !jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_583vg"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "(!running && !drifting) || (velocity.x == 0) || !on_floor_adv()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iastp"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "!rolling && !running"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8n20s"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "jumping && (!running && velocity.x == 0)"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ece3x"]
+xfade_time = 0.2
+priority = 2
+switch_mode = 2
+advance_mode = 2
+advance_expression = "!rolling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sif5b"]
+advance_mode = 2
+advance_expression = "(is_on_floor() || touching_floor) && velocity.y > 2000 && !rolling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x8e10"]
+advance_mode = 2
+advance_expression = "(is_on_floor() || touching_floor) && velocity.y < 2000 && !rolling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3nlrd"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+advance_expression = "!rolling && !jumping && !running"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_y58me"]
+xfade_time = 0.3
+switch_mode = 2
+advance_mode = 2
+advance_expression = "!rolling && !jumping && !running"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pg22c"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rtrd1"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+advance_expression = "!rolling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5n8m8"]
+advance_mode = 2
+advance_expression = "jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hefft"]
+advance_mode = 2
+advance_expression = "on_floor_adv()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wjwqn"]
+advance_mode = 2
+advance_expression = "jumping && (running || velocity.x != 0)"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lfivx"]
+xfade_time = 0.3
+advance_mode = 2
+advance_expression = "jumping && (!running && velocity.x == 0)"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5rfp5"]
+xfade_time = 0.3
+switch_mode = 2
+advance_mode = 2
+advance_expression = "jumping && (running || velocity.x != 0)"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pges8"]
+xfade_time = 0.3
+switch_mode = 2
+advance_mode = 2
+advance_expression = "jumping && (!running && velocity.x == 0)"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_riux5"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "!on_floor_adv() && !ground_particle_raycast.is_colliding() && !jumping && !rolling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6inwv"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "!on_floor_adv() && !jumping && !rolling && !ground_particle_raycast.is_colliding()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tyg25"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "!on_floor_adv() && !jumping && !rolling && !ground_particle_raycast.is_colliding()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ei5h1"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "!(on_floor_adv()) && !jumping && !rolling && !ground_particle_raycast.is_colliding()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hah4s"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "!attacking && !running"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v5124"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "!attacking && running && abs(velocity.x) < SPRINT_SPEED"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_laahw"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "!attacking && running && abs(velocity.x) >= SPRINT_SPEED"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o5i5r"]
+xfade_time = 0.3
+switch_mode = 2
+advance_mode = 2
+advance_expression = "jumping && (running || velocity.x != 0)"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e6tyb"]
+xfade_time = 0.3
+switch_mode = 2
+advance_mode = 2
+advance_expression = "running && on_floor_adv() && !rolling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_grosd"]
+xfade_time = 0.3
+switch_mode = 2
+advance_mode = 2
+advance_expression = "running && on_floor_adv() && !rolling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_02yrc"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "jumping && (!running && velocity.x == 0)"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_enk6u"]
+advance_mode = 2
+advance_expression = "jumping && (running || velocity.x != 0)"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_no7kd"]
+advance_mode = 2
+advance_expression = "on_floor_adv()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hhs5k"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "climbing || (get_middle_wall_detected() || get_upper_wall_detected())"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0uxdi"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "climbing || (get_middle_wall_detected() || get_upper_wall_detected())"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ckcwr"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "climbing || (get_middle_wall_detected() || get_upper_wall_detected())"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pc25d"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "climbing || (get_middle_wall_detected() || get_upper_wall_detected())"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_spfg7"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "climbing || (get_middle_wall_detected() || get_upper_wall_detected())"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fbuha"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "climbing || (get_middle_wall_detected() || get_upper_wall_detected())"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vq6c3"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "climbing || (get_middle_wall_detected() || get_upper_wall_detected())"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kxqe8"]
+advance_mode = 2
+advance_expression = "attacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5c6m7"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "!attacking && running && abs(velocity.x) >= SPRINT_SPEED"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_veqjv"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "!attacking && running && abs(velocity.x) < SPRINT_SPEED"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dn5mg"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "!attacking && !running"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2nou4"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "!attacking && !running"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qgd7m"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "!attacking && !running"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ddrxl"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "!(climbing || (get_middle_wall_detected() || get_upper_wall_detected())) && running"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7lmb6"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "!(climbing || (get_middle_wall_detected() || get_upper_wall_detected())) && !running && !jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mpq5l"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "!(climbing || (get_middle_wall_detected() || get_upper_wall_detected())) && jumping && !running"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sd7g5"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "!(climbing || (get_middle_wall_detected() || get_upper_wall_detected())) && running && jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qt7io"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "!rolling && running"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c2p15"]
+advance_mode = 2
+advance_expression = "climbing && current_direction_y == 1"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ccrip"]
+advance_mode = 2
+advance_expression = "!climbing || (get_middle_wall_detected() || get_upper_wall_detected()) || current_direction_y == 0"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_4pv3c"]
+states/Attack_BackDownSwipe/node = SubResource("AnimationNodeAnimation_yvgxb")
+states/Attack_BackDownSwipe/position = Vector2(762, 388.284)
+states/Attack_BackKick/node = SubResource("AnimationNodeAnimation_habd7")
+states/Attack_BackKick/position = Vector2(935, 338.457)
+states/Attack_BackSwipeUp/node = SubResource("AnimationNodeAnimation_db3pd")
+states/Attack_BackSwipeUp/position = Vector2(-1, -156.518)
+states/Attack_FrontForwardSwipe/node = SubResource("AnimationNodeAnimation_ermt0")
+states/Attack_FrontForwardSwipe/position = Vector2(234, 469.354)
+states/Climb/node = SubResource("AnimationNodeAnimation_5c6m7")
+states/Climb/position = Vector2(528.691, 447)
+states/Climb_Cycle/node = SubResource("AnimationNodeAnimation_veqjv")
+states/Climb_Cycle/position = Vector2(558.691, 543.664)
+states/Drift/node = SubResource("AnimationNodeAnimation_gnf74")
+states/Drift/position = Vector2(510, 116)
+states/End/position = Vector2(927, 9)
+states/Fall/node = SubResource("AnimationNodeAnimation_pc25d")
+states/Fall/position = Vector2(95, -63.0988)
+states/Idle/node = SubResource("AnimationNodeAnimation_583vg")
+states/Idle/position = Vector2(175, 291)
+states/Jump_Horizontal/node = SubResource("AnimationNodeAnimation_vq6c3")
+states/Jump_Horizontal/position = Vector2(963, 171.357)
+states/Jump_Vertical/node = SubResource("AnimationNodeAnimation_ckcwr")
+states/Jump_Vertical/position = Vector2(367, 171.357)
+states/Land_Heavy/node = SubResource("AnimationNodeAnimation_spfg7")
+states/Land_Heavy/position = Vector2(243, -190.643)
+states/Land_Light/node = SubResource("AnimationNodeAnimation_fbuha")
+states/Land_Light/position = Vector2(-26, 163.357)
+states/Roll/node = SubResource("AnimationNodeAnimation_0uxdi")
+states/Roll/position = Vector2(719, -74.784)
+states/Run_Default/node = SubResource("AnimationNodeAnimation_pst0c")
+states/Run_Default/position = Vector2(535.691, 229.284)
+states/Run_Sprint/node = SubResource("AnimationNodeAnimation_wr4nh")
+states/Run_Sprint/position = Vector2(767, -4)
+states/Start/position = Vector2(63, 373)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_wr4nh"), "Idle", "Run_Default", SubResource("AnimationNodeStateMachineTransition_gnf74"), "Run_Default", "Idle", SubResource("AnimationNodeStateMachineTransition_yvgxb"), "Run_Default", "Run_Sprint", SubResource("AnimationNodeStateMachineTransition_ermt0"), "Run_Sprint", "Drift", SubResource("AnimationNodeStateMachineTransition_habd7"), "Drift", "Idle", SubResource("AnimationNodeStateMachineTransition_db3pd"), "Run_Sprint", "Idle", SubResource("AnimationNodeStateMachineTransition_583vg"), "Roll", "Idle", SubResource("AnimationNodeStateMachineTransition_iastp"), "Idle", "Jump_Vertical", SubResource("AnimationNodeStateMachineTransition_8n20s"), "Jump_Vertical", "Fall", SubResource("AnimationNodeStateMachineTransition_ece3x"), "Fall", "Land_Light", SubResource("AnimationNodeStateMachineTransition_sif5b"), "Fall", "Land_Heavy", SubResource("AnimationNodeStateMachineTransition_x8e10"), "Land_Light", "Idle", SubResource("AnimationNodeStateMachineTransition_3nlrd"), "Land_Heavy", "Idle", SubResource("AnimationNodeStateMachineTransition_y58me"), "Run_Default", "Jump_Horizontal", SubResource("AnimationNodeStateMachineTransition_pg22c"), "Jump_Horizontal", "Fall", SubResource("AnimationNodeStateMachineTransition_rtrd1"), "Run_Sprint", "Jump_Horizontal", SubResource("AnimationNodeStateMachineTransition_5n8m8"), "Jump_Vertical", "Land_Light", SubResource("AnimationNodeStateMachineTransition_hefft"), "Idle", "Jump_Horizontal", SubResource("AnimationNodeStateMachineTransition_wjwqn"), "Land_Light", "Jump_Vertical", SubResource("AnimationNodeStateMachineTransition_lfivx"), "Land_Light", "Jump_Horizontal", SubResource("AnimationNodeStateMachineTransition_5rfp5"), "Land_Heavy", "Jump_Vertical", SubResource("AnimationNodeStateMachineTransition_pges8"), "Idle", "Fall", SubResource("AnimationNodeStateMachineTransition_riux5"), "Run_Default", "Fall", SubResource("AnimationNodeStateMachineTransition_6inwv"), "Run_Sprint", "Fall", SubResource("AnimationNodeStateMachineTransition_tyg25"), "Roll", "Fall", SubResource("AnimationNodeStateMachineTransition_ei5h1"), "Attack_FrontForwardSwipe", "Idle", SubResource("AnimationNodeStateMachineTransition_hah4s"), "Attack_FrontForwardSwipe", "Run_Default", SubResource("AnimationNodeStateMachineTransition_v5124"), "Attack_FrontForwardSwipe", "Run_Sprint", SubResource("AnimationNodeStateMachineTransition_laahw"), "Land_Heavy", "Jump_Horizontal", SubResource("AnimationNodeStateMachineTransition_o5i5r"), "Land_Light", "Run_Default", SubResource("AnimationNodeStateMachineTransition_e6tyb"), "Land_Heavy", "Run_Default", SubResource("AnimationNodeStateMachineTransition_grosd"), "Drift", "Jump_Vertical", SubResource("AnimationNodeStateMachineTransition_02yrc"), "Drift", "Jump_Horizontal", SubResource("AnimationNodeStateMachineTransition_enk6u"), "Jump_Horizontal", "Land_Light", SubResource("AnimationNodeStateMachineTransition_no7kd"), "Idle", "Climb", SubResource("AnimationNodeStateMachineTransition_hhs5k"), "Run_Default", "Climb", SubResource("AnimationNodeStateMachineTransition_0uxdi"), "Run_Sprint", "Climb", SubResource("AnimationNodeStateMachineTransition_ckcwr"), "Jump_Horizontal", "Climb", SubResource("AnimationNodeStateMachineTransition_pc25d"), "Fall", "Climb", SubResource("AnimationNodeStateMachineTransition_spfg7"), "Jump_Vertical", "Climb", SubResource("AnimationNodeStateMachineTransition_fbuha"), "Roll", "Climb", SubResource("AnimationNodeStateMachineTransition_vq6c3"), "Drift", "Attack_BackSwipeUp", SubResource("AnimationNodeStateMachineTransition_kxqe8"), "Attack_BackDownSwipe", "Run_Sprint", SubResource("AnimationNodeStateMachineTransition_5c6m7"), "Attack_BackDownSwipe", "Run_Default", SubResource("AnimationNodeStateMachineTransition_veqjv"), "Attack_BackDownSwipe", "Idle", SubResource("AnimationNodeStateMachineTransition_dn5mg"), "Attack_BackKick", "Idle", SubResource("AnimationNodeStateMachineTransition_2nou4"), "Attack_BackSwipeUp", "Idle", SubResource("AnimationNodeStateMachineTransition_qgd7m"), "Climb", "Run_Default", SubResource("AnimationNodeStateMachineTransition_ddrxl"), "Climb", "Idle", SubResource("AnimationNodeStateMachineTransition_7lmb6"), "Climb", "Jump_Vertical", SubResource("AnimationNodeStateMachineTransition_mpq5l"), "Climb", "Jump_Horizontal", SubResource("AnimationNodeStateMachineTransition_sd7g5"), "Roll", "Run_Default", SubResource("AnimationNodeStateMachineTransition_qt7io"), "Climb", "Climb_Cycle", SubResource("AnimationNodeStateMachineTransition_c2p15"), "Climb_Cycle", "Climb", SubResource("AnimationNodeStateMachineTransition_ccrip")]
+graph_offset = Vector2(-84.3088, -223.59)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_habd7"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yvgxb"]
+radius = 24.56
+height = 86.5
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_habd7"]
+height = 40.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ermt0"]
+radius = 3.5
+height = 15.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_db3pd"]
+height = 40.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0uxdi"]
+height = 50.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ckcwr"]
+height = 50.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pst0c"]
+radius = 25.0
+
+[sub_resource type="Gradient" id="Gradient_pst0c"]
+offsets = PackedFloat32Array(0.0441989, 0.248619, 0.491713, 0.718232, 0.955801)
+colors = PackedColorArray(0.688333, 0.66, 1, 1, 1, 0.68, 0.845333, 1, 1, 0.970667, 0.89, 1, 0.67, 0.956, 1, 1, 1, 0.911167, 0.59, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wr4nh"]
+gradient = SubResource("Gradient_pst0c")
+use_hdr = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_583vg"]
+shader = ExtResource("6_imehw")
+shader_parameter/Color_Texture = SubResource("GradientTexture1D_wr4nh")
+shader_parameter/GlassAlb = ExtResource("22_gnf74")
+shader_parameter/Alpha_Source = ExtResource("21_pst0c")
+shader_parameter/Alpha_Shape = ExtResource("20_wr4nh")
+
+[sub_resource type="Curve" id="Curve_yvgxb"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.51896, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ermt0"]
+curve = SubResource("Curve_yvgxb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_habd7"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(1, -1, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+radial_velocity_min = 8.57998
+radial_velocity_max = 266.09
+gravity = Vector3(0, 98, 0)
+scale_min = 0.2
+scale_max = 0.3
+scale_curve = SubResource("CurveTexture_ermt0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_db3pd"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+radial_velocity_min = 8.57998
+radial_velocity_max = 266.09
+gravity = Vector3(0, 98, 0)
+scale_min = 0.2
+scale_max = 0.3
+scale_curve = SubResource("CurveTexture_ermt0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0uxdi"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(-1, -1, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 300.0
+radial_velocity_min = 8.57998
+radial_velocity_max = 266.09
+gravity = Vector3(0, 98, 0)
+scale_min = 0.2
+scale_max = 0.3
+scale_curve = SubResource("CurveTexture_ermt0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ckcwr"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+radial_velocity_min = 8.57998
+radial_velocity_max = 266.09
+gravity = Vector3(0, 98, 0)
+scale_min = 0.2
+scale_max = 0.3
+scale_curve = SubResource("CurveTexture_ermt0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pc25d"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(-1, 0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+radial_velocity_min = 8.57998
+radial_velocity_max = 266.09
+gravity = Vector3(0, 98, 0)
+scale_min = 0.2
+scale_max = 0.3
+scale_curve = SubResource("CurveTexture_ermt0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_spfg7"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, 1, 0)
+radial_velocity_min = 8.57998
+radial_velocity_max = 266.09
+gravity = Vector3(0, 98, 0)
+scale_min = 0.2
+scale_max = 0.3
+scale_curve = SubResource("CurveTexture_ermt0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fbuha"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(1, 1, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+radial_velocity_min = 8.57998
+radial_velocity_max = 266.09
+gravity = Vector3(0, 98, 0)
+scale_min = 0.2
+scale_max = 0.3
+scale_curve = SubResource("CurveTexture_ermt0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vq6c3"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(-1, 1, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+radial_velocity_min = 8.57998
+radial_velocity_max = 266.09
+gravity = Vector3(0, 98, 0)
+scale_min = 0.2
+scale_max = 0.3
+scale_curve = SubResource("CurveTexture_ermt0")
+
+[sub_resource type="Curve" id="Curve_pst0c"]
+_data = [Vector2(0, 1), 0.0, 0.400974, 0, 0, Vector2(1, 0.0292207), -0.999592, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_imehw"]
+offsets = PackedFloat32Array(0.0773481, 0.243094, 0.508287, 0.745856, 0.955801)
+colors = PackedColorArray(0.8, 1.5, 1.5, 0, 0.8, 1.5, 1.5, 1, 1, 1.5, 1.5, 1, 0.8, 1.5, 1.5, 1, 0.8, 1.5, 1.5, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_583vg"]
+gradient = SubResource("Gradient_imehw")
+use_hdr = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pst0c"]
+resource_local_to_scene = true
+shader = ExtResource("15_a5dnt")
+shader_parameter/Color_Texture = SubResource("GradientTexture1D_583vg")
+shader_parameter/Pan_Speed = Vector2(0, 0)
+shader_parameter/Alpha_Source = ExtResource("16_4pv3c")
+
+[sub_resource type="Curve" id="Curve_y7oij"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.251012, 0.753448), 2.86696, 2.86696, 0, 0, Vector2(0.502024, 1), 0.0, 0.0, 0, 0, Vector2(0.748988, 0.753448), -2.84292, -2.84292, 0, 0, Vector2(0.991903, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gnf74"]
+size = Vector2(68, 17)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lqd1b"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 20.43
+angle_min = 1.07288e-05
+angle_max = 180.0
+direction = Vector3(1, 1, 0)
+gravity = Vector3(0, 98, 0)
+hue_variation_min = -2.23517e-08
+hue_variation_max = -2.23517e-08
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_583vg"]
+radius = 20.0
+height = 70.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pst0c"]
+radius = 20.0
+height = 100.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wr4nh"]
+radius = 20.0
+height = 100.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gnf74"]
+radius = 48.73
+height = 131.04
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ermt0"]
+resource_local_to_scene = true
+shader = ExtResource("19_yvgxb")
+shader_parameter/blink_speed = 30.0
+shader_parameter/blinking = false
+shader_parameter/flash_opacity = 0.0
+
+[sub_resource type="Gradient" id="Gradient_gnf74"]
+offsets = PackedFloat32Array(0.610329, 0.699531)
+colors = PackedColorArray(0.493545, 0.493546, 0.493546, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yvgxb"]
+gradient = SubResource("Gradient_gnf74")
+width = 10
+height = 15
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_y7oij"]
+offsets = PackedFloat32Array(0.610329, 0.699531)
+colors = PackedColorArray(0.505344, 0.505344, 0.505344, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a5dnt"]
+gradient = SubResource("Gradient_y7oij")
+width = 10
+height = 15
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Curve" id="Curve_583vg"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.51417, 1), 0.0, 0.0, 0, 0, Vector2(0.769231, 0.955172), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_wr4nh"]
+colors = PackedColorArray(0.408329, 0.408329, 0.408329, 1, 1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_ermt0"]
+offsets = PackedFloat32Array(0.610329, 0.699531)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4pv3c"]
+gradient = SubResource("Gradient_ermt0")
+width = 10
+height = 15
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Animation" id="Animation_ermt0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flippables_Container/BodyContainer/IK Targets/PawBF_Target:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-46, 57)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Flippables_Container/BodyContainer/IK Targets/PawBF_Target/PawBF_LookAt:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(10, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Flippables_Container/BodyContainer/IK Targets/PawBB_Target:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-36, 56)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Flippables_Container/BodyContainer/IK Targets/PawBB_Target/PawBB_LookAt:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(14, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Flippables_Container/BodyContainer/IK Targets/PawFB_Target:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(12, 57)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Flippables_Container/BodyContainer/IK Targets/PawFB_Target/PawFB_LookAt:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(12, 4)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Flippables_Container/BodyContainer/IK Targets/PawFF_Target:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 59)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Flippables_Container/BodyContainer/IK Targets/PawFF_Target/PawFF_LookAt:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(21, 3)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Flippables_Container/BodyContainer/IK Targets/Head_Target:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(12, -44)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Flippables_Container/BodyContainer/IK Targets/BackLegsHeightOffset:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-41, 56.5)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Flippables_Container/BodyContainer/IK Targets/FrontLegsHeightOffset:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(6, 60)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Flippables_Container/BodyContainer/IK Targets/BackLegsHeightOffset/BackLegsHeight:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-22, -82.5)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Flippables_Container/BodyContainer/IK Targets/FrontLegsHeightOffset/FrontLegsHeight:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(40.5, -73)]
+}
+
+[sub_resource type="Animation" id="Animation_pst0c"]
+resource_name = "Reset"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flippables_Container/BodyContainer/IK Targets/PawBF_Target:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-46, 57)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Flippables_Container/BodyContainer/IK Targets/PawBF_Target/PawBF_LookAt:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(10, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Flippables_Container/BodyContainer/IK Targets/PawBB_Target:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-36, 56)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Flippables_Container/BodyContainer/IK Targets/PawBB_Target/PawBB_LookAt:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(14, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Flippables_Container/BodyContainer/IK Targets/PawFB_Target:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(12, 57)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Flippables_Container/BodyContainer/IK Targets/PawFB_Target/PawFB_LookAt:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(12, 4)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Flippables_Container/BodyContainer/IK Targets/PawFF_Target:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 59)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Flippables_Container/BodyContainer/IK Targets/PawFF_Target/PawFF_LookAt:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(21, 3)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Flippables_Container/BodyContainer/IK Targets/Head_Target:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(12, -44)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Flippables_Container/BodyContainer/IK Targets/BackLegsHeightOffset:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-41, 56.5)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Flippables_Container/BodyContainer/IK Targets/FrontLegsHeightOffset:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(6, 60)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Flippables_Container/BodyContainer/IK Targets/BackLegsHeightOffset/BackLegsHeight:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-22, -82.5)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Flippables_Container/BodyContainer/IK Targets/FrontLegsHeightOffset/FrontLegsHeight:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(40.5, -73)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wr4nh"]
+_data = {
+&"RESET": SubResource("Animation_ermt0"),
+&"Reset": SubResource("Animation_pst0c")
+}
+
+[node name="Player_Cat" type="CharacterBody2D" node_paths=PackedStringArray("player_camera_2D")]
+z_index = 1
+collision_layer = 4
+collision_mask = 3
+floor_snap_length = 200.0
+script = ExtResource("1_ycb3p")
+player_camera_2D = NodePath("Camera2D")
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(0, 2)
+points = PackedVector2Array(-49, 60, 15, 60)
+width = 1.0
+default_color = Color(1, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_4pv3c")
+advance_expression_base_node = NodePath("..")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(58, -53)
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+script = ExtResource("6_dfobm")
+default_offset = Vector2(0, 0)
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-23, 55)
+rotation = 1.5708
+scale = Vector2(0.999986, -0.999986)
+shape = SubResource("RectangleShape2D_habd7")
+
+[node name="Body_Collider" type="CollisionShape2D" parent="."]
+position = Vector2(-25.9228, -2.0652)
+rotation = 1.5708
+scale = Vector2(0.999986, -0.999986)
+shape = SubResource("CapsuleShape2D_yvgxb")
+metadata/_edit_lock_ = true
+
+[node name="LegBB_Collider" type="CollisionShape2D" parent="."]
+position = Vector2(-43.4553, 31.0748)
+rotation = -0.20337
+scale = Vector2(0.999986, 0.999986)
+shape = SubResource("CapsuleShape2D_habd7")
+metadata/_edit_lock_ = true
+
+[node name="PawBB_Collider" type="CollisionShape2D" parent="."]
+position = Vector2(-37.5196, 57.8008)
+rotation = 1.51925
+scale = Vector2(0.999976, 0.999976)
+shape = SubResource("CapsuleShape2D_ermt0")
+metadata/_edit_lock_ = true
+
+[node name="LegBF_Collider" type="CollisionShape2D" parent="."]
+position = Vector2(-58.7129, 31.8286)
+rotation = -0.502589
+scale = Vector2(0.999986, 0.999986)
+shape = SubResource("CapsuleShape2D_db3pd")
+metadata/_edit_lock_ = true
+
+[node name="PawBF_Collider" type="CollisionShape2D" parent="."]
+position = Vector2(-48.1166, 58.3683)
+rotation = 1.54041
+scale = Vector2(0.999982, 0.999982)
+shape = SubResource("CapsuleShape2D_ermt0")
+metadata/_edit_lock_ = true
+
+[node name="LegFB_Collider" type="CollisionShape2D" parent="."]
+position = Vector2(-0.128663, 28.1035)
+rotation = -0.222863
+scale = Vector2(0.999977, 0.999977)
+shape = SubResource("CapsuleShape2D_0uxdi")
+metadata/_edit_lock_ = true
+
+[node name="PawFB_Collider" type="CollisionShape2D" parent="."]
+position = Vector2(8.32807, 59.3447)
+rotation = 1.67603
+scale = Vector2(0.999971, 0.999971)
+shape = SubResource("CapsuleShape2D_ermt0")
+metadata/_edit_lock_ = true
+
+[node name="LegFF_Collider" type="CollisionShape2D" parent="."]
+position = Vector2(-12.1144, 27.3792)
+rotation = -0.250737
+scale = Vector2(0.999978, 0.999978)
+shape = SubResource("CapsuleShape2D_ckcwr")
+metadata/_edit_lock_ = true
+
+[node name="PawFF_Collider" type="CollisionShape2D" parent="."]
+position = Vector2(-6.44734, 58.6312)
+rotation = 1.65998
+scale = Vector2(0.99997, 0.99997)
+shape = SubResource("CapsuleShape2D_ermt0")
+metadata/_edit_lock_ = true
+
+[node name="Head_Collider" type="CollisionShape2D" parent="."]
+position = Vector2(15.5526, -38.8254)
+rotation = 0.0485277
+scale = Vector2(0.999952, 0.999952)
+shape = SubResource("CircleShape2D_pst0c")
+metadata/_edit_lock_ = true
+
+[node name="Player_Cat_Health" type="CanvasLayer" parent="." node_paths=PackedStringArray("particle_emitters")]
+visible = false
+offset = Vector2(-100, -56.25)
+scale = Vector2(1.125, 1.125)
+transform = Transform2D(1.125, 0, 0, 1.125, -100, -56.25)
+script = ExtResource("19_gnf74")
+particle_emitters = [NodePath("ColorRect/Control/GPUParticles2D"), NodePath("ColorRect/Control2/GPUParticles2D"), NodePath("ColorRect/Control3/GPUParticles2D"), NodePath("ColorRect/Control4/GPUParticles2D"), NodePath("ColorRect/Control5/GPUParticles2D"), NodePath("ColorRect/Control6/GPUParticles2D"), NodePath("ColorRect/Control7/GPUParticles2D"), NodePath("ColorRect/Control8/GPUParticles2D")]
+
+[node name="ColorRect" type="ColorRect" parent="Player_Cat_Health"]
+material = SubResource("ShaderMaterial_583vg")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.84, 0.1932, 0.6244, 1)
+
+[node name="Control" type="Control" parent="Player_Cat_Health/ColorRect"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Player_Cat_Health/ColorRect/Control"]
+emitting = false
+amount = 5
+texture = ExtResource("24_yvgxb")
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_habd7")
+
+[node name="Control2" type="Control" parent="Player_Cat_Health/ColorRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Player_Cat_Health/ColorRect/Control2"]
+emitting = false
+amount = 3
+texture = ExtResource("24_yvgxb")
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_db3pd")
+
+[node name="Control3" type="Control" parent="Player_Cat_Health/ColorRect"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Player_Cat_Health/ColorRect/Control3"]
+emitting = false
+amount = 5
+texture = ExtResource("24_yvgxb")
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_0uxdi")
+
+[node name="Control4" type="Control" parent="Player_Cat_Health/ColorRect"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Player_Cat_Health/ColorRect/Control4"]
+emitting = false
+amount = 3
+texture = ExtResource("24_yvgxb")
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ckcwr")
+
+[node name="Control5" type="Control" parent="Player_Cat_Health/ColorRect"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Player_Cat_Health/ColorRect/Control5"]
+emitting = false
+amount = 3
+texture = ExtResource("24_yvgxb")
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_pc25d")
+
+[node name="Control6" type="Control" parent="Player_Cat_Health/ColorRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Player_Cat_Health/ColorRect/Control6"]
+emitting = false
+amount = 3
+texture = ExtResource("24_yvgxb")
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_spfg7")
+
+[node name="Control7" type="Control" parent="Player_Cat_Health/ColorRect"]
+layout_mode = 1
+anchors_preset = 0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Player_Cat_Health/ColorRect/Control7"]
+emitting = false
+amount = 5
+texture = ExtResource("24_yvgxb")
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_fbuha")
+
+[node name="Control8" type="Control" parent="Player_Cat_Health/ColorRect"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Player_Cat_Health/ColorRect/Control8"]
+emitting = false
+amount = 5
+texture = ExtResource("24_yvgxb")
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_vq6c3")
+
+[node name="Flippables_Container" type="Node2D" parent="."]
+
+[node name="Ear_B" type="Line2D" parent="Flippables_Container" node_paths=PackedStringArray("root_body", "connects_from_object")]
+top_level = true
+points = PackedVector2Array(3, -4, -8, -16, -21, -34)
+width = 20.0
+width_curve = SubResource("Curve_pst0c")
+default_color = Color(0.47788, 0.47788, 0.47788, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("2_a5dnt")
+root_body = NodePath("../..")
+connects_from_object = NodePath("../BodyContainer/CatHeadPrototype")
+max_length = 3
+metadata/_edit_lock_ = true
+
+[node name="Ear_F" type="Line2D" parent="Flippables_Container" node_paths=PackedStringArray("root_body", "connects_from_object")]
+top_level = true
+points = PackedVector2Array(-12, -7, -22, -17, -33, -29)
+width = 20.0
+width_curve = SubResource("Curve_pst0c")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("2_a5dnt")
+root_body = NodePath("../..")
+connects_from_object = NodePath("../BodyContainer/CatHeadPrototype")
+max_length = 3
+metadata/_edit_lock_ = true
+
+[node name="Slash_Trail" type="Line2D" parent="Flippables_Container"]
+material = SubResource("ShaderMaterial_pst0c")
+position = Vector2(58, -53)
+width = 20.0
+width_curve = SubResource("Curve_y7oij")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("15_y7oij")
+trail_vanish_time = 0.005
+metadata/_edit_lock_ = true
+
+[node name="Floor_Detector" type="Area2D" parent="Flippables_Container" node_paths=PackedStringArray("parent_node")]
+script = ExtResource("22_wr4nh")
+parent_node = NodePath("../..")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flippables_Container/Floor_Detector"]
+position = Vector2(-16, 60)
+shape = SubResource("RectangleShape2D_gnf74")
+
+[node name="Ground_Particles" parent="Flippables_Container" node_paths=PackedStringArray("parent_body") instance=ExtResource("18_lqd1b")]
+position = Vector2(-17, 25)
+process_material = SubResource("ParticleProcessMaterial_lqd1b")
+parent_body = NodePath("../..")
+particle_scale = Vector2(0.1, 0.3)
+init_velocity = Vector2(-200, 0)
+metadata/_edit_lock_ = true
+
+[node name="RayCast2D" parent="Flippables_Container/Ground_Particles" index="0"]
+target_position = Vector2(0, 80)
+
+[node name="Middle_Wall_Detector" type="RayCast2D" parent="Flippables_Container"]
+target_position = Vector2(55, 0)
+collision_mask = 2
+metadata/_edit_lock_ = true
+
+[node name="Upper_Wall_Detector" type="RayCast2D" parent="Flippables_Container"]
+target_position = Vector2(55, -60)
+collision_mask = 2
+metadata/_edit_lock_ = true
+
+[node name="HealthComponent" parent="Flippables_Container" node_paths=PackedStringArray("hitbox_component") instance=ExtResource("3_vp671")]
+position = Vector2(58, -53)
+hitbox_component = NodePath("../HitboxComponent")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="AttackComponent" parent="Flippables_Container" instance=ExtResource("5_0qoma")]
+visible = false
+position = Vector2(35, -39)
+collision_layer = 4
+collision_mask = 16
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" parent="Flippables_Container/AttackComponent" index="0"]
+position = Vector2(-30.6497, 97.9246)
+rotation = 0.68766
+scale = Vector2(0.999957, 0.999954)
+skew = -4.99487e-05
+shape = SubResource("CapsuleShape2D_583vg")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Flippables_Container/AttackComponent"]
+position = Vector2(-88.1142, 97.5202)
+rotation = 2.5765
+scale = Vector2(0.999971, 0.99996)
+skew = -4.72069e-05
+shape = SubResource("CapsuleShape2D_pst0c")
+debug_color = Color(0.855467, 0.000769129, 0.886851, 0.42)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Flippables_Container/AttackComponent"]
+position = Vector2(-45.5204, 98.271)
+rotation = 1.00356
+scale = Vector2(0.999957, 0.999971)
+skew = 4.74453e-05
+shape = SubResource("CapsuleShape2D_wr4nh")
+debug_color = Color(0.911993, 9.47213e-05, 0.724721, 0.42)
+
+[node name="HitboxComponent" parent="Flippables_Container" node_paths=PackedStringArray("health_component") instance=ExtResource("4_6gepx")]
+visible = false
+position = Vector2(-13, -1)
+collision_layer = 4
+collision_mask = 16
+health_component = NodePath("../HealthComponent")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" parent="Flippables_Container/HitboxComponent" index="0"]
+shape = SubResource("CapsuleShape2D_gnf74")
+
+[node name="BodyContainer" type="Node2D" parent="Flippables_Container"]
+material = SubResource("ShaderMaterial_ermt0")
+metadata/_edit_lock_ = true
+
+[node name="UpperFrontlegBackPolygon" type="Polygon2D" parent="Flippables_Container/BodyContainer"]
+position = Vector2(61, -49)
+color = Color(0.466181, 0.466181, 0.466181, 1)
+skeleton = NodePath("../Skeleton2D")
+polygon = PackedVector2Array(-52, 73, -49, 62, -48, 55, -51, 50, -58, 49, -65, 54, -68, 62, -66, 71, -65, 77, -61, 79, -55, 79)
+bones = ["Spine1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders", PackedFloat32Array(0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0, 0, 0, 0), "Spine1/Shoulders/Neck1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2/Neck3", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2/Neck3/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg/FrontFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg", PackedFloat32Array(1, 1, 1, 0.5, 0.5, 1, 1, 1, 0.5, 0.5, 0.5), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg", PackedFloat32Array(0.5, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0.5), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg/FrontBackPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg/BackFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg/BackBackPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
+metadata/_edit_lock_ = true
+
+[node name="LowerFrontLegBackPolygon" type="Polygon2D" parent="Flippables_Container/BodyContainer"]
+position = Vector2(59, -46)
+color = Color(0.435192, 0.435192, 0.435192, 1)
+skeleton = NodePath("../Skeleton2D")
+polygon = PackedVector2Array(-53, 75, -53, 80, -53, 88, -53, 94, -52, 99, -50, 104, -51, 105, -54, 106, -58, 103, -59, 100, -61, 94, -63, 87, -65, 81, -65, 77, -64, 73, -61, 70, -56, 70, -54, 72)
+bones = ["Spine1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2/Neck3", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2/Neck3/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg/FrontFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg", PackedFloat32Array(0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0.5, 0.5), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg", PackedFloat32Array(0.5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.5, 0.5, 0.5, 0.5), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg/FrontBackPaw", PackedFloat32Array(0, 0, 0, 0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg/BackFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg/BackBackPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
+metadata/_edit_lock_ = true
+
+[node name="Paw_FB_Sprite" type="Sprite2D" parent="Flippables_Container/BodyContainer"]
+position = Vector2(8.32807, 59.3447)
+rotation = 1.67603
+scale = Vector2(0.999971, 0.999971)
+texture = SubResource("GradientTexture2D_yvgxb")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Flippables_Container/BodyContainer/Paw_FB_Sprite"]
+remote_path = NodePath("../../../../PawFB_Collider")
+
+[node name="UpperBacklegBackPolygon" type="Polygon2D" parent="Flippables_Container/BodyContainer"]
+position = Vector2(73, -44)
+color = Color(0.474, 0.474, 0.474, 1)
+skeleton = NodePath("../Skeleton2D")
+polygon = PackedVector2Array(-110, 82, -105, 78, -101, 74, -98, 69, -96, 64, -94, 57, -93, 49, -94, 46, -95, 43, -99, 40, -105, 39, -112, 40, -116, 43, -117, 52, -117, 57, -116, 64, -115, 70, -118, 74, -120, 76, -118, 81, -115, 84)
+bones = ["Spine1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2/Neck3", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2/Neck3/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg/FrontFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg/FrontBackPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg/BackFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg", PackedFloat32Array(0, 0, 0.5, 1, 1, 1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 1, 1, 0.5, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg", PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0.5, 0.5), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg", PackedFloat32Array(1, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 1, 1), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg/BackBackPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
+
+[node name="LowerBacklegBackPolygon" type="Polygon2D" parent="Flippables_Container/BodyContainer"]
+position = Vector2(75, -45)
+color = Color(0.48, 0.48, 0.48, 1)
+skeleton = NodePath("../Skeleton2D")
+polygon = PackedVector2Array(-111, 83, -112, 86, -112, 93, -112, 99, -112, 103, -114, 104, -118, 103, -119, 98, -121, 86, -122, 79, -119, 75, -115, 74, -111, 76, -109, 81)
+bones = ["Spine1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2/Neck3", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2/Neck3/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg/FrontFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg/FrontBackPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg/BackFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg", PackedFloat32Array(0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0.5), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg", PackedFloat32Array(1, 1, 1, 1, 0.5, 0.5, 0.5, 1, 1, 1, 0.5, 0.5, 0.5, 1), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg/BackBackPaw", PackedFloat32Array(0, 0, 0, 0.5, 0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0, 0)]
+
+[node name="Paw_BB_Sprite" type="Sprite2D" parent="Flippables_Container/BodyContainer"]
+position = Vector2(-37.5196, 57.8008)
+rotation = 1.51925
+scale = Vector2(0.999976, 0.999976)
+texture = SubResource("GradientTexture2D_a5dnt")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Flippables_Container/BodyContainer/Paw_BB_Sprite"]
+remote_path = NodePath("../../../../PawBB_Collider")
+
+[node name="BodyPolygon" type="Polygon2D" parent="Flippables_Container/BodyContainer"]
+position = Vector2(54, -49)
+antialiased = true
+skeleton = NodePath("../Skeleton2D")
+polygon = PackedVector2Array(-56, 15, -54, 7, -50, 3, -41, 2, -33, 8, -33, 15, -33, 23, -34, 31, -36, 39, -37, 45, -38, 53, -39, 57, -41, 62, -45, 66, -53, 69, -63, 68, -71, 65, -83, 61, -95, 59, -100, 58, -102, 56, -104, 53, -106, 46, -105, 42, -103, 39, -100, 36, -95, 33, -90, 32, -81, 33, -69, 34, -62, 34, -59, 28, -57, 22)
+uv = PackedVector2Array(-31, 37, -27, 25, -27, 4, -24, -6, -15, -9, -7, -4, -2, 9, 1, 26, 1, 44, 1, 51, 0, 62, -5, 69, -17, 75, -29, 79, -41, 78, -53, 73, -70, 69, -82, 69, -97, 70, -108, 62, -113, 50, -109, 38, -100, 33, -85, 33, -60, 35, -43, 39, -33, 41)
+bones = ["Spine1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0.55, 0.55, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0), "Spine1/Shoulders", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0.5), "Spine1/Shoulders/Neck1", PackedFloat32Array(1, 0.55, 0.55, 0, 0, 0, 0.5, 1, 1, 0.45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 1, 1), "Spine1/Shoulders/Neck1/Neck2", PackedFloat32Array(1, 1, 0.55, 0, 0, 1, 1, 1, 0.45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 1, 1), "Spine1/Shoulders/Neck1/Neck2/Neck3", PackedFloat32Array(1, 1, 1, 1, 1, 1, 0.45, 0.45, 0.45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.45, 0.45), "Spine1/Shoulders/Neck1/Neck2/Neck3/Head", PackedFloat32Array(0, 0.5, 0.5, 0.5, 1, 1, 1, 1, 0.55, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg/FrontFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg/FrontBackPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 1, 1, 0.5, 0, 0, 0, 0, 0, 0, 0.5, 1, 1, 1, 1, 0.55, 0, 0), "Spine1/Spine2/Pelvis", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.5, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg/BackFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg/BackBackPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
+metadata/_edit_lock_ = true
+
+[node name="TailOriginPoint" type="Node2D" parent="Flippables_Container/BodyContainer"]
+show_behind_parent = true
+position = Vector2(-43, -13)
+rotation = 1.00527
+
+[node name="Tail_Line2D" type="Line2D" parent="Flippables_Container/BodyContainer/TailOriginPoint" node_paths=PackedStringArray("root_body", "connects_from_object")]
+top_level = true
+points = PackedVector2Array(0, 0, -4, 10, -11, 18, -19, 23, -33, 25, -46, 20, -54, 11)
+width = 8.0
+width_curve = SubResource("Curve_583vg")
+gradient = SubResource("Gradient_wr4nh")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("2_a5dnt")
+root_body = NodePath("../../../..")
+connects_from_object = NodePath("..")
+max_length = 7
+metadata/_edit_lock_ = true
+
+[node name="UpperBacklegPolygon" type="Polygon2D" parent="Flippables_Container/BodyContainer"]
+position = Vector2(56, -46)
+skeleton = NodePath("../Skeleton2D")
+polygon = PackedVector2Array(-104, 81, -100, 79, -94, 75, -90, 71, -88, 68, -86, 63, -85, 57, -85, 48, -87, 42, -97, 39, -104, 40, -108, 45, -108, 50, -109, 60, -110, 65, -112, 70, -116, 75, -117, 80, -114, 83, -108, 83)
+bones = ["Spine1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2/Neck3", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2/Neck3/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg/FrontFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg/FrontBackPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg", PackedFloat32Array(0, 0, 0, 0.5, 0.5, 0.5, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0.5, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg", PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 0.5, 0, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 1, 1, 1, 1, 1), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg", PackedFloat32Array(0.5, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0.5), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg/BackFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg/BackBackPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
+metadata/_edit_lock_ = true
+
+[node name="LowerBackLegPolygon" type="Polygon2D" parent="Flippables_Container/BodyContainer"]
+position = Vector2(58, -47)
+skeleton = NodePath("../Skeleton2D")
+polygon = PackedVector2Array(-104, 80, -109, 84, -110, 90, -110, 96, -110, 100, -110, 103, -111, 106, -113, 107, -117, 105, -117, 102, -118, 96, -119, 87, -119, 83, -119, 79, -116, 75, -113, 73, -108, 74)
+bones = ["Spine1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2/Neck3", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2/Neck3/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg/FrontFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg/FrontBackPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg", PackedFloat32Array(0.5, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg", PackedFloat32Array(0.5, 1, 1, 1, 1, 1, 0.5, 0.5, 0.5, 1, 1, 1, 1, 1, 0.5, 0.5, 0.5), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg/BackFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg/BackBackPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
+metadata/_edit_lock_ = true
+
+[node name="Paw_BF_Sprite" type="Sprite2D" parent="Flippables_Container/BodyContainer"]
+position = Vector2(-48.1166, 58.3683)
+rotation = 1.54041
+scale = Vector2(0.999982, 0.999982)
+texture = SubResource("GradientTexture2D_4pv3c")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Flippables_Container/BodyContainer/Paw_BF_Sprite"]
+remote_path = NodePath("../../../../PawBF_Collider")
+
+[node name="CatHeadPrototype" type="Sprite2D" parent="Flippables_Container/BodyContainer"]
+position = Vector2(15.5526, -38.8254)
+rotation = 0.0485277
+scale = Vector2(0.999952, 0.999952)
+texture = ExtResource("17_583vg")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Flippables_Container/BodyContainer/CatHeadPrototype"]
+remote_path = NodePath("../../../../Head_Collider")
+
+[node name="UpperFrontlegPolygon" type="Polygon2D" parent="Flippables_Container/BodyContainer"]
+position = Vector2(49, -50)
+skeleton = NodePath("../Skeleton2D")
+polygon = PackedVector2Array(-51, 76, -43, 65, -42, 55, -47, 47, -57, 47, -64, 53, -66, 61, -66, 71, -67, 77, -65, 80, -60, 83, -54, 82)
+bones = ["Spine1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders", PackedFloat32Array(0, 0.5, 0.5, 0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2/Neck3", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2/Neck3/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg", PackedFloat32Array(1, 1, 1, 0.5, 1, 1, 1, 1, 1, 1, 0.5, 1), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg", PackedFloat32Array(0.5, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0.5, 0.5), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg/FrontFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg/FrontBackPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg/BackFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg/BackBackPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
+metadata/_edit_lock_ = true
+
+[node name="LowerFrontLegPolygon" type="Polygon2D" parent="Flippables_Container/BodyContainer"]
+position = Vector2(50, -48)
+skeleton = NodePath("../Skeleton2D")
+polygon = PackedVector2Array(-67, 73, -68, 76, -68, 79, -67, 86, -65, 96, -63, 105, -62, 107, -58, 107, -55, 106, -55, 102, -56, 96, -55, 86, -54, 81, -54, 75, -60, 72, -65, 72)
+bones = ["Spine1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2/Neck3", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2/Neck3/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg", PackedFloat32Array(0.5, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg", PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg/FrontFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg/FrontBackPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg/BackFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg/BackBackPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
+metadata/_edit_lock_ = true
+
+[node name="Paw_FF_Sprite" type="Sprite2D" parent="Flippables_Container/BodyContainer"]
+position = Vector2(-6.44734, 58.6312)
+rotation = 1.65998
+scale = Vector2(0.99997, 0.99997)
+texture = SubResource("GradientTexture2D_4pv3c")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Flippables_Container/BodyContainer/Paw_FF_Sprite"]
+remote_path = NodePath("../../../../PawFF_Collider")
+
+[node name="Skeleton2D" type="Skeleton2D" parent="Flippables_Container/BodyContainer"]
+position = Vector2(58, -53)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Spine1" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D"]
+position = Vector2(-83.9228, 50.9348)
+rotation = 0.143365
+scale = Vector2(0.999986, 0.999986)
+rest = Transform2D(0.993728, 0.111701, -0.111701, 0.993728, -83.9228, 50.9348)
+editor_settings/show_bone_gizmo = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1"]
+remote_path = NodePath("../../../../../Body_Collider")
+update_rotation = false
+metadata/_edit_lock_ = true
+
+[node name="Shoulders" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1"]
+position = Vector2(26.2034, -7.91137)
+rest = Transform2D(1, 0, 0, 1, 26.2034, -7.91137)
+editor_settings/show_bone_gizmo = false
+
+[node name="Neck1" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders"]
+position = Vector2(5.51572, -4.64525)
+rotation = 0.214019
+scale = Vector2(0.999978, 0.999978)
+rest = Transform2D(0.963117, 0.269003, -0.269003, 0.963117, 5.51572, -4.64525)
+editor_settings/show_bone_gizmo = false
+
+[node name="Neck2" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/Neck1"]
+position = Vector2(-2.64489, -11.875)
+rotation = 0.0687621
+scale = Vector2(0.999998, 0.999998)
+rest = Transform2D(0.981663, -0.190614, 0.190614, 0.981663, -2.64489, -11.875)
+editor_settings/show_bone_gizmo = false
+
+[node name="Neck3" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/Neck1/Neck2"]
+position = Vector2(1.41401, -8.42647)
+rotation = -0.715025
+scale = Vector2(0.999994, 0.999994)
+rest = Transform2D(0.993166, 0.116657, -0.116657, 0.993166, 1.41401, -8.42647)
+auto_calculate_length_and_angle = false
+length = 15.0
+bone_angle = -80.0
+editor_settings/show_bone_gizmo = false
+
+[node name="Head" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/Neck1/Neck2/Neck3"]
+position = Vector2(4.53609, -8.79957)
+rotation = 0.337406
+scale = Vector2(0.999996, 0.999996)
+rest = Transform2D(0.986254, -0.165213, 0.165213, 0.986254, 4.53609, -8.79957)
+auto_calculate_length_and_angle = false
+length = 25.0
+bone_angle = 25.0
+editor_settings/show_bone_gizmo = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/Neck1/Neck2/Neck3/Head"]
+remote_path = NodePath("../../../../../../../../CatHeadPrototype")
+metadata/_edit_lock_ = true
+
+[node name="UpperFrontLeg" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders"]
+position = Vector2(-4.62209, 12.5953)
+rotation = 0.0354555
+scale = Vector2(0.999996, 0.999996)
+rest = Transform2D(0.999935, 0.0110789, -0.0110789, 0.999935, -4.62209, 12.5953)
+editor_settings/show_bone_gizmo = false
+
+[node name="LowerFrontLeg" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/UpperFrontLeg"]
+position = Vector2(-2.90812, 22.6033)
+rotation = -0.429557
+scale = Vector2(0.999996, 0.999996)
+rest = Transform2D(0.941251, -0.337695, 0.337695, 0.941251, -2.90812, 22.6033)
+auto_calculate_length_and_angle = false
+length = 25.0
+bone_angle = 85.0
+editor_settings/show_bone_gizmo = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg"]
+remote_path = NodePath("../../../../../../../../LegFF_Collider")
+metadata/_edit_lock_ = true
+
+[node name="FrontFrontPaw" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg"]
+position = Vector2(-6.36883, 31.2907)
+rotation = 0.339916
+scale = Vector2(0.999992, 0.999992)
+rest = Transform2D(0.950743, 0.309956, -0.309956, 0.950743, -6.36883, 31.2907)
+auto_calculate_length_and_angle = false
+length = 10.0
+bone_angle = 0.0
+editor_settings/show_bone_gizmo = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg/FrontFrontPaw"]
+position = Vector2(4, -1)
+rotation = 1.5708
+remote_path = NodePath("../../../../../../../Paw_FF_Sprite")
+metadata/_edit_lock_ = true
+
+[node name="RemoteTransform2D2" type="RemoteTransform2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg/FrontFrontPaw"]
+remote_path = NodePath("../../../../../../../../AttackComponent/CollisionShape2D3")
+update_rotation = false
+update_scale = false
+metadata/_edit_lock_ = true
+
+[node name="UpperFrontBackLeg" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders"]
+position = Vector2(7.63809, 14.2361)
+rotation = -0.137768
+scale = Vector2(0.999996, 0.999996)
+rest = Transform2D(0.995427, -0.0954803, 0.0954803, 0.995427, 7.63809, 14.2361)
+editor_settings/show_bone_gizmo = false
+
+[node name="LowerFrontBackLeg" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/UpperFrontBackLeg"]
+position = Vector2(-6.68932, 19.112)
+rotation = -0.228461
+scale = Vector2(0.999995, 0.999995)
+rest = Transform2D(0.981746, -0.190169, 0.190169, 0.981746, -6.68932, 19.112)
+auto_calculate_length_and_angle = false
+length = 25.0
+bone_angle = 80.0
+editor_settings/show_bone_gizmo = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg"]
+remote_path = NodePath("../../../../../../../../LegFB_Collider")
+metadata/_edit_lock_ = true
+
+[node name="FrontBackPaw" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg"]
+position = Vector2(-2.44402, 31.0495)
+rotation = 0.328095
+scale = Vector2(0.999994, 0.999994)
+rest = Transform2D(0.964376, 0.264512, -0.264512, 0.964376, -2.44402, 31.0495)
+auto_calculate_length_and_angle = false
+length = 10.0
+bone_angle = 0.0
+editor_settings/show_bone_gizmo = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg/FrontBackPaw"]
+position = Vector2(4, 0)
+rotation = 1.5708
+remote_path = NodePath("../../../../../../../Paw_FB_Sprite")
+metadata/_edit_lock_ = true
+
+[node name="RemoteTransform2D2" type="RemoteTransform2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg/FrontBackPaw"]
+remote_path = NodePath("../../../../../../../../AttackComponent/CollisionShape2D")
+update_rotation = false
+update_scale = false
+metadata/_edit_lock_ = true
+
+[node name="Spine2" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1"]
+position = Vector2(-0.0694628, 0.0734177)
+rotation = -0.0440281
+rest = Transform2D(1, 0, 0, 1, -0.0694628, 0.0734177)
+editor_settings/show_bone_gizmo = false
+
+[node name="Pelvis" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2"]
+position = Vector2(-16.0234, -8.262)
+rotation = -0.00725629
+scale = Vector2(0.999999, 0.999999)
+rest = Transform2D(0.999973, -0.00725622, 0.00725622, 0.999973, -16.0234, -8.262)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 180.0
+editor_settings/show_bone_gizmo = false
+
+[node name="UpperBackLeg" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Pelvis"]
+position = Vector2(-6.80692, 11.7759)
+rotation = -0.248679
+scale = Vector2(1.00001, 1.00001)
+rest = Transform2D(0.886212, -0.463302, 0.463302, 0.886212, -6.80692, 11.7759)
+editor_settings/show_bone_gizmo = false
+
+[node name="MidBackLeg" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Pelvis/UpperBackLeg"]
+position = Vector2(-2, 19)
+rotation = -0.12178
+scale = Vector2(0.999995, 0.999995)
+rest = Transform2D(0.994835, 0.101452, -0.101452, 0.994835, -2, 19)
+auto_calculate_length_and_angle = false
+length = 45.0
+bone_angle = 86.0
+editor_settings/show_bone_gizmo = false
+
+[node name="LowerBackLeg" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg"]
+position = Vector2(-14, 10)
+rotation = -0.224211
+scale = Vector2(0.999996, 0.999996)
+rest = Transform2D(0.997749, 0.0669979, -0.0669979, 0.997749, -14, 10)
+auto_calculate_length_and_angle = false
+length = 20.0
+bone_angle = 92.0
+editor_settings/show_bone_gizmo = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg"]
+remote_path = NodePath("../../../../../../../../../../LegBF_Collider")
+metadata/_edit_lock_ = true
+
+[node name="BackFrontPaw" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg"]
+position = Vector2(-7.95098, 26.0881)
+rotation = 0.472203
+scale = Vector2(0.999996, 0.999996)
+rest = Transform2D(0.964116, 0.265465, -0.265465, 0.964116, -7.95098, 26.0881)
+auto_calculate_length_and_angle = false
+length = 10.0
+bone_angle = 0.0
+editor_settings/show_bone_gizmo = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg/BackFrontPaw"]
+position = Vector2(5, 0)
+rotation = 1.5708
+remote_path = NodePath("../../../../../../../../../Paw_BF_Sprite")
+metadata/_edit_lock_ = true
+
+[node name="RemoteTransform2D2" type="RemoteTransform2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg/BackFrontPaw"]
+rotation = 0.806342
+remote_path = NodePath("../../../../../../../../../../AttackComponent/CollisionShape2D2")
+update_rotation = false
+update_scale = false
+metadata/_edit_lock_ = true
+
+[node name="UpperBackBackLeg" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Pelvis"]
+position = Vector2(7.63909, 15.2857)
+rotation = 0.19722
+scale = Vector2(1.00001, 1.00001)
+rest = Transform2D(0.998267, 0.0590104, -0.0590104, 0.998267, 7.63909, 15.2857)
+editor_settings/show_bone_gizmo = false
+
+[node name="MidBackBackLeg" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Pelvis/UpperBackBackLeg"]
+position = Vector2(5.07015, 18.42)
+rotation = -0.309037
+scale = Vector2(0.999994, 0.999994)
+rest = Transform2D(0.979989, -0.199029, 0.199029, 0.979989, 5.07015, 18.42)
+editor_settings/show_bone_gizmo = false
+
+[node name="LowerBackBackLeg" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg"]
+position = Vector2(-8.28779, 7.70156)
+rotation = -0.183634
+scale = Vector2(0.999997, 0.999997)
+rest = Transform2D(0.991322, -0.131431, 0.131431, 0.991322, -8.28779, 7.70156)
+auto_calculate_length_and_angle = false
+length = 20.0
+bone_angle = 85.0
+editor_settings/show_bone_gizmo = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg"]
+remote_path = NodePath("../../../../../../../../../../LegBB_Collider")
+metadata/_edit_lock_ = true
+
+[node name="BackBackPaw" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg"]
+position = Vector2(-4.52693, 26.6182)
+rotation = 0.15182
+scale = Vector2(0.99999, 0.99999)
+rest = Transform2D(0.968723, 0.248107, -0.248107, 0.968723, -4.52693, 26.6182)
+auto_calculate_length_and_angle = false
+length = 10.0
+bone_angle = 0.0
+editor_settings/show_bone_gizmo = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg/BackBackPaw"]
+position = Vector2(5, 0)
+rotation = 1.5708
+remote_path = NodePath("../../../../../../../../../Paw_BB_Sprite")
+metadata/_edit_lock_ = true
+
+[node name="SoupNodes" type="Node" parent="Flippables_Container/BodyContainer/Skeleton2D"]
+script = ExtResource("20_gnf74")
+metadata/_custom_type_script = "uid://xibxir2gy3tp"
+
+[node name="ShoulderLookAt" type="Node" parent="Flippables_Container/BodyContainer/Skeleton2D/SoupNodes" node_paths=PackedStringArray("target_node", "bone_node")]
+script = ExtResource("22_habd7")
+target_node = NodePath("../../../IK Targets/FrontLegsHeightOffset/FrontLegsHeight")
+enabled = true
+bone_node = NodePath("../../Spine1")
+metadata/_custom_type_script = "uid://dvaxad664jqrc"
+
+[node name="PelvisLookAt" type="Node" parent="Flippables_Container/BodyContainer/Skeleton2D/SoupNodes" node_paths=PackedStringArray("target_node", "bone_node")]
+script = ExtResource("22_habd7")
+target_node = NodePath("../../../IK Targets/BackLegsHeightOffset/BackLegsHeight")
+enabled = true
+bone_node = NodePath("../../Spine1/Spine2")
+metadata/_custom_type_script = "uid://dvaxad664jqrc"
+
+[node name="PawBF_TwoBoneIK" type="Node" parent="Flippables_Container/BodyContainer/Skeleton2D/SoupNodes" node_paths=PackedStringArray("target_node", "joint_one_bone_node", "joint_two_bone_node")]
+script = ExtResource("21_yvgxb")
+target_node = NodePath("../../../IK Targets/PawBF_Target")
+enabled = true
+softness = 1.0
+joint_one_bone_node = NodePath("../../Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg")
+joint_two_bone_node = NodePath("../../Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg")
+metadata/_custom_type_script = "uid://bi3fqnl3865q7"
+
+[node name="LegBF_LookAt" type="Node" parent="Flippables_Container/BodyContainer/Skeleton2D/SoupNodes/PawBF_TwoBoneIK" node_paths=PackedStringArray("target_node", "bone_node")]
+script = ExtResource("22_habd7")
+target_node = NodePath("../../../../IK Targets/PawBF_Target")
+enabled = true
+bone_node = NodePath("../../../Spine1/Spine2/Pelvis/UpperBackLeg")
+metadata/_custom_type_script = "uid://dvaxad664jqrc"
+
+[node name="PawBF_LookAt" type="Node" parent="Flippables_Container/BodyContainer/Skeleton2D/SoupNodes/PawBF_TwoBoneIK" node_paths=PackedStringArray("target_node", "bone_node")]
+script = ExtResource("22_habd7")
+target_node = NodePath("../../../../IK Targets/PawBF_Target/PawBF_LookAt")
+enabled = true
+bone_node = NodePath("../../../Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg/BackFrontPaw")
+metadata/_custom_type_script = "uid://dvaxad664jqrc"
+
+[node name="PawBB_TwoBoneIK" type="Node" parent="Flippables_Container/BodyContainer/Skeleton2D/SoupNodes" node_paths=PackedStringArray("target_node", "joint_one_bone_node", "joint_two_bone_node")]
+script = ExtResource("21_yvgxb")
+target_node = NodePath("../../../IK Targets/PawBB_Target")
+enabled = true
+softness = 1.0
+joint_one_bone_node = NodePath("../../Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg")
+joint_two_bone_node = NodePath("../../Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg")
+metadata/_custom_type_script = "uid://bi3fqnl3865q7"
+
+[node name="LegBB_LookAt" type="Node" parent="Flippables_Container/BodyContainer/Skeleton2D/SoupNodes/PawBB_TwoBoneIK" node_paths=PackedStringArray("target_node", "bone_node")]
+script = ExtResource("22_habd7")
+target_node = NodePath("../../../../IK Targets/PawBB_Target")
+enabled = true
+bone_node = NodePath("../../../Spine1/Spine2/Pelvis/UpperBackBackLeg")
+metadata/_custom_type_script = "uid://dvaxad664jqrc"
+
+[node name="PawBB_LookAt" type="Node" parent="Flippables_Container/BodyContainer/Skeleton2D/SoupNodes/PawBB_TwoBoneIK" node_paths=PackedStringArray("target_node", "bone_node")]
+script = ExtResource("22_habd7")
+target_node = NodePath("../../../../IK Targets/PawBB_Target/PawBB_LookAt")
+enabled = true
+bone_node = NodePath("../../../Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg/BackBackPaw")
+metadata/_custom_type_script = "uid://dvaxad664jqrc"
+
+[node name="PawFB_TwoBoneIK" type="Node" parent="Flippables_Container/BodyContainer/Skeleton2D/SoupNodes" node_paths=PackedStringArray("target_node", "joint_one_bone_node", "joint_two_bone_node")]
+script = ExtResource("21_yvgxb")
+target_node = NodePath("../../../IK Targets/PawFB_Target")
+enabled = true
+softness = 0.5
+joint_one_bone_node = NodePath("../../Spine1/Shoulders/UpperFrontBackLeg")
+joint_two_bone_node = NodePath("../../Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg")
+metadata/_custom_type_script = "uid://bi3fqnl3865q7"
+
+[node name="SoupLookAt" type="Node" parent="Flippables_Container/BodyContainer/Skeleton2D/SoupNodes/PawFB_TwoBoneIK" node_paths=PackedStringArray("target_node", "bone_node")]
+script = ExtResource("22_habd7")
+target_node = NodePath("../../../../IK Targets/PawFB_Target/PawFB_LookAt")
+enabled = true
+bone_node = NodePath("../../../Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg/FrontBackPaw")
+metadata/_custom_type_script = "uid://dvaxad664jqrc"
+
+[node name="PawFF_TwoBoneIK" type="Node" parent="Flippables_Container/BodyContainer/Skeleton2D/SoupNodes" node_paths=PackedStringArray("target_node", "joint_one_bone_node", "joint_two_bone_node")]
+script = ExtResource("21_yvgxb")
+target_node = NodePath("../../../IK Targets/PawFF_Target")
+enabled = true
+softness = 0.5
+joint_one_bone_node = NodePath("../../Spine1/Shoulders/UpperFrontLeg")
+joint_two_bone_node = NodePath("../../Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg")
+metadata/_custom_type_script = "uid://bi3fqnl3865q7"
+
+[node name="PawFF_LookAt" type="Node" parent="Flippables_Container/BodyContainer/Skeleton2D/SoupNodes/PawFF_TwoBoneIK" node_paths=PackedStringArray("target_node", "bone_node")]
+script = ExtResource("22_habd7")
+target_node = NodePath("../../../../IK Targets/PawFF_Target/PawFF_LookAt")
+enabled = true
+bone_node = NodePath("../../../Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg/FrontFrontPaw")
+metadata/_custom_type_script = "uid://dvaxad664jqrc"
+
+[node name="Head_TwoBoneIK" type="Node" parent="Flippables_Container/BodyContainer/Skeleton2D/SoupNodes" node_paths=PackedStringArray("target_node", "joint_one_bone_node", "joint_two_bone_node")]
+script = ExtResource("21_yvgxb")
+target_node = NodePath("../../../IK Targets/Head_Target")
+enabled = true
+joint_one_bone_node = NodePath("../../Spine1/Shoulders/Neck1/Neck2")
+joint_two_bone_node = NodePath("../../Spine1/Shoulders/Neck1/Neck2/Neck3")
+metadata/_custom_type_script = "uid://bi3fqnl3865q7"
+
+[node name="Head_LookAt" type="Node" parent="Flippables_Container/BodyContainer/Skeleton2D/SoupNodes/Head_TwoBoneIK" node_paths=PackedStringArray("target_node", "bone_node")]
+script = ExtResource("22_habd7")
+target_node = NodePath("../../../../IK Targets/Head_Target/Head_LookAt")
+enabled = true
+bone_node = NodePath("../../../Spine1/Shoulders/Neck1/Neck2/Neck3/Head")
+metadata/_custom_type_script = "uid://dvaxad664jqrc"
+
+[node name="SoupLookAt" type="Node" parent="Flippables_Container/BodyContainer/Skeleton2D/SoupNodes/Head_TwoBoneIK" node_paths=PackedStringArray("target_node", "bone_node")]
+script = ExtResource("22_habd7")
+target_node = NodePath("../../../../IK Targets/Head_Target")
+enabled = true
+bone_node = NodePath("../../../Spine1/Shoulders/Neck1")
+metadata/_custom_type_script = "uid://dvaxad664jqrc"
+
+[node name="IK Targets" type="Node2D" parent="Flippables_Container/BodyContainer"]
+
+[node name="PawBF_Target" type="Marker2D" parent="Flippables_Container/BodyContainer/IK Targets" node_paths=PackedStringArray("step_target", "look_node", "adj_target", "opp_target")]
+top_level = true
+position = Vector2(-46, 57)
+script = ExtResource("22_ermt0")
+step_target = NodePath("../../StepTargets/PawBF_Step")
+look_node = NodePath("PawBF_LookAt")
+adj_target = NodePath("../PawBB_Target")
+opp_target = NodePath("../PawFB_Target")
+step_dist_increment = 100.0
+step_height_increment = 300.0
+
+[node name="PawBF_LookAt" type="Marker2D" parent="Flippables_Container/BodyContainer/IK Targets/PawBF_Target"]
+position = Vector2(10, 1)
+
+[node name="PawBB_Target" type="Marker2D" parent="Flippables_Container/BodyContainer/IK Targets" node_paths=PackedStringArray("step_target", "look_node", "adj_target", "opp_target")]
+top_level = true
+position = Vector2(-36, 56)
+script = ExtResource("22_ermt0")
+step_target = NodePath("../../StepTargets/PawBB_Step")
+look_node = NodePath("PawBB_LookAt")
+adj_target = NodePath("../PawBF_Target")
+opp_target = NodePath("../PawFF_Target")
+step_dist_increment = 100.0
+step_height_increment = 300.0
+
+[node name="PawBB_LookAt" type="Marker2D" parent="Flippables_Container/BodyContainer/IK Targets/PawBB_Target"]
+position = Vector2(14, 1)
+
+[node name="PawFB_Target" type="Marker2D" parent="Flippables_Container/BodyContainer/IK Targets" node_paths=PackedStringArray("step_target", "look_node", "adj_target", "opp_target")]
+top_level = true
+position = Vector2(12, 57)
+script = ExtResource("22_ermt0")
+step_target = NodePath("../../StepTargets/PawFB_Step")
+look_node = NodePath("PawFB_LookAt")
+adj_target = NodePath("../PawFF_Target")
+opp_target = NodePath("../PawBF_Target")
+step_dist_increment = 50.0
+step_height_increment = 100.0
+
+[node name="PawFB_LookAt" type="Marker2D" parent="Flippables_Container/BodyContainer/IK Targets/PawFB_Target"]
+position = Vector2(12, 4)
+
+[node name="PawFF_Target" type="Marker2D" parent="Flippables_Container/BodyContainer/IK Targets" node_paths=PackedStringArray("step_target", "look_node", "adj_target", "opp_target")]
+top_level = true
+position = Vector2(-1, 59)
+script = ExtResource("22_ermt0")
+step_target = NodePath("../../StepTargets/PawFF_Step")
+look_node = NodePath("PawFF_LookAt")
+adj_target = NodePath("../PawFB_Target")
+opp_target = NodePath("../PawBB_Target")
+step_dist_increment = 50.0
+step_height_increment = 100.0
+
+[node name="PawFF_LookAt" type="Marker2D" parent="Flippables_Container/BodyContainer/IK Targets/PawFF_Target"]
+position = Vector2(21, 3)
+
+[node name="Head_Target" type="Marker2D" parent="Flippables_Container/BodyContainer/IK Targets"]
+position = Vector2(12, -44)
+
+[node name="Head_LookAt" type="Marker2D" parent="Flippables_Container/BodyContainer/IK Targets/Head_Target"]
+position = Vector2(26, 17)
+
+[node name="BackLegsHeightOffset" type="Node2D" parent="Flippables_Container/BodyContainer/IK Targets"]
+position = Vector2(-41, 56.5)
+
+[node name="BackLegsHeight" type="Marker2D" parent="Flippables_Container/BodyContainer/IK Targets/BackLegsHeightOffset"]
+position = Vector2(-22, -82.5)
+
+[node name="FrontLegsHeightOffset" type="Node2D" parent="Flippables_Container/BodyContainer/IK Targets"]
+position = Vector2(6, 60)
+
+[node name="FrontLegsHeight" type="Marker2D" parent="Flippables_Container/BodyContainer/IK Targets/FrontLegsHeightOffset"]
+position = Vector2(40.5, -73)
+
+[node name="StepTargets" type="Node2D" parent="Flippables_Container/BodyContainer" node_paths=PackedStringArray("root_body")]
+script = ExtResource("24_ermt0")
+root_body = NodePath("../../..")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="PawBF_Step" type="Marker2D" parent="Flippables_Container/BodyContainer/StepTargets"]
+position = Vector2(-47, 61)
+
+[node name="RayCast2D" type="RayCast2D" parent="Flippables_Container/BodyContainer/StepTargets/PawBF_Step" node_paths=PackedStringArray("step_target")]
+position = Vector2(0, -40)
+target_position = Vector2(0, 100)
+script = ExtResource("22_yvgxb")
+step_target = NodePath("..")
+
+[node name="PawBB_Step" type="Marker2D" parent="Flippables_Container/BodyContainer/StepTargets"]
+position = Vector2(-36, 58)
+
+[node name="RayCast2D" type="RayCast2D" parent="Flippables_Container/BodyContainer/StepTargets/PawBB_Step" node_paths=PackedStringArray("step_target")]
+position = Vector2(0, -40)
+target_position = Vector2(0, 100)
+script = ExtResource("22_yvgxb")
+step_target = NodePath("..")
+
+[node name="PawFB_Step" type="Marker2D" parent="Flippables_Container/BodyContainer/StepTargets"]
+position = Vector2(12, 57)
+
+[node name="RayCast2D" type="RayCast2D" parent="Flippables_Container/BodyContainer/StepTargets/PawFB_Step" node_paths=PackedStringArray("step_target")]
+position = Vector2(0, -40)
+target_position = Vector2(0, 100)
+script = ExtResource("22_yvgxb")
+step_target = NodePath("..")
+
+[node name="PawFF_Step" type="Marker2D" parent="Flippables_Container/BodyContainer/StepTargets"]
+position = Vector2(-1, 59)
+
+[node name="RayCast2D" type="RayCast2D" parent="Flippables_Container/BodyContainer/StepTargets/PawFF_Step" node_paths=PackedStringArray("step_target")]
+position = Vector2(0, -40)
+exclude_parent = false
+target_position = Vector2(0, 100)
+script = ExtResource("22_yvgxb")
+step_target = NodePath("..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_wr4nh")
+}
+
+[connection signal="body_entered" from="Flippables_Container/Floor_Detector" to="Flippables_Container/Floor_Detector" method="_on_body_entered"]
+[connection signal="body_exited" from="Flippables_Container/Floor_Detector" to="Flippables_Container/Floor_Detector" method="_on_body_exited"]
+
+[editable path="Flippables_Container/Ground_Particles"]
+[editable path="Flippables_Container/AttackComponent"]
+[editable path="Flippables_Container/HitboxComponent"]

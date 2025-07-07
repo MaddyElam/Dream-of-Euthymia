@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://h3eobhi2atfg"]
+
+[ext_resource type="Script" uid="uid://dg3d32q81yep6" path="res://Scripts/PlayerDetector.gd" id="1_o5125"]
+
+[node name="PlayerDetector" type="Area2D"]
+collision_layer = 0
+collision_mask = 12
+script = ExtResource("1_o5125")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_detection_range_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_detection_range_body_exited"]

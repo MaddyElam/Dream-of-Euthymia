@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bi0jqjvsxpslg"]
+
+[ext_resource type="Script" uid="uid://2l8u04knhtfg" path="res://Scripts/VFXNode.gd" id="1_bhaq6"]
+
+[sub_resource type="Animation" id="Animation_8ud2e"]
+length = 0.0416708
+step = 0.0416667
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bj4xy"]
+_data = {
+&"No_Anim": SubResource("Animation_8ud2e")
+}
+
+[node name="VFX_Node" type="Node2D"]
+script = ExtResource("1_bhaq6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"Misc_VFX": SubResource("AnimationLibrary_bj4xy")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

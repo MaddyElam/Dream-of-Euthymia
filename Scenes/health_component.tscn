@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0jj3ylkygcwj"]
+
+[ext_resource type="Script" uid="uid://co4nxojifaprm" path="res://Scripts/HealthComponent.gd" id="1_3ew84"]
+[ext_resource type="Texture2D" uid="uid://dqwir3aaal5x1" path="res://Art/BirdResources/LongSpark.png" id="2_4831x"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yf5fb"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+spread = 180.0
+radial_velocity_min = 605.15
+radial_velocity_max = 1000.0
+gravity = Vector3(0, 98, 0)
+scale_min = 0.13
+scale_max = 0.4
+
+[node name="HealthComponent" type="Node2D"]
+script = ExtResource("1_3ew84")
+
+[node name="Stun_Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Invincible_Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Despawn_Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 10
+texture = ExtResource("2_4831x")
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_yf5fb")
+
+[connection signal="timeout" from="Stun_Timer" to="." method="_on_stun_timer_timeout"]
+[connection signal="timeout" from="Invincible_Timer" to="." method="_on_invincible_timer_timeout"]
+[connection signal="timeout" from="Despawn_Timer" to="." method="_on_despawn_timer_timeout"]

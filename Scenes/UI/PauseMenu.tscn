@@ -1,0 +1,313 @@
+[gd_scene load_steps=22 format=3 uid="uid://bgoes0fn7nmog"]
+
+[ext_resource type="Script" uid="uid://u6i7uq872ykt" path="res://Scripts/pause_menu.gd" id="1_hw2ro"]
+[ext_resource type="Script" uid="uid://bv5kp7gdbgrqm" path="res://Scripts/call_pause_menu.gd" id="1_y135r"]
+[ext_resource type="Texture2D" uid="uid://b8g36lt3b2wya" path="res://Art/UIResources/Button_Border.png" id="3_1hp42"]
+[ext_resource type="Texture2D" uid="uid://bejmfgqranyr4" path="res://Art/UIResources/Cloud_2.png" id="3_qjuxo"]
+[ext_resource type="Texture2D" uid="uid://blyu8imfw84wt" path="res://Art/UIResources/Menu_Divider_R.png" id="4_2hlxl"]
+[ext_resource type="FontFile" uid="uid://c7ftkdk5hn7m6" path="res://Art/UIResources/Fonts/Ghost theory 1.ttf" id="4_ssswg"]
+[ext_resource type="Texture2D" uid="uid://kmx1drntv80j" path="res://Art/UIResources/Menu_Star_String.png" id="5_7fgh2"]
+[ext_resource type="Texture2D" uid="uid://buo4v0vka582l" path="res://Art/UIResources/Menu_Border_G.png" id="5_p8na2"]
+[ext_resource type="Texture2D" uid="uid://isk4vuxtg2os" path="res://Art/UIResources/Cloud_1.png" id="8_85qas"]
+[ext_resource type="PackedScene" uid="uid://bw47boq78sej3" path="res://Scenes/UI/options_menu_control.tscn" id="11_p8na2"]
+
+[sub_resource type="Gradient" id="Gradient_ydx7j"]
+colors = PackedColorArray(0.0834386, 0.0616279, 0.180324, 1, 0.0825, 0.063, 0.18, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3w6gt"]
+gradient = SubResource("Gradient_ydx7j")
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_21b4f"]
+bg_color = Color(0.129412, 0.101961, 0.258824, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.67451)
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qjuxo"]
+bg_color = Color(0.0862745, 0.0627451, 0.180392, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_top = 100.0
+
+[sub_resource type="Gradient" id="Gradient_lqg57"]
+colors = PackedColorArray(0.130477, 0.1014, 0.26, 0, 0.0827991, 0.0621813, 0.179713, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_46gj8"]
+gradient = SubResource("Gradient_lqg57")
+height = 780
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rru8u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jnkn8"]
+bg_color = Color(0.0588235, 0.0470588, 0.12549, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k06rb"]
+bg_color = Color(0.0784314, 0.0627451, 0.156863, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.239216)
+shadow_size = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cbtwx"]
+bg_color = Color(0.0594945, 0.0460135, 0.126846, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7iiaw"]
+bg_color = Color(0.0784314, 0.0627451, 0.156863, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_y135r")
+
+[node name="PauseMenuControl" type="Control" parent="."]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_hw2ro")
+
+[node name="BackgroundShadow" type="ColorRect" parent="PauseMenuControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.032, 0, 0.16, 0.498039)
+
+[node name="Cloud_2" type="TextureRect" parent="PauseMenuControl"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.54
+anchor_right = 0.3
+anchor_bottom = 0.54
+mouse_filter = 2
+texture = ExtResource("3_qjuxo")
+
+[node name="StarString1" type="TextureRect" parent="PauseMenuControl"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = -0.15
+anchor_right = 0.5
+anchor_bottom = -0.15
+grow_horizontal = 2
+texture = ExtResource("5_7fgh2")
+
+[node name="StarString2" type="TextureRect" parent="PauseMenuControl"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.65
+anchor_top = -0.35
+anchor_right = 0.65
+anchor_bottom = -0.35
+texture = ExtResource("5_7fgh2")
+
+[node name="StarString3" type="TextureRect" parent="PauseMenuControl"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.8
+anchor_top = -0.1
+anchor_right = 0.8
+anchor_bottom = -0.1
+texture = ExtResource("5_7fgh2")
+
+[node name="ForegroundShadow" type="TextureRect" parent="PauseMenuControl"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.135
+anchor_right = 1.0
+anchor_bottom = 0.275
+size_flags_vertical = 3
+texture = SubResource("GradientTexture2D_3w6gt")
+
+[node name="PanelContainer" type="PanelContainer" parent="PauseMenuControl"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03
+anchor_top = 0.043
+anchor_right = 0.4
+anchor_bottom = 0.958
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_21b4f")
+
+[node name="GradientEndCap" type="Panel" parent="PauseMenuControl/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_qjuxo")
+
+[node name="BGGradient" type="TextureRect" parent="PauseMenuControl/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_46gj8")
+
+[node name="PanelBorder" type="TextureRect" parent="PauseMenuControl/PanelContainer"]
+layout_mode = 2
+texture = ExtResource("5_p8na2")
+expand_mode = 1
+
+[node name="PanelSections" type="VBoxContainer" parent="PauseMenuControl/PanelContainer"]
+layout_mode = 2
+
+[node name="Header" type="VBoxContainer" parent="PauseMenuControl/PanelContainer/PanelSections"]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="Spacer" type="Label" parent="PauseMenuControl/PanelContainer/PanelSections/Header"]
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+
+[node name="Paused" type="Label" parent="PauseMenuControl/PanelContainer/PanelSections/Header"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"HeaderLarge"
+theme_override_fonts/font = ExtResource("4_ssswg")
+theme_override_font_sizes/font_size = 75
+text = "PAUSED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer2" type="Label" parent="PauseMenuControl/PanelContainer/PanelSections/Header"]
+layout_mode = 2
+
+[node name="TitleDivider" type="TextureRect" parent="PauseMenuControl/PanelContainer/PanelSections/Header"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("4_2hlxl")
+expand_mode = 1
+
+[node name="Spacer3" type="Label" parent="PauseMenuControl/PanelContainer/PanelSections/Header"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PauseMenuControl/PanelContainer/PanelSections"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Control2" type="Control" parent="PauseMenuControl/PanelContainer/PanelSections/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Buttons" type="VBoxContainer" parent="PauseMenuControl/PanelContainer/PanelSections/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="ResumeButton" type="Button" parent="PauseMenuControl/PanelContainer/PanelSections/HBoxContainer/Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_ssswg")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rru8u")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_jnkn8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_k06rb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cbtwx")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7iiaw")
+text = "Resume"
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenuControl/PanelContainer/PanelSections/HBoxContainer/Buttons/ResumeButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_1hp42")
+expand_mode = 1
+
+[node name="OptionsButton" type="Button" parent="PauseMenuControl/PanelContainer/PanelSections/HBoxContainer/Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_ssswg")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rru8u")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_jnkn8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_k06rb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cbtwx")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7iiaw")
+text = "Options"
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenuControl/PanelContainer/PanelSections/HBoxContainer/Buttons/OptionsButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_1hp42")
+expand_mode = 1
+
+[node name="QuitButton" type="Button" parent="PauseMenuControl/PanelContainer/PanelSections/HBoxContainer/Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_ssswg")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rru8u")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_jnkn8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_k06rb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cbtwx")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7iiaw")
+text = "Quit"
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenuControl/PanelContainer/PanelSections/HBoxContainer/Buttons/QuitButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_1hp42")
+expand_mode = 1
+
+[node name="Control" type="Control" parent="PauseMenuControl/PanelContainer/PanelSections/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Spacer" type="Control" parent="PauseMenuControl/PanelContainer/PanelSections"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Cloud_1" type="TextureRect" parent="PauseMenuControl"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.67
+anchor_bottom = 0.67
+offset_right = 605.0
+offset_bottom = 147.0
+mouse_filter = 2
+texture = ExtResource("8_85qas")
+
+[node name="OptionsMenuControl" parent="." instance=ExtResource("11_p8na2")]
+
+[connection signal="pressed" from="PauseMenuControl/PanelContainer/PanelSections/HBoxContainer/Buttons/ResumeButton" to="PauseMenuControl" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PauseMenuControl/PanelContainer/PanelSections/HBoxContainer/Buttons/OptionsButton" to="PauseMenuControl" method="_on_options_button_pressed"]
+[connection signal="pressed" from="PauseMenuControl/PanelContainer/PanelSections/HBoxContainer/Buttons/QuitButton" to="." method="_on_quit_button_pressed"]

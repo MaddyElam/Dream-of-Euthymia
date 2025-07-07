@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cl7ridg77w8cv"]
+
+[ext_resource type="Texture2D" uid="uid://4q6qr06df0nl" path="res://Art/UIResources/CursorParticle_2.png" id="1_108rv"]
+[ext_resource type="Script" uid="uid://vlom1lau1xi1" path="res://Scripts/cursor_gpu_particles.gd" id="2_fodmh"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p1yyl"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(8, 8, 0)
+gravity = Vector3(0, 98, 0)
+scale_min = 0.5
+scale_max = 0.8
+hue_variation_min = -2.23517e-08
+hue_variation_max = 0.03
+
+[node name="CursorParticles" type="CanvasLayer"]
+
+[node name="CursorGPUParticles2D" type="GPUParticles2D" parent="."]
+process_mode = 3
+emitting = false
+amount = 16
+texture = ExtResource("1_108rv")
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_p1yyl")
+script = ExtResource("2_fodmh")

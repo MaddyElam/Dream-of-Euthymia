@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5fnsxobaf38o"]
+
+[ext_resource type="Script" uid="uid://bthuw5ifumdll" path="res://Scripts/ground_particles.gd" id="2_mjv2i"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_imehw"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 20.43
+angle_min = 1.07288e-05
+angle_max = 180.0
+direction = Vector3(1, 1, 0)
+gravity = Vector3(0, 98, 0)
+hue_variation_min = -2.23517e-08
+hue_variation_max = -2.23517e-08
+
+[node name="Ground_Particles" type="GPUParticles2D"]
+emitting = false
+amount = 10
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_imehw")
+script = ExtResource("2_mjv2i")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 40)

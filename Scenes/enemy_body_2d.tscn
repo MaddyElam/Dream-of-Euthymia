@@ -1,0 +1,75 @@
+[gd_scene load_steps=13 format=3 uid="uid://833wntm0gtkv"]
+
+[ext_resource type="Script" uid="uid://ds2li6rye2gj1" path="res://Scripts/enemy_base_movement.gd" id="1_hrv8m"]
+[ext_resource type="PackedScene" uid="uid://d0jj3ylkygcwj" path="res://Scenes/health_component.tscn" id="2_4h8ys"]
+[ext_resource type="Shader" uid="uid://ccat2ubc1xwd7" path="res://Shaders/Damage_Flicker.gdshader" id="2_gw5qm"]
+[ext_resource type="PackedScene" uid="uid://dkt52a3ky6bsl" path="res://Scenes/hitbox_component.tscn" id="3_6novp"]
+[ext_resource type="PackedScene" uid="uid://b1e44hwokn5d0" path="res://Scenes/attack_component.tscn" id="4_0vixp"]
+[ext_resource type="PackedScene" uid="uid://b28hgiiseto5o" path="res://Scenes/child_flipper.tscn" id="5_86t0y"]
+[ext_resource type="PackedScene" uid="uid://h3eobhi2atfg" path="res://Scenes/player_detector.tscn" id="6_m1ccx"]
+[ext_resource type="PackedScene" uid="uid://dvqco4sv4rcil" path="res://Scenes/slope_manager.tscn" id="7_cfrou"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l8awj"]
+resource_local_to_scene = true
+shader = ExtResource("2_gw5qm")
+shader_parameter/blink_speed = 30.0
+shader_parameter/blinking = false
+shader_parameter/flash_opacity = 0.0
+
+[sub_resource type="Gradient" id="Gradient_m0il2"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6o5sl"]
+gradient = SubResource("Gradient_m0il2")
+width = 75
+height = 75
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rii1b"]
+radius = 500.0
+height = 1500.0
+
+[node name="EnemyBody2D" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 3
+script = ExtResource("1_hrv8m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_l8awj")
+texture = SubResource("GradientTexture2D_6o5sl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("hitbox_component") instance=ExtResource("2_4h8ys")]
+MAX_HEALTH = 3.0
+hitbox_component = NodePath("../HitboxComponent")
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_6novp")]
+collision_layer = 16
+collision_mask = 4
+health_component = NodePath("../HealthComponent")
+
+[node name="AttackComponent" parent="." instance=ExtResource("4_0vixp")]
+collision_layer = 16
+collision_mask = 12
+attack_damage = 1.0
+knockback_force = 800.0
+stun_time = 1.0
+
+[node name="Child_Flipper" parent="." node_paths=PackedStringArray("flippables") instance=ExtResource("5_86t0y")]
+flippables = [NodePath("../AttackComponent/CollisionShape2D"), NodePath("../Sprite2D")]
+
+[node name="PlayerDetector" parent="." instance=ExtResource("6_m1ccx")]
+
+[node name="CollisionShape2D" parent="PlayerDetector" index="0"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_rii1b")
+
+[node name="SlopeManager" parent="." instance=ExtResource("7_cfrou")]
+target_position = Vector2(0, 100)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+
+[editable path="HitboxComponent"]
+[editable path="AttackComponent"]
+[editable path="PlayerDetector"]
