@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var offset : float = 20.0
+@export var offset : float = 5.0
 @export var root_body : Node2D
 var previous_position := Vector2(0, 0)
 

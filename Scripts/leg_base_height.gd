@@ -1,4 +1,4 @@
-extends Marker2D
+extends Node2D
 
 @export var reference_points : Array[Node2D]
 @export var default_pos := Vector2(-63.0, -26.0)

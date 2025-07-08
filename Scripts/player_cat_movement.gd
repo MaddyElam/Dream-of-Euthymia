@@ -89,13 +89,18 @@ var most_recent_spawn = Vector2(0, 0)
 
 var flash_increment = 7
 var attack_pause_time = 0.03
-var time_off_ground = 0.0
 
 var slash_trail
 var middle_wall_detector
 var ground_particle_raycast
 var slope_manager
-var off_ground_limit = 0.08
+var paw_ff
+var paw_fb
+var paw_bf
+var paw_bb
+
+var offset_from_paws = 0.0
+var avg_paw_pos = Vector2(0, 0)
 
 func _ready() -> void:
 	most_recent_spawn = self.global_position
@@ -114,6 +119,10 @@ func _ready() -> void:
 	slash_trail = $Flippables_Container/Slash_Trail
 	middle_wall_detector = $Flippables_Container/Middle_Wall_Detector
 	ground_particle_raycast = $Flippables_Container/Ground_Particles/RayCast2D
+	paw_ff = $"Flippables_Container/BodyContainer/IK Targets/PawFF_Target"
+	paw_bb = $"Flippables_Container/BodyContainer/IK Targets/PawBB_Target"
+	paw_bf = $"Flippables_Container/BodyContainer/IK Targets/PawBF_Target"
+	paw_fb = $"Flippables_Container/BodyContainer/IK Targets/PawFB_Target"
 
 
 func on_bird_death():
@@ -497,6 +506,8 @@ func maneuver_initializer(p_mnvr, current_dir_x):
 		current_direction_x = current_dir_x
 
 func _physics_process(delta: float) -> void:
+	avg_paw_pos = (paw_bb.global_position + paw_bf.global_position + paw_fb.global_position + paw_ff.global_position)/4
+	
 	if !attacking && !rolling && !knocked_back:
 		if player_input_enabled:
 			velocity.x = abs(set_velocity_x(velocity.x, delta)) * current_direction_x
@@ -504,29 +515,26 @@ func _physics_process(delta: float) -> void:
 			velocity.x = set_velocity_x(velocity.x, delta)
 	
 	# Add the gravity.
-	if !is_on_floor() && !climbing:
-		time_off_ground += delta
-		if time_off_ground > off_ground_limit:
-			if get_middle_wall_detected() && running:
-				velocity += get_gravity() * delta * WALL_GRAVITY_DAMPENER
-				if velocity.y < REDUCED_JUMP_VELOCITY:
-					velocity.y -= WALL_EDGE_BOOST.y
-			else:
-				velocity += get_gravity() * delta * gravity_multiplier
-				# If we're jumping, the gravity should be weaker while going up, and stronger after we reach peak altitude.
-				if jumping:
-					velocity.y -= jump_multiplier
-					if velocity.y < 0:
-						if jump_multiplier > jump_multiplier_min:
-							jump_multiplier -= delta * jump_multiplier_increment
-					else:
-						gravity_multiplier += gravity_increment/2
+	if !is_on_floor() && !climbing && abs(global_position.y - avg_paw_pos.y) > offset_from_paws:
+		if get_middle_wall_detected() && running:
+			velocity += get_gravity() * delta * WALL_GRAVITY_DAMPENER
+			if velocity.y < REDUCED_JUMP_VELOCITY:
+				velocity.y -= WALL_EDGE_BOOST.y
+		else:
+			velocity += get_gravity() * delta * gravity_multiplier
+			# If we're jumping, the gravity should be weaker while going up, and stronger after we reach peak altitude.
+			if jumping:
+				velocity.y -= jump_multiplier
+				if velocity.y < 0:
+					if jump_multiplier > jump_multiplier_min:
+						jump_multiplier -= delta * jump_multiplier_increment
 				else:
-					gravity_multiplier += gravity_increment
-			if !get_upper_wall_detected() && get_middle_wall_detected():
-				velocity += Vector2(WALL_EDGE_BOOST.x * current_direction_x, WALL_EDGE_BOOST.y)
+					gravity_multiplier += gravity_increment/2
+			else:
+				gravity_multiplier += gravity_increment
+		if !get_upper_wall_detected() && get_middle_wall_detected():
+			velocity += Vector2(WALL_EDGE_BOOST.x * current_direction_x, WALL_EDGE_BOOST.y)
 	elif climbing:
-		time_off_ground = 0
 		if !get_upper_wall_detected() || !get_middle_wall_detected():
 			current_direction_y = 0
 			reset_gravity_multiplier()
@@ -542,8 +550,6 @@ func _physics_process(delta: float) -> void:
 		velocity.y += delta * gravity_multiplier
 		if gravity_multiplier < climb_gravity_max:
 			gravity_multiplier += climb_gravity_increment
-	elif is_on_floor():
-		time_off_ground = 0
 	else:
 		if ground_particle_raycast.get_collision_normal() && !jumping:
 			if (ground_particle_raycast.get_collision_normal().x > 0 && current_direction_x == 1) || (ground_particle_raycast.get_collision_normal().x < 0 && current_direction_x == -1):
