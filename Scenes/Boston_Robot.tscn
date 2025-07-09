@@ -1,0 +1,345 @@
+[gd_scene load_steps=6 format=3 uid="uid://k3ncwxwso5fa"]
+
+[ext_resource type="Script" uid="uid://cyie48fowrrr0" path="res://addons/soupik/utility/soup_bone.gd" id="1_d2wmy"]
+[ext_resource type="Script" uid="uid://bi3fqnl3865q7" path="res://addons/soupik/modifications/soup_two_bone_ik.gd" id="2_d2wmy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jfvis"]
+radius = 15.0
+
+[sub_resource type="Gradient" id="Gradient_tgxh6"]
+offsets = PackedFloat32Array(0, 0.981283, 1)
+colors = PackedColorArray(0.5, 0.5, 0.5, 1, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 0.5, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_d2wmy"]
+gradient = SubResource("Gradient_tgxh6")
+width = 30
+height = 30
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[node name="BostonRobot" type="CharacterBody2D"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(30, 0)
+shape = SubResource("CircleShape2D_jfvis")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+texture = SubResource("GradientTexture2D_d2wmy")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-30, 0)
+shape = SubResource("CircleShape2D_jfvis")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D2"]
+texture = SubResource("GradientTexture2D_d2wmy")
+
+[node name="Spine" type="Polygon2D" parent="."]
+skeleton = NodePath("../Skeleton2D")
+polygon = PackedVector2Array(0, 0, 1, -4, 30, -4, 30, 4, 0, 4, -30, 4, -30, -4, -1, -4)
+bones = ["SpineBase", PackedFloat32Array(1, 1, 0, 0, 1, 0, 0, 1), "SpineBase/Shoulder", PackedFloat32Array(0, 0, 1, 1, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FF/Midleg_FF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FF/Midleg_FF/Lowerleg_FF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FB/Midleg_FB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FB/Midleg_FB/Lowerleg_FB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Pelvis", PackedFloat32Array(0, 0, 0, 0, 0, 1, 1, 0), "SpineBase/Pelvis/Upperleg_BF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BF/Midleg_BF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BF/Midleg_BF/Lowerleg_BF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BB/Midleg_BB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BB/Midleg_BB/Lowerleg_BB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)]
+
+[node name="Shoulders" type="Polygon2D" parent="."]
+position = Vector2(30, 0)
+skeleton = NodePath("../Skeleton2D")
+polygon = PackedVector2Array(0, 0, 1, -15, 15, 0, 0, 15, -15, 0, -1, -15)
+uv = PackedVector2Array(412, -39.5)
+bones = ["SpineBase", PackedFloat32Array(0, 0, 0, 0, 0, 0), "SpineBase/Shoulder", PackedFloat32Array(1, 1, 1, 1, 1, 1), "SpineBase/Shoulder/Upperleg_FF", PackedFloat32Array(0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FF/Midleg_FF", PackedFloat32Array(0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FF/Midleg_FF/Lowerleg_FF", PackedFloat32Array(0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FB", PackedFloat32Array(0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FB/Midleg_FB", PackedFloat32Array(0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FB/Midleg_FB/Lowerleg_FB", PackedFloat32Array(0, 0, 0, 0, 0, 0), "SpineBase/Pelvis", PackedFloat32Array(0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BF", PackedFloat32Array(0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BF/Midleg_BF", PackedFloat32Array(0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BF/Midleg_BF/Lowerleg_BF", PackedFloat32Array(0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BB", PackedFloat32Array(0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BB/Midleg_BB", PackedFloat32Array(0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BB/Midleg_BB/Lowerleg_BB", PackedFloat32Array(0, 0, 0, 0, 0, 0)]
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Shoulders"]
+remote_path = NodePath("../../CollisionShape2D")
+
+[node name="Pelvis" type="Polygon2D" parent="."]
+position = Vector2(-30, 0)
+skeleton = NodePath("../Skeleton2D")
+polygon = PackedVector2Array(0, 0, 1, -15, 15, 0, 0, 15, -15, 0, -1, -15)
+uv = PackedVector2Array(412, -39.5)
+bones = ["SpineBase", PackedFloat32Array(0, 0, 0, 0, 0, 0), "SpineBase/Shoulder", PackedFloat32Array(0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FF", PackedFloat32Array(0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FF/Midleg_FF", PackedFloat32Array(0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FF/Midleg_FF/Lowerleg_FF", PackedFloat32Array(0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FB", PackedFloat32Array(0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FB/Midleg_FB", PackedFloat32Array(0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FB/Midleg_FB/Lowerleg_FB", PackedFloat32Array(0, 0, 0, 0, 0, 0), "SpineBase/Pelvis", PackedFloat32Array(1, 1, 1, 1, 1, 1), "SpineBase/Pelvis/Upperleg_BF", PackedFloat32Array(0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BF/Midleg_BF", PackedFloat32Array(0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BF/Midleg_BF/Lowerleg_BF", PackedFloat32Array(0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BB", PackedFloat32Array(0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BB/Midleg_BB", PackedFloat32Array(0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BB/Midleg_BB/Lowerleg_BB", PackedFloat32Array(0, 0, 0, 0, 0, 0)]
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Pelvis"]
+remote_path = NodePath("../../CollisionShape2D2")
+
+[node name="Leg_FB" type="Polygon2D" parent="."]
+position = Vector2(45, -5)
+color = Color(0.450648, 0.450648, 0.450648, 1)
+skeleton = NodePath("../Skeleton2D")
+polygon = PackedVector2Array(0, 0, 2, -1, 11, 25, -13, 41, -7, 80, -13, 80, -18, 39, 5, 23, -2, 1)
+bones = ["SpineBase", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Shoulder", PackedFloat32Array(1, 1, 0, 0, 0, 0, 0, 0, 1), "SpineBase/Shoulder/Upperleg_FF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FF/Midleg_FF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FF/Midleg_FF/Lowerleg_FF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FF/Midleg_FF/Lowerleg_FF/Paw_FF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FB", PackedFloat32Array(1, 1, 1, 0, 0, 0, 0, 1, 1), "SpineBase/Shoulder/Upperleg_FB/Midleg_FB", PackedFloat32Array(0, 0, 1, 1, 0, 0, 1, 1, 0), "SpineBase/Shoulder/Upperleg_FB/Midleg_FB/Lowerleg_FB", PackedFloat32Array(0, 0, 0, 1, 1, 1, 1, 0, 0), "SpineBase/Shoulder/Upperleg_FB/Midleg_FB/Lowerleg_FB/Paw_BF", PackedFloat32Array(0, 0, 0, 0, 1, 1, 0, 0, 0), "SpineBase/Pelvis", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BF/Midleg_BF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BF/Midleg_BF/Lowerleg_BF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BF/Midleg_BF/Lowerleg_BF/Paw_BF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BB/Midleg_BB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BB/Midleg_BB/Lowerleg_BB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BB/Midleg_BB/Lowerleg_BB/Paw_BB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0)]
+
+[node name="Leg_BB" type="Polygon2D" parent="."]
+position = Vector2(-15, 0)
+color = Color(0.45098, 0.45098, 0.45098, 1)
+skeleton = NodePath("../Skeleton2D")
+polygon = PackedVector2Array(0, 0, 3, 0, 8, 29, -17, 51, -7, 76, -13, 76, -23, 49, 2, 27, -3, 0)
+bones = ["SpineBase", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Shoulder", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FF/Midleg_FF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FF/Midleg_FF/Lowerleg_FF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FF/Midleg_FF/Lowerleg_FF/Paw_FF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FB/Midleg_FB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FB/Midleg_FB/Lowerleg_FB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FB/Midleg_FB/Lowerleg_FB/Paw_BF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Pelvis", PackedFloat32Array(1, 1, 0, 0, 0, 0, 0, 0, 1), "SpineBase/Pelvis/Upperleg_BF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BF/Midleg_BF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BF/Midleg_BF/Lowerleg_BF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BF/Midleg_BF/Lowerleg_BF/Paw_BF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BB", PackedFloat32Array(1, 1, 1, 0, 0, 0, 0, 1, 1), "SpineBase/Pelvis/Upperleg_BB/Midleg_BB", PackedFloat32Array(0, 0, 1, 1, 0, 0, 1, 1, 0), "SpineBase/Pelvis/Upperleg_BB/Midleg_BB/Lowerleg_BB", PackedFloat32Array(0, 0, 0, 1, 1, 1, 1, 0, 0), "SpineBase/Pelvis/Upperleg_BB/Midleg_BB/Lowerleg_BB/Paw_BB", PackedFloat32Array(0, 0, 0, 0, 1, 1, 0, 0, 0)]
+
+[node name="Leg_BF" type="Polygon2D" parent="."]
+position = Vector2(-45, 5)
+skeleton = NodePath("../Skeleton2D")
+polygon = PackedVector2Array(0, 0, 3, 0, 8, 29, -17, 51, -7, 76, -13, 76, -23, 49, 2, 27, -3, 0)
+bones = ["SpineBase", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Shoulder", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FF/Midleg_FF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FF/Midleg_FF/Lowerleg_FF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FF/Midleg_FF/Lowerleg_FF/Paw_FF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FB/Midleg_FB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FB/Midleg_FB/Lowerleg_FB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FB/Midleg_FB/Lowerleg_FB/Paw_BF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Pelvis", PackedFloat32Array(1, 1, 0, 0, 0, 0, 0, 0, 1), "SpineBase/Pelvis/Upperleg_BF", PackedFloat32Array(1, 1, 1, 0, 0, 0, 0, 1, 1), "SpineBase/Pelvis/Upperleg_BF/Midleg_BF", PackedFloat32Array(0, 0, 1, 1, 0, 0, 1, 1, 0), "SpineBase/Pelvis/Upperleg_BF/Midleg_BF/Lowerleg_BF", PackedFloat32Array(0, 0, 0, 1, 1, 1, 1, 0, 0), "SpineBase/Pelvis/Upperleg_BF/Midleg_BF/Lowerleg_BF/Paw_BF", PackedFloat32Array(0, 0, 0, 0, 1, 1, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BB/Midleg_BB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BB/Midleg_BB/Lowerleg_BB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BB/Midleg_BB/Lowerleg_BB/Paw_BB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0)]
+
+[node name="Leg_FF" type="Polygon2D" parent="."]
+position = Vector2(15, 0)
+skeleton = NodePath("../Skeleton2D")
+polygon = PackedVector2Array(0, 0, 2, -1, 11, 25, -13, 41, -7, 80, -13, 80, -18, 39, 5, 23, -2, 1)
+bones = ["SpineBase", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Shoulder", PackedFloat32Array(1, 1, 0, 0, 0, 0, 0, 0, 1), "SpineBase/Shoulder/Upperleg_FF", PackedFloat32Array(1, 1, 1, 0, 0, 0, 0, 1, 1), "SpineBase/Shoulder/Upperleg_FF/Midleg_FF", PackedFloat32Array(0, 0, 1, 1, 0, 0, 1, 1, 0), "SpineBase/Shoulder/Upperleg_FF/Midleg_FF/Lowerleg_FF", PackedFloat32Array(0, 0, 0, 1, 1, 1, 1, 0, 0), "SpineBase/Shoulder/Upperleg_FF/Midleg_FF/Lowerleg_FF/Paw_FF", PackedFloat32Array(0, 0, 0, 0, 1, 1, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FB/Midleg_FB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FB/Midleg_FB/Lowerleg_FB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Shoulder/Upperleg_FB/Midleg_FB/Lowerleg_FB/Paw_BF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Pelvis", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BF/Midleg_BF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BF/Midleg_BF/Lowerleg_BF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BF/Midleg_BF/Lowerleg_BF/Paw_BF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BB/Midleg_BB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BB/Midleg_BB/Lowerleg_BB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "SpineBase/Pelvis/Upperleg_BB/Midleg_BB/Lowerleg_BB/Paw_BB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0)]
+
+[node name="Skeleton2D" type="Skeleton2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="SpineBase" type="Bone2D" parent="Skeleton2D"]
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+script = ExtResource("1_d2wmy")
+transform_mode = 0
+metadata/_custom_type_script = "uid://cyie48fowrrr0"
+metadata/_edit_lock_ = true
+
+[node name="Shoulder" type="Bone2D" parent="Skeleton2D/SpineBase"]
+position = Vector2(12, 0)
+rest = Transform2D(1, 0, 0, 1, 12, 0)
+script = ExtResource("1_d2wmy")
+transform_mode = 0
+target_position = Vector2(12, 0)
+metadata/_custom_type_script = "uid://cyie48fowrrr0"
+metadata/_edit_lock_ = true
+
+[node name="Upperleg_FF" type="Bone2D" parent="Skeleton2D/SpineBase/Shoulder"]
+position = Vector2(4, 2)
+rest = Transform2D(1, 0, 0, 1, 4, 2)
+script = ExtResource("1_d2wmy")
+transform_mode = 0
+target_position = Vector2(4, 2)
+metadata/_custom_type_script = "uid://cyie48fowrrr0"
+metadata/_edit_lock_ = true
+
+[node name="Midleg_FF" type="Bone2D" parent="Skeleton2D/SpineBase/Shoulder/Upperleg_FF"]
+position = Vector2(7, 22)
+rotation = 0.000605195
+rest = Transform2D(1, 0, 0, 1, 7, 22)
+script = ExtResource("1_d2wmy")
+transform_mode = 0
+target_rotation = 0.000605195
+target_position = Vector2(7, 22)
+metadata/_custom_type_script = "uid://cyie48fowrrr0"
+metadata/_edit_lock_ = true
+
+[node name="Lowerleg_FF" type="Bone2D" parent="Skeleton2D/SpineBase/Shoulder/Upperleg_FF/Midleg_FF"]
+position = Vector2(-23, 16)
+rotation = -0.00298247
+scale = Vector2(1, 1)
+rest = Transform2D(1, 0, 0, 1, -23, 16)
+auto_calculate_length_and_angle = false
+length = 38.0
+bone_angle = 83.0
+script = ExtResource("1_d2wmy")
+transform_mode = 0
+target_rotation = -0.00298247
+target_position = Vector2(-23, 16)
+metadata/_custom_type_script = "uid://cyie48fowrrr0"
+metadata/_edit_lock_ = true
+
+[node name="Paw_FF" type="Bone2D" parent="Skeleton2D/SpineBase/Shoulder/Upperleg_FF/Midleg_FF/Lowerleg_FF"]
+position = Vector2(5, 40)
+rest = Transform2D(1, 0, 0, 1, 5, 40)
+script = ExtResource("1_d2wmy")
+transform_mode = 0
+target_position = Vector2(5, 40)
+metadata/_custom_type_script = "uid://cyie48fowrrr0"
+metadata/_edit_lock_ = true
+
+[node name="Upperleg_FB" type="Bone2D" parent="Skeleton2D/SpineBase/Shoulder"]
+position = Vector2(34, -3)
+rest = Transform2D(1, 0, 0, 1, 34, -3)
+script = ExtResource("1_d2wmy")
+transform_mode = 0
+target_position = Vector2(34, -3)
+metadata/_custom_type_script = "uid://cyie48fowrrr0"
+metadata/_edit_lock_ = true
+
+[node name="Midleg_FB" type="Bone2D" parent="Skeleton2D/SpineBase/Shoulder/Upperleg_FB"]
+position = Vector2(7, 22)
+rotation = 0.000605195
+rest = Transform2D(1, 0, 0, 1, 7, 22)
+script = ExtResource("1_d2wmy")
+transform_mode = 0
+target_rotation = 0.000605195
+target_position = Vector2(7, 22)
+metadata/_custom_type_script = "uid://cyie48fowrrr0"
+metadata/_edit_lock_ = true
+
+[node name="Lowerleg_FB" type="Bone2D" parent="Skeleton2D/SpineBase/Shoulder/Upperleg_FB/Midleg_FB"]
+position = Vector2(-23, 16)
+rotation = -0.00298247
+scale = Vector2(1, 1)
+rest = Transform2D(1, 0, 0, 1, -23, 16)
+auto_calculate_length_and_angle = false
+length = 38.0
+bone_angle = 83.0
+script = ExtResource("1_d2wmy")
+transform_mode = 0
+target_rotation = -0.00298247
+target_position = Vector2(-23, 16)
+metadata/_custom_type_script = "uid://cyie48fowrrr0"
+metadata/_edit_lock_ = true
+
+[node name="Paw_FB" type="Bone2D" parent="Skeleton2D/SpineBase/Shoulder/Upperleg_FB/Midleg_FB/Lowerleg_FB"]
+position = Vector2(5, 40)
+rest = Transform2D(1, 0, 0, 1, 5, 40)
+script = ExtResource("1_d2wmy")
+transform_mode = 0
+target_position = Vector2(5, 40)
+metadata/_custom_type_script = "uid://cyie48fowrrr0"
+metadata/_edit_lock_ = true
+
+[node name="Pelvis" type="Bone2D" parent="Skeleton2D/SpineBase"]
+position = Vector2(-12, 0)
+rest = Transform2D(1, 0, 0, 1, -12, 0)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 180.0
+script = ExtResource("1_d2wmy")
+transform_mode = 0
+target_position = Vector2(-12, 0)
+metadata/_custom_type_script = "uid://cyie48fowrrr0"
+metadata/_edit_lock_ = true
+
+[node name="Upperleg_BF" type="Bone2D" parent="Skeleton2D/SpineBase/Pelvis"]
+position = Vector2(-32, 8)
+rest = Transform2D(1, 0, 0, 1, -32, 8)
+script = ExtResource("1_d2wmy")
+transform_mode = 0
+target_position = Vector2(-32, 8)
+metadata/_custom_type_script = "uid://cyie48fowrrr0"
+metadata/_edit_lock_ = true
+
+[node name="Midleg_BF" type="Bone2D" parent="Skeleton2D/SpineBase/Pelvis/Upperleg_BF"]
+position = Vector2(4, 25)
+rotation = 0.0186217
+rest = Transform2D(1, 0, 0, 1, 4, 25)
+script = ExtResource("1_d2wmy")
+transform_mode = 0
+target_rotation = 0.0186217
+target_position = Vector2(4, 25)
+metadata/_custom_type_script = "uid://cyie48fowrrr0"
+metadata/_edit_lock_ = true
+
+[node name="Lowerleg_BF" type="Bone2D" parent="Skeleton2D/SpineBase/Pelvis/Upperleg_BF/Midleg_BF"]
+position = Vector2(-25, 22)
+rotation = -0.0224986
+rest = Transform2D(1, 0, 0, 1, -25, 22)
+auto_calculate_length_and_angle = false
+length = 26.484
+bone_angle = 68.0
+script = ExtResource("1_d2wmy")
+transform_mode = 0
+target_rotation = -0.0224986
+target_position = Vector2(-25, 22)
+metadata/_custom_type_script = "uid://cyie48fowrrr0"
+metadata/_edit_lock_ = true
+
+[node name="Paw_BF" type="Bone2D" parent="Skeleton2D/SpineBase/Pelvis/Upperleg_BF/Midleg_BF/Lowerleg_BF"]
+position = Vector2(10, 25)
+rest = Transform2D(1, 0, 0, 1, 10, 26)
+script = ExtResource("1_d2wmy")
+transform_mode = 0
+target_position = Vector2(10, 25)
+metadata/_custom_type_script = "uid://cyie48fowrrr0"
+metadata/_edit_lock_ = true
+
+[node name="Upperleg_BB" type="Bone2D" parent="Skeleton2D/SpineBase/Pelvis"]
+position = Vector2(-2, 3)
+rest = Transform2D(1, 0, 0, 1, -2, 3)
+script = ExtResource("1_d2wmy")
+transform_mode = 0
+target_position = Vector2(-2, 3)
+metadata/_custom_type_script = "uid://cyie48fowrrr0"
+metadata/_edit_lock_ = true
+
+[node name="Midleg_BB" type="Bone2D" parent="Skeleton2D/SpineBase/Pelvis/Upperleg_BB"]
+position = Vector2(4, 25)
+rotation = 0.0186217
+rest = Transform2D(1, 0, 0, 1, 4, 25)
+script = ExtResource("1_d2wmy")
+transform_mode = 0
+target_rotation = 0.0186217
+target_position = Vector2(4, 25)
+metadata/_custom_type_script = "uid://cyie48fowrrr0"
+metadata/_edit_lock_ = true
+
+[node name="Lowerleg_BB" type="Bone2D" parent="Skeleton2D/SpineBase/Pelvis/Upperleg_BB/Midleg_BB"]
+position = Vector2(-25, 22)
+rotation = -0.0224986
+rest = Transform2D(1, 0, 0, 1, -25, 22)
+auto_calculate_length_and_angle = false
+length = 26.484
+bone_angle = 68.0
+script = ExtResource("1_d2wmy")
+transform_mode = 0
+target_rotation = -0.0224986
+target_position = Vector2(-25, 22)
+metadata/_custom_type_script = "uid://cyie48fowrrr0"
+metadata/_edit_lock_ = true
+
+[node name="Paw_BB" type="Bone2D" parent="Skeleton2D/SpineBase/Pelvis/Upperleg_BB/Midleg_BB/Lowerleg_BB"]
+position = Vector2(10, 25)
+rest = Transform2D(1, 0, 0, 1, 10, 26)
+script = ExtResource("1_d2wmy")
+transform_mode = 0
+target_position = Vector2(10, 25)
+metadata/_custom_type_script = "uid://cyie48fowrrr0"
+
+[node name="SoupIKNodes" type="Node" parent="Skeleton2D"]
+
+[node name="PawFF_2BoneIK" type="Node" parent="Skeleton2D/SoupIKNodes" node_paths=PackedStringArray("target_node", "joint_one_bone_node", "joint_two_bone_node")]
+script = ExtResource("2_d2wmy")
+target_node = NodePath("../../IKTargets/LegFF_Target")
+enabled = true
+softness = 0.4
+joint_one_bone_node = NodePath("../../SpineBase/Shoulder/Upperleg_FF/Midleg_FF")
+joint_two_bone_node = NodePath("../../SpineBase/Shoulder/Upperleg_FF/Midleg_FF/Lowerleg_FF")
+metadata/_custom_type_script = "uid://bi3fqnl3865q7"
+
+[node name="PawFB_2BoneIK" type="Node" parent="Skeleton2D/SoupIKNodes" node_paths=PackedStringArray("target_node", "joint_one_bone_node", "joint_two_bone_node")]
+script = ExtResource("2_d2wmy")
+target_node = NodePath("../../IKTargets/LegFB_Target")
+enabled = true
+softness = 0.4
+joint_one_bone_node = NodePath("../../SpineBase/Shoulder/Upperleg_FB/Midleg_FB")
+joint_two_bone_node = NodePath("../../SpineBase/Shoulder/Upperleg_FB/Midleg_FB/Lowerleg_FB")
+metadata/_custom_type_script = "uid://bi3fqnl3865q7"
+
+[node name="PawBB_2BoneIK" type="Node" parent="Skeleton2D/SoupIKNodes" node_paths=PackedStringArray("target_node", "joint_one_bone_node", "joint_two_bone_node")]
+script = ExtResource("2_d2wmy")
+target_node = NodePath("../../IKTargets/LegBB_Target")
+enabled = true
+softness = 0.4
+joint_one_bone_node = NodePath("../../SpineBase/Pelvis/Upperleg_BB/Midleg_BB")
+joint_two_bone_node = NodePath("../../SpineBase/Pelvis/Upperleg_BB/Midleg_BB/Lowerleg_BB")
+metadata/_custom_type_script = "uid://bi3fqnl3865q7"
+
+[node name="PawBF_2BoneIK" type="Node" parent="Skeleton2D/SoupIKNodes" node_paths=PackedStringArray("target_node", "joint_one_bone_node", "joint_two_bone_node")]
+script = ExtResource("2_d2wmy")
+target_node = NodePath("../../IKTargets/LegBF_Target")
+enabled = true
+softness = 0.4
+joint_one_bone_node = NodePath("../../SpineBase/Pelvis/Upperleg_BF/Midleg_BF")
+joint_two_bone_node = NodePath("../../SpineBase/Pelvis/Upperleg_BF/Midleg_BF/Lowerleg_BF")
+metadata/_custom_type_script = "uid://bi3fqnl3865q7"
+
+[node name="IKTargets" type="Node" parent="Skeleton2D"]
+
+[node name="LegBF_Target" type="Marker2D" parent="Skeleton2D/IKTargets"]
+position = Vector2(-55, 80)
+
+[node name="LegBB_Target" type="Marker2D" parent="Skeleton2D/IKTargets"]
+position = Vector2(-25, 75)
+
+[node name="LegFF_Target" type="Marker2D" parent="Skeleton2D/IKTargets"]
+position = Vector2(5, 80)
+
+[node name="LegFB_Target" type="Marker2D" parent="Skeleton2D/IKTargets"]
+position = Vector2(35, 75)
