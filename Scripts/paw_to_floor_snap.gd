@@ -13,12 +13,14 @@ var is_stepping := false
 var step_dist_limits := Vector2(5, 150)
 var can_step := true
 var step_reset := false
+var step_multiplier := 1.0
 
 
 func _process(_delta: float) -> void:
 	#max_step_distance = clamp(abs(owner.velocity.x)/step_dist_increment, step_dist_limits.x, step_dist_limits.y)
 	
-	if can_step && !is_stepping && abs(global_position.distance_to(step_target.global_position)) > max_step_distance && !adj_target.is_stepping:
+	if owner.running && can_step && !is_stepping && abs(global_position.distance_to(step_target.global_position)) > max_step_distance && !adj_target.is_stepping:
+		set_step_multiplier()
 		#global_position = (global_position + step_target.global_position)/2
 		step()
 		if !opp_target.is_stepping:
@@ -33,7 +35,7 @@ func _process(_delta: float) -> void:
 
 
 func step():
-	step_height.x = clamp(abs(owner.velocity.x)/step_height_increment, step_dist_limits.x, step_dist_limits.y)
+	step_height.x = clamp(abs(owner.velocity.x)/step_height_increment, step_dist_limits.x, step_dist_limits.y) * step_multiplier
 	var target_pos = step_target.global_position
 	var half_point = (global_position + step_target.global_position)/2
 	
@@ -51,3 +53,9 @@ func reset_step():
 	var target_pos = step_target.global_position
 	var new_tween = get_tree().create_tween()
 	new_tween.tween_property(self, "global_position", target_pos, 0.1)
+
+func set_step_multiplier():
+	if abs(owner.velocity.x) >= 1500.0:
+		step_multiplier = 5
+	else:
+		step_multiplier = 1
