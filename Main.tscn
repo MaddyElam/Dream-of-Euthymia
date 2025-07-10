@@ -12,14 +12,14 @@
 [ext_resource type="Texture2D" uid="uid://ci6ak4ak84wgm" path="res://Art/TutorialResources/Tutorial_Meadow_Tileset_200px_by_200px.png" id="10_5tuhn"]
 [ext_resource type="Texture2D" uid="uid://u3qg8i104yjn" path="res://Art/TutorialResources/Old_Fence_B.png" id="10_hhcpw"]
 [ext_resource type="Texture2D" uid="uid://4t8ecp0h4tg1" path="res://Art/TutorialResources/Meadow_Parallax_Fg.png" id="11_cem6n"]
-[ext_resource type="PackedScene" uid="uid://ct2wlnw5oi0ra" path="res://Scenes/Player_Bird.tscn" id="11_fjkij"]
 [ext_resource type="Script" uid="uid://cu5n5xwxra7dj" path="res://Scripts/terrain_info.gd" id="12_2gh4u"]
 [ext_resource type="Texture2D" uid="uid://b0g0pft7lco8y" path="res://Art/TutorialResources/Grass_Blade_R.png" id="13_devvj"]
 [ext_resource type="Texture2D" uid="uid://cyk6jayibye5h" path="res://Art/TutorialResources/Butterfly_Sheet.png" id="14_3b0ty"]
 [ext_resource type="PackedScene" uid="uid://bx16qb55s5xfa" path="res://Scenes/enemy_control.tscn" id="14_kjvhd"]
 [ext_resource type="PackedScene" uid="uid://cl7ridg77w8cv" path="res://Scenes/UI/cursor_gpu_particles_2d.tscn" id="15_j4qnp"]
 [ext_resource type="PackedScene" uid="uid://bgoes0fn7nmog" path="res://Scenes/UI/PauseMenu.tscn" id="16_ix4f7"]
-[ext_resource type="PackedScene" uid="uid://dqn434s77upla" path="res://Scenes/Player_Cat.tscn" id="24_hhcpw"]
+[ext_resource type="PackedScene" uid="uid://dqn434s77upla" path="res://Scenes/Player_Cat.tscn" id="20_2gh4u"]
+[ext_resource type="PackedScene" uid="uid://ct2wlnw5oi0ra" path="res://Scenes/Player_Bird.tscn" id="20_devvj"]
 [ext_resource type="PackedScene" uid="uid://sdbjlxaxbvd8" path="res://Scenes/Tutorial/pinwheel.tscn" id="28_hri7i"]
 
 [sub_resource type="Environment" id="Environment_kjvhd"]
@@ -368,9 +368,6 @@ process_material = SubResource("ParticleProcessMaterial_xrxkg")
 
 [node name="EnemyControl" parent="." instance=ExtResource("14_kjvhd")]
 
-[node name="Player_Bird" parent="." node_paths=PackedStringArray("player_cat_ref") instance=ExtResource("11_fjkij")]
-player_cat_ref = NodePath("../Player_Cat")
-
 [node name="FGDecor" type="TileMapLayer" parent="."]
 z_index = 2
 position = Vector2(38, 699)
@@ -383,7 +380,10 @@ visible = false
 [node name="CursorParticles" parent="." instance=ExtResource("15_j4qnp")]
 process_mode = 3
 
-[node name="Player_Cat" parent="." node_paths=PackedStringArray("player_bird_ref") instance=ExtResource("24_hhcpw")]
+[node name="Player_Bird" parent="." node_paths=PackedStringArray("player_cat_ref") instance=ExtResource("20_devvj")]
+player_cat_ref = NodePath("../Player_Cat")
+
+[node name="Player_Cat" parent="." node_paths=PackedStringArray("player_bird_ref") instance=ExtResource("20_2gh4u")]
 player_bird_ref = NodePath("../Player_Bird")
 
 [editable path="Pinwheel2"]
