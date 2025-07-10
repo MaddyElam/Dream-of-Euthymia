@@ -1146,33 +1146,33 @@ metadata/_edit_lock_ = true
 
 [node name="LegBB_Collider" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2(-43.4549, 31.0746)
-rotation = -0.203352
-scale = Vector2(0.999969, 0.999969)
+position = Vector2(-43.4547, 31.0745)
+rotation = -0.203346
+scale = Vector2(0.999964, 0.999964)
 shape = SubResource("CapsuleShape2D_habd7")
 metadata/_edit_lock_ = true
 
 [node name="PawBB_Collider" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2(-37.5197, 57.8002)
-rotation = 1.51928
-scale = Vector2(0.99996, 0.99996)
+position = Vector2(-37.5198, 57.8001)
+rotation = 1.51929
+scale = Vector2(0.999955, 0.999955)
 shape = SubResource("CapsuleShape2D_ermt0")
 metadata/_edit_lock_ = true
 
 [node name="LegBF_Collider" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2(-58.7124, 31.8282)
-rotation = -0.502567
-scale = Vector2(0.999972, 0.999972)
+position = Vector2(-58.7122, 31.8281)
+rotation = -0.50256
+scale = Vector2(0.999967, 0.999967)
 shape = SubResource("CapsuleShape2D_db3pd")
 metadata/_edit_lock_ = true
 
 [node name="PawBF_Collider" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2(-48.1168, 58.3678)
-rotation = 1.54045
-scale = Vector2(0.999968, 0.999968)
+position = Vector2(-48.1169, 58.3677)
+rotation = 1.54046
+scale = Vector2(0.999963, 0.999963)
 shape = SubResource("CapsuleShape2D_ermt0")
 metadata/_edit_lock_ = true
 
@@ -1211,7 +1211,7 @@ metadata/_edit_lock_ = true
 [node name="Head_Collider" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(15.5526, -38.8254)
-rotation = 0.0485275
+rotation = 0.0485277
 scale = Vector2(0.999952, 0.999952)
 shape = SubResource("CircleShape2D_pst0c")
 metadata/_edit_lock_ = true
@@ -1467,7 +1467,7 @@ skew = -4.99487e-05
 shape = SubResource("CapsuleShape2D_583vg")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Flippables_Container/AttackComponent"]
-position = Vector2(-88.1144, 97.5195)
+position = Vector2(-88.1144, 97.5193)
 rotation = 2.5765
 scale = Vector2(0.999971, 0.99996)
 skew = -4.72069e-05
@@ -1540,9 +1540,9 @@ polygon = PackedVector2Array(-111, 83, -112, 86, -112, 93, -112, 99, -112, 103, 
 bones = ["Spine1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2/Neck3", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2/Neck3/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg/FrontFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg/FrontBackPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg/BackFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg", PackedFloat32Array(0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0.5), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg", PackedFloat32Array(1, 1, 1, 1, 0.5, 0.5, 0.5, 1, 1, 1, 0.5, 0.5, 0.5, 1), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg/BackBackPaw", PackedFloat32Array(0, 0, 0, 0.5, 0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0, 0)]
 
 [node name="Paw_BB_Sprite" type="Sprite2D" parent="Flippables_Container/BodyContainer"]
-position = Vector2(-37.5197, 57.8002)
-rotation = 1.51928
-scale = Vector2(0.99996, 0.99996)
+position = Vector2(-37.5198, 57.8001)
+rotation = 1.51929
+scale = Vector2(0.999955, 0.999955)
 texture = SubResource("GradientTexture2D_a5dnt")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
@@ -1594,9 +1594,9 @@ bones = ["Spine1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 metadata/_edit_lock_ = true
 
 [node name="Paw_BF_Sprite" type="Sprite2D" parent="Flippables_Container/BodyContainer"]
-position = Vector2(-48.1168, 58.3678)
-rotation = 1.54045
-scale = Vector2(0.999968, 0.999968)
+position = Vector2(-48.1169, 58.3677)
+rotation = 1.54046
+scale = Vector2(0.999963, 0.999963)
 texture = SubResource("GradientTexture2D_4pv3c")
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
@@ -1606,7 +1606,7 @@ remote_path = NodePath("../../../../PawBF_Collider")
 
 [node name="CatHeadPrototype" type="Sprite2D" parent="Flippables_Container/BodyContainer"]
 position = Vector2(15.5526, -38.8254)
-rotation = 0.0485275
+rotation = 0.0485277
 scale = Vector2(0.999952, 0.999952)
 texture = ExtResource("17_583vg")
 metadata/_edit_group_ = true
@@ -1685,12 +1685,12 @@ metadata/_custom_type_script = "uid://cyie48fowrrr0"
 
 [node name="Neck2" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/Neck1"]
 position = Vector2(-2.64489, -11.875)
-rotation = 0.068761
+rotation = 0.0687608
 scale = Vector2(0.999998, 0.999998)
 rest = Transform2D(0.981663, -0.190614, 0.190614, 0.981663, -2.64489, -11.875)
 script = ExtResource("20_habd7")
 transform_mode = 0
-target_rotation = 0.0687609
+target_rotation = 0.0687608
 target_position = Vector2(-2.64489, -11.875)
 metadata/_custom_type_script = "uid://cyie48fowrrr0"
 
@@ -1710,7 +1710,7 @@ metadata/_custom_type_script = "uid://cyie48fowrrr0"
 
 [node name="Head" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/Neck1/Neck2/Neck3"]
 position = Vector2(4.53609, -8.79957)
-rotation = 0.337405
+rotation = 0.337406
 scale = Vector2(0.999996, 0.999996)
 rest = Transform2D(0.986254, -0.165213, 0.165213, 0.986254, 4.53609, -8.79957)
 auto_calculate_length_and_angle = false
@@ -1855,7 +1855,7 @@ metadata/_custom_type_script = "uid://cyie48fowrrr0"
 [node name="Pelvis" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2"]
 position = Vector2(-16.0234, -8.262)
 rotation = -0.00725629
-scale = Vector2(0.999984, 0.999984)
+scale = Vector2(0.999979, 0.999979)
 rest = Transform2D(0.999973, -0.00725622, 0.00725622, 0.999973, -16.0234, -8.262)
 auto_calculate_length_and_angle = false
 length = 16.0
@@ -1868,19 +1868,19 @@ metadata/_custom_type_script = "uid://cyie48fowrrr0"
 
 [node name="UpperBackLeg" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Pelvis"]
 position = Vector2(-6.80692, 11.7759)
-rotation = -0.248677
+rotation = -0.248676
 scale = Vector2(1.00001, 1.00001)
 rest = Transform2D(0.886212, -0.463302, 0.463302, 0.886212, -6.80692, 11.7759)
 script = ExtResource("20_habd7")
 transform_mode = 0
-target_rotation = -0.248677
+target_rotation = -0.248676
 target_position = Vector2(-6.80692, 11.7759)
 constraint_data = SubResource("Resource_0uxdi")
 metadata/_custom_type_script = "uid://cyie48fowrrr0"
 
 [node name="MidBackLeg" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Pelvis/UpperBackLeg"]
 position = Vector2(-2, 19)
-rotation = -0.121803
+rotation = -0.121811
 scale = Vector2(0.999996, 0.999996)
 rest = Transform2D(0.994835, 0.101452, -0.101452, 0.994835, -2, 19)
 auto_calculate_length_and_angle = false
@@ -1888,14 +1888,14 @@ length = 45.0
 bone_angle = 86.0
 script = ExtResource("20_habd7")
 transform_mode = 0
-target_rotation = -0.121803
+target_rotation = -0.121811
 target_position = Vector2(-2, 19)
 constraint_data = SubResource("Resource_ckcwr")
 metadata/_custom_type_script = "uid://cyie48fowrrr0"
 
 [node name="LowerBackLeg" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg"]
 position = Vector2(-14, 10)
-rotation = -0.224167
+rotation = -0.224154
 scale = Vector2(0.999996, 0.999996)
 rest = Transform2D(0.997749, 0.0669979, -0.0669979, 0.997749, -14, 10)
 auto_calculate_length_and_angle = false
@@ -1903,7 +1903,7 @@ length = 20.0
 bone_angle = 92.0
 script = ExtResource("20_habd7")
 transform_mode = 0
-target_rotation = -0.224167
+target_rotation = -0.224154
 target_position = Vector2(-14, 10)
 constraint_data = SubResource("Resource_pc25d")
 metadata/_custom_type_script = "uid://cyie48fowrrr0"
@@ -1914,7 +1914,7 @@ metadata/_edit_lock_ = true
 
 [node name="BackFrontPaw" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg"]
 position = Vector2(-7.95098, 26.0881)
-rotation = 0.472219
+rotation = 0.472224
 scale = Vector2(0.999996, 0.999996)
 rest = Transform2D(0.964116, 0.265465, -0.265465, 0.964116, -7.95098, 26.0881)
 auto_calculate_length_and_angle = false
@@ -1922,7 +1922,7 @@ length = 10.0
 bone_angle = 0.0
 script = ExtResource("20_habd7")
 transform_mode = 0
-target_rotation = 0.472219
+target_rotation = 0.472224
 target_position = Vector2(-7.95098, 26.0881)
 constraint_data = SubResource("Resource_spfg7")
 metadata/_custom_type_script = "uid://cyie48fowrrr0"
@@ -1942,31 +1942,31 @@ metadata/_edit_lock_ = true
 
 [node name="UpperBackBackLeg" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Pelvis"]
 position = Vector2(7.63909, 15.2857)
-rotation = 0.197218
+rotation = 0.197217
 scale = Vector2(1.00001, 1.00001)
 rest = Transform2D(0.998267, 0.0590104, -0.0590104, 0.998267, 7.63909, 15.2857)
 script = ExtResource("20_habd7")
 transform_mode = 0
-target_rotation = 0.197218
+target_rotation = 0.197217
 target_position = Vector2(7.63909, 15.2857)
 constraint_data = SubResource("Resource_fbuha")
 metadata/_custom_type_script = "uid://cyie48fowrrr0"
 
 [node name="MidBackBackLeg" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Pelvis/UpperBackBackLeg"]
 position = Vector2(5.07015, 18.42)
-rotation = -0.309081
+rotation = -0.309093
 scale = Vector2(0.999994, 0.999994)
 rest = Transform2D(0.979989, -0.199029, 0.199029, 0.979989, 5.07015, 18.42)
 script = ExtResource("20_habd7")
 transform_mode = 0
-target_rotation = -0.309081
+target_rotation = -0.309093
 target_position = Vector2(5.07015, 18.42)
 constraint_data = SubResource("Resource_vq6c3")
 metadata/_custom_type_script = "uid://cyie48fowrrr0"
 
 [node name="LowerBackBackLeg" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg"]
 position = Vector2(-8.28779, 7.70156)
-rotation = -0.18357
+rotation = -0.183552
 scale = Vector2(0.999995, 0.999995)
 rest = Transform2D(0.991322, -0.131431, 0.131431, 0.991322, -8.28779, 7.70156)
 auto_calculate_length_and_angle = false
@@ -1974,7 +1974,7 @@ length = 20.0
 bone_angle = 85.0
 script = ExtResource("20_habd7")
 transform_mode = 0
-target_rotation = -0.18357
+target_rotation = -0.183552
 target_position = Vector2(-8.28779, 7.70156)
 constraint_data = SubResource("Resource_5c6m7")
 metadata/_custom_type_script = "uid://cyie48fowrrr0"
@@ -1985,15 +1985,15 @@ metadata/_edit_lock_ = true
 
 [node name="BackBackPaw" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg"]
 position = Vector2(-4.52693, 26.6182)
-rotation = 0.151836
-scale = Vector2(0.999991, 0.999991)
+rotation = 0.151841
+scale = Vector2(0.99999, 0.99999)
 rest = Transform2D(0.968723, 0.248107, -0.248107, 0.968723, -4.52693, 26.6182)
 auto_calculate_length_and_angle = false
 length = 10.0
 bone_angle = 0.0
 script = ExtResource("20_habd7")
 transform_mode = 0
-target_rotation = 0.151836
+target_rotation = 0.151841
 target_position = Vector2(-4.52693, 26.6182)
 constraint_data = SubResource("Resource_veqjv")
 metadata/_custom_type_script = "uid://cyie48fowrrr0"
@@ -2133,11 +2133,13 @@ position = Vector2(-46, 57)
 script = ExtResource("22_ermt0")
 step_target = NodePath("../../StepTargets/PawBF_Step")
 look_node = NodePath("PawBF_LookAt")
+max_step_distance = 2.0
 adj_target = NodePath("../PawBB_Target")
 opp_target = NodePath("../PawFB_Target")
 pre_position = Vector2(-26, 33)
 step_dist_increment = 2.5
-step_height_increment = 5.0
+step_height_increment = 3.0
+max_dist_from_parent = 80.0
 
 [node name="PawBF_LookAt" type="Marker2D" parent="Flippables_Container/BodyContainer/IK Targets/PawBF_Target"]
 position = Vector2(10, 1)
@@ -2148,11 +2150,13 @@ position = Vector2(-36, 56)
 script = ExtResource("22_ermt0")
 step_target = NodePath("../../StepTargets/PawBB_Step")
 look_node = NodePath("PawBB_LookAt")
+max_step_distance = 2.0
 adj_target = NodePath("../PawBF_Target")
 opp_target = NodePath("../PawFF_Target")
 pre_position = Vector2(-20, 35)
 step_dist_increment = 2.5
-step_height_increment = 5.0
+step_height_increment = 3.0
+max_dist_from_parent = 80.0
 
 [node name="PawBB_LookAt" type="Marker2D" parent="Flippables_Container/BodyContainer/IK Targets/PawBB_Target"]
 position = Vector2(14, 1)
@@ -2163,11 +2167,12 @@ position = Vector2(12, 57)
 script = ExtResource("22_ermt0")
 step_target = NodePath("../../StepTargets/PawFB_Step")
 look_node = NodePath("PawFB_LookAt")
+max_step_distance = 3.0
 adj_target = NodePath("../PawFF_Target")
 opp_target = NodePath("../PawBF_Target")
-pre_position = Vector2(20, 10)
+pre_position = Vector2(22, 13)
 step_dist_increment = 2.5
-step_height_increment = 5.0
+max_dist_from_parent = 50.0
 
 [node name="PawFB_LookAt" type="Marker2D" parent="Flippables_Container/BodyContainer/IK Targets/PawFB_Target"]
 position = Vector2(12, 4)
@@ -2178,11 +2183,12 @@ position = Vector2(-1, 59)
 script = ExtResource("22_ermt0")
 step_target = NodePath("../../StepTargets/PawFF_Step")
 look_node = NodePath("PawFF_LookAt")
+max_step_distance = 3.0
 adj_target = NodePath("../PawFB_Target")
 opp_target = NodePath("../PawBB_Target")
-pre_position = Vector2(15, 10)
+pre_position = Vector2(15, 13)
 step_dist_increment = 2.5
-step_height_increment = 5.0
+max_dist_from_parent = 50.0
 
 [node name="PawFF_LookAt" type="Marker2D" parent="Flippables_Container/BodyContainer/IK Targets/PawFF_Target"]
 position = Vector2(21, 3)
