@@ -14,6 +14,7 @@ var step_height := Vector2(20, -10)
 var is_stepping := false
 var can_step := true
 var step_reset := false
+var step_reached := false
 var step_time_limits := Vector2(0.1, 0.2)
 var reg_a := -0.000125
 var reg_b := 0.2875
@@ -46,6 +47,7 @@ func step():
 	var p_global_pos := global_position
 	top_level = false
 	global_position = p_global_pos
+	step_reached = false
 	
 	step_height.x = (abs(owner.velocity.x)/step_height_increment)
 	var target_pos = step_target.global_position
@@ -61,6 +63,7 @@ func on_step_finished():
 	var p_global_pos := global_position
 	is_stepping = false
 	can_step = false
+	step_reached = true
 	if abs(owner.velocity.x) >= sprint_v:
 		opp_target.can_step = true
 	else:
