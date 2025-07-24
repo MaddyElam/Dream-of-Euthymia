@@ -614,7 +614,7 @@ shader_parameter/flash_opacity = 0.0
 
 [sub_resource type="Gradient" id="Gradient_gnf74"]
 offsets = PackedFloat32Array(0.610329, 0.699531)
-colors = PackedColorArray(0.493545, 0.493546, 0.493546, 1, 1, 1, 1, 0)
+colors = PackedColorArray(0.0352941, 0.0352941, 0.0745098, 1, 0.0329, 0.0329, 0.07, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_yvgxb"]
 gradient = SubResource("Gradient_gnf74")
@@ -625,7 +625,7 @@ fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="Gradient" id="Gradient_y7oij"]
 offsets = PackedFloat32Array(0.610329, 0.699531)
-colors = PackedColorArray(0.505344, 0.505344, 0.505344, 1, 1, 1, 1, 0)
+colors = PackedColorArray(0.0352941, 0.0352941, 0.0745098, 1, 0.0329, 0.0329, 0.07, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_a5dnt"]
 gradient = SubResource("Gradient_y7oij")
@@ -639,11 +639,11 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.51417, 1), 0.0, 0.0, 0, 0, Vec
 point_count = 4
 
 [sub_resource type="Gradient" id="Gradient_wr4nh"]
-colors = PackedColorArray(0.408329, 0.408329, 0.408329, 1, 1, 1, 1, 1)
+colors = PackedColorArray(0.0352941, 0.0352941, 0.0745098, 1, 0.0666667, 0.0666667, 0.121569, 1)
 
 [sub_resource type="Gradient" id="Gradient_ermt0"]
 offsets = PackedFloat32Array(0.610329, 0.699531)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+colors = PackedColorArray(0.0666667, 0.0666667, 0.121569, 1, 0.066, 0.066, 0.12, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_4pv3c"]
 gradient = SubResource("Gradient_ermt0")
@@ -664,7 +664,7 @@ metadata/_custom_type_script = "uid://cxrgp04nygwus"
 [sub_resource type="Resource" id="Resource_qt7io"]
 script = ExtResource("21_db3pd")
 rotation_direction_degrees = 18.0
-rotation_half_arc_degrees = 78.0
+rotation_half_arc_degrees = 60.0
 area_offset = Vector2(0, 0)
 area_rotation_degrees = 0.0
 proportions = Vector2(1, 1)
@@ -691,7 +691,7 @@ metadata/_custom_type_script = "uid://cxrgp04nygwus"
 [sub_resource type="Resource" id="Resource_kxqe8"]
 script = ExtResource("21_db3pd")
 rotation_direction_degrees = 18.0
-rotation_half_arc_degrees = 78.0
+rotation_half_arc_degrees = 60.0
 area_offset = Vector2(0, 0)
 area_rotation_degrees = 0.0
 proportions = Vector2(1, 1)
@@ -1148,7 +1148,7 @@ metadata/_edit_lock_ = true
 visible = false
 position = Vector2(-43.3686, 30.7174)
 rotation = -0.196327
-scale = Vector2(0.999697, 0.999697)
+scale = Vector2(0.999698, 0.999698)
 shape = SubResource("CapsuleShape2D_habd7")
 metadata/_edit_lock_ = true
 
@@ -1156,7 +1156,7 @@ metadata/_edit_lock_ = true
 visible = false
 position = Vector2(-37.6209, 57.5298)
 rotation = 1.5369
-scale = Vector2(0.99968, 0.99968)
+scale = Vector2(0.999681, 0.999681)
 shape = SubResource("CapsuleShape2D_ermt0")
 metadata/_edit_lock_ = true
 
@@ -1211,7 +1211,7 @@ metadata/_edit_lock_ = true
 [node name="Head_Collider" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(15.5526, -38.8254)
-rotation = 0.0485277
+rotation = 0.048528
 scale = Vector2(0.999952, 0.999952)
 shape = SubResource("CircleShape2D_pst0c")
 metadata/_edit_lock_ = true
@@ -1376,7 +1376,7 @@ top_level = true
 points = PackedVector2Array(3, -4, -8, -16, -21, -34)
 width = 20.0
 width_curve = SubResource("Curve_pst0c")
-default_color = Color(0.47788, 0.47788, 0.47788, 1)
+default_color = Color(0.0352941, 0.0352941, 0.0745098, 1)
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
@@ -1391,6 +1391,7 @@ top_level = true
 points = PackedVector2Array(-12, -7, -22, -17, -33, -29)
 width = 20.0
 width_curve = SubResource("Curve_pst0c")
+default_color = Color(0.0666667, 0.0666667, 0.121569, 1)
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
@@ -1500,7 +1501,7 @@ metadata/_edit_lock_ = true
 
 [node name="UpperFrontlegBackPolygon" type="Polygon2D" parent="Flippables_Container/BodyContainer"]
 position = Vector2(61, -49)
-color = Color(0.466181, 0.466181, 0.466181, 1)
+color = Color(0.0352941, 0.0352941, 0.0745098, 1)
 skeleton = NodePath("../Skeleton2D")
 polygon = PackedVector2Array(-52, 73, -49, 62, -48, 55, -51, 50, -58, 49, -65, 54, -68, 62, -66, 71, -65, 77, -61, 79, -55, 79)
 bones = ["Spine1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders", PackedFloat32Array(0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0, 0, 0, 0), "Spine1/Shoulders/Neck1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2/Neck3", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2/Neck3/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg/FrontFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg", PackedFloat32Array(1, 1, 1, 0.5, 0.5, 1, 1, 1, 0.5, 0.5, 0.5), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg", PackedFloat32Array(0.5, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0.5), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg/FrontBackPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg/BackFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg/BackBackPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
@@ -1508,7 +1509,7 @@ metadata/_edit_lock_ = true
 
 [node name="LowerFrontLegBackPolygon" type="Polygon2D" parent="Flippables_Container/BodyContainer"]
 position = Vector2(59, -46)
-color = Color(0.435192, 0.435192, 0.435192, 1)
+color = Color(0.0352941, 0.0352941, 0.0745098, 1)
 skeleton = NodePath("../Skeleton2D")
 polygon = PackedVector2Array(-53, 75, -53, 80, -53, 88, -53, 94, -52, 99, -50, 104, -51, 105, -54, 106, -58, 103, -59, 100, -61, 94, -63, 87, -65, 81, -65, 77, -64, 73, -61, 70, -56, 70, -54, 72)
 bones = ["Spine1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2/Neck3", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2/Neck3/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg/FrontFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg", PackedFloat32Array(0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0.5, 0.5), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg", PackedFloat32Array(0.5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.5, 0.5, 0.5, 0.5), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg/FrontBackPaw", PackedFloat32Array(0, 0, 0, 0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg/BackFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg/BackBackPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
@@ -1527,14 +1528,14 @@ remote_path = NodePath("../../../../PawFB_Collider")
 
 [node name="UpperBacklegBackPolygon" type="Polygon2D" parent="Flippables_Container/BodyContainer"]
 position = Vector2(73, -44)
-color = Color(0.474, 0.474, 0.474, 1)
+color = Color(0.0352941, 0.0352941, 0.0745098, 1)
 skeleton = NodePath("../Skeleton2D")
 polygon = PackedVector2Array(-110, 82, -105, 78, -101, 74, -98, 69, -96, 64, -94, 57, -93, 49, -94, 46, -95, 43, -99, 40, -105, 39, -112, 40, -116, 43, -117, 52, -117, 57, -116, 64, -115, 70, -118, 74, -120, 76, -118, 81, -115, 84)
 bones = ["Spine1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2/Neck3", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2/Neck3/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg/FrontFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg/FrontBackPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg/BackFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg", PackedFloat32Array(0, 0, 0.5, 1, 1, 1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 1, 1, 0.5, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg", PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0.5, 0.5), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg", PackedFloat32Array(1, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 1, 1), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg/BackBackPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
 
 [node name="LowerBacklegBackPolygon" type="Polygon2D" parent="Flippables_Container/BodyContainer"]
 position = Vector2(75, -45)
-color = Color(0.48, 0.48, 0.48, 1)
+color = Color(0.0338162, 0.0338107, 0.0736352, 1)
 skeleton = NodePath("../Skeleton2D")
 polygon = PackedVector2Array(-111, 83, -112, 86, -112, 93, -112, 99, -112, 103, -114, 104, -118, 103, -119, 98, -121, 86, -122, 79, -119, 75, -115, 74, -111, 76, -109, 81)
 bones = ["Spine1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2/Neck3", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2/Neck3/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg/FrontFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg/FrontBackPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg/BackFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg", PackedFloat32Array(0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0.5), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg", PackedFloat32Array(1, 1, 1, 1, 0.5, 0.5, 0.5, 1, 1, 1, 0.5, 0.5, 0.5, 1), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg/BackBackPaw", PackedFloat32Array(0, 0, 0, 0.5, 0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0, 0)]
@@ -1542,7 +1543,7 @@ bones = ["Spine1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 [node name="Paw_BB_Sprite" type="Sprite2D" parent="Flippables_Container/BodyContainer"]
 position = Vector2(-37.6209, 57.5298)
 rotation = 1.5369
-scale = Vector2(0.99968, 0.99968)
+scale = Vector2(0.999681, 0.999681)
 texture = SubResource("GradientTexture2D_a5dnt")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
@@ -1552,6 +1553,7 @@ remote_path = NodePath("../../../../PawBB_Collider")
 
 [node name="BodyPolygon" type="Polygon2D" parent="Flippables_Container/BodyContainer"]
 position = Vector2(54, -49)
+color = Color(0.0666667, 0.0666667, 0.121569, 1)
 antialiased = true
 skeleton = NodePath("../Skeleton2D")
 polygon = PackedVector2Array(-56, 15, -54, 7, -50, 3, -41, 2, -33, 8, -33, 15, -33, 23, -34, 31, -36, 39, -37, 45, -38, 53, -39, 57, -41, 62, -45, 66, -53, 69, -63, 68, -71, 65, -83, 61, -95, 59, -100, 58, -102, 56, -104, 53, -106, 46, -105, 42, -103, 39, -100, 36, -95, 33, -90, 32, -81, 33, -69, 34, -62, 34, -59, 28, -57, 22)
@@ -1581,6 +1583,7 @@ metadata/_edit_lock_ = true
 
 [node name="UpperBacklegPolygon" type="Polygon2D" parent="Flippables_Container/BodyContainer"]
 position = Vector2(56, -46)
+color = Color(0.0666667, 0.0666667, 0.121569, 1)
 skeleton = NodePath("../Skeleton2D")
 polygon = PackedVector2Array(-104, 81, -100, 79, -94, 75, -90, 71, -88, 68, -86, 63, -85, 57, -85, 48, -87, 42, -97, 39, -104, 40, -108, 45, -108, 50, -109, 60, -110, 65, -112, 70, -116, 75, -117, 80, -114, 83, -108, 83)
 bones = ["Spine1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2/Neck3", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2/Neck3/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg/FrontFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg/FrontBackPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg", PackedFloat32Array(0, 0, 0, 0.5, 0.5, 0.5, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0.5, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg", PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 0.5, 0, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 1, 1, 1, 1, 1), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg", PackedFloat32Array(0.5, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0.5), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg/BackFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg/BackBackPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
@@ -1588,6 +1591,7 @@ metadata/_edit_lock_ = true
 
 [node name="LowerBackLegPolygon" type="Polygon2D" parent="Flippables_Container/BodyContainer"]
 position = Vector2(58, -47)
+color = Color(0.0666667, 0.0666667, 0.121569, 1)
 skeleton = NodePath("../Skeleton2D")
 polygon = PackedVector2Array(-104, 80, -109, 84, -110, 90, -110, 96, -110, 100, -110, 103, -111, 106, -113, 107, -117, 105, -117, 102, -118, 96, -119, 87, -119, 83, -119, 79, -116, 75, -113, 73, -108, 74)
 bones = ["Spine1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2/Neck3", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2/Neck3/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg/FrontFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg/FrontBackPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg", PackedFloat32Array(0.5, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg", PackedFloat32Array(0.5, 1, 1, 1, 1, 1, 0.5, 0.5, 0.5, 1, 1, 1, 1, 1, 0.5, 0.5, 0.5), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg/BackFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg/BackBackPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
@@ -1606,7 +1610,7 @@ remote_path = NodePath("../../../../PawBF_Collider")
 
 [node name="CatHeadPrototype" type="Sprite2D" parent="Flippables_Container/BodyContainer"]
 position = Vector2(15.5526, -38.8254)
-rotation = 0.0485277
+rotation = 0.048528
 scale = Vector2(0.999952, 0.999952)
 texture = ExtResource("17_583vg")
 metadata/_edit_group_ = true
@@ -1617,6 +1621,7 @@ remote_path = NodePath("../../../../Head_Collider")
 
 [node name="UpperFrontlegPolygon" type="Polygon2D" parent="Flippables_Container/BodyContainer"]
 position = Vector2(49, -50)
+color = Color(0.0666667, 0.0666667, 0.121569, 1)
 skeleton = NodePath("../Skeleton2D")
 polygon = PackedVector2Array(-51, 76, -43, 65, -42, 55, -47, 47, -57, 47, -64, 53, -66, 61, -66, 71, -67, 77, -65, 80, -60, 83, -54, 82)
 bones = ["Spine1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders", PackedFloat32Array(0, 0.5, 0.5, 0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2/Neck3", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2/Neck3/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg", PackedFloat32Array(1, 1, 1, 0.5, 1, 1, 1, 1, 1, 1, 0.5, 1), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg", PackedFloat32Array(0.5, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0.5, 0.5), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg/FrontFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg/FrontBackPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg/BackFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg/BackBackPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
@@ -1624,6 +1629,7 @@ metadata/_edit_lock_ = true
 
 [node name="LowerFrontLegPolygon" type="Polygon2D" parent="Flippables_Container/BodyContainer"]
 position = Vector2(50, -48)
+color = Color(0.0666667, 0.0666667, 0.121569, 1)
 skeleton = NodePath("../Skeleton2D")
 polygon = PackedVector2Array(-67, 73, -68, 76, -68, 79, -67, 86, -65, 96, -63, 105, -62, 107, -58, 107, -55, 106, -55, 102, -56, 96, -55, 86, -54, 81, -54, 75, -60, 72, -65, 72)
 bones = ["Spine1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2/Neck3", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/Neck1/Neck2/Neck3/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontLeg", PackedFloat32Array(0.5, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg", PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1), "Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg/FrontFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg/FrontBackPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg/BackFrontPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg/BackBackPaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
@@ -1967,7 +1973,7 @@ metadata/_custom_type_script = "uid://cyie48fowrrr0"
 
 [node name="LowerBackBackLeg" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Pelvis/UpperBackBackLeg/MidBackBackLeg"]
 position = Vector2(-8.28779, 7.70156)
-rotation = -0.147839
+rotation = -0.14784
 scale = Vector2(0.999988, 0.999988)
 rest = Transform2D(0.991322, -0.131431, 0.131431, 0.991322, -8.28779, 7.70156)
 auto_calculate_length_and_angle = false
@@ -2134,7 +2140,6 @@ step_dist_increment = 10.0
 step_height_increment = 10.0
 step_x_multiplier = 4.0
 step_y_multiplier = 1.5
-base_node_x_move = 20.0
 base_node_init_pos = Vector2(-41, 56.5)
 
 [node name="PawBF_LookAt" type="Marker2D" parent="Flippables_Container/BodyContainer/IK Targets/PawBF_Target"]
@@ -2154,7 +2159,6 @@ step_dist_increment = 10.0
 step_height_increment = 10.0
 step_x_multiplier = 4.0
 step_y_multiplier = 1.5
-base_node_x_move = 20.0
 base_node_init_pos = Vector2(-41, 56.5)
 
 [node name="PawBB_LookAt" type="Marker2D" parent="Flippables_Container/BodyContainer/IK Targets/PawBB_Target"]
@@ -2172,13 +2176,15 @@ opp_target = NodePath("../PawBF_Target")
 base_node = NodePath("../FrontLegsHeightOffset")
 step_dist_increment = 1.0
 step_height_increment = 10.0
-step_x_multiplier = 4.0
+step_x_multiplier = 3.0
 step_y_multiplier = 1.1
-base_node_x_move = -10.0
 base_node_init_pos = Vector2(6, 60)
 
 [node name="PawFB_LookAt" type="Marker2D" parent="Flippables_Container/BodyContainer/IK Targets/PawFB_Target"]
 position = Vector2(12, 4)
+
+[node name="LegFF_Target" type="Marker2D" parent="Flippables_Container/BodyContainer/IK Targets"]
+position = Vector2(-12, 28)
 
 [node name="PawFF_Target" type="Marker2D" parent="Flippables_Container/BodyContainer/IK Targets" node_paths=PackedStringArray("step_target", "look_node", "adj_target", "opp_target", "base_node")]
 top_level = true
@@ -2192,9 +2198,8 @@ opp_target = NodePath("../PawBB_Target")
 base_node = NodePath("../FrontLegsHeightOffset")
 step_dist_increment = 1.0
 step_height_increment = 10.0
-step_x_multiplier = 4.0
+step_x_multiplier = 3.0
 step_y_multiplier = 1.1
-base_node_x_move = -10.0
 base_node_init_pos = Vector2(6, 60)
 
 [node name="PawFF_LookAt" type="Marker2D" parent="Flippables_Container/BodyContainer/IK Targets/PawFF_Target"]
