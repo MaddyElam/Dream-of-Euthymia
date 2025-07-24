@@ -25,7 +25,7 @@ mouse_cursor/custom_image="uid://cmhaq7tx70orl"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/soupik/plugin.cfg")
+enabled=PackedStringArray("res://addons/bone_ik/plugin.cfg", "res://addons/soupik/plugin.cfg")
 
 [input]
 

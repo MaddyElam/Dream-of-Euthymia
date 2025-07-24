@@ -5,10 +5,13 @@ extends Marker2D
 @export var max_step_distance : float = 5
 @export var adj_target : Node2D
 @export var opp_target : Node2D
+@export var base_node : Node2D
 @export var step_dist_increment : float = 5
 @export var step_height_increment : float = 2.5
 @export var step_x_multiplier : float = 1
 @export var step_y_multiplier : float = 1
+@export var base_node_x_move : float = 0
+@export var base_node_init_pos : Vector2
 
 var step_height := Vector2(20, -10)
 var is_stepping := false
@@ -49,6 +52,8 @@ func step():
 	global_position = p_global_pos
 	step_reached = false
 	
+	base_node.position = base_node_init_pos
+	
 	step_height.x = (abs(owner.velocity.x)/step_height_increment)
 	var target_pos = step_target.global_position
 	var half_point = (global_position + step_target.global_position)/2
@@ -56,6 +61,11 @@ func step():
 	
 	var new_tween = get_tree().create_tween()
 	new_tween.tween_property(self, "global_position", Vector2(half_point.x + (step_height.x * owner.current_h_facing) * step_x_multiplier, half_point.y * step_y_multiplier), 0.1)
+	
+	var alt_tween = get_tree().create_tween()
+	alt_tween.tween_property(base_node, "position", base_node_init_pos + Vector2(base_node_x_move, step_height.y*step_x_multiplier), 0.1)
+	alt_tween.connect("finished", on_alt_finished)
+	
 	new_tween.tween_property(self, "global_position", Vector2(target_pos.x + (step_height.x * owner.current_h_facing), target_pos.y), step_time)
 	new_tween.connect("finished", on_step_finished)
 
@@ -83,3 +93,7 @@ func on_step_reset():
 	can_step = true
 	top_level = true
 	global_position = p_global_pos
+
+func on_alt_finished():
+	var alt_tween = get_tree().create_tween()
+	alt_tween.tween_property(base_node, "position", base_node_init_pos, 0.1)
