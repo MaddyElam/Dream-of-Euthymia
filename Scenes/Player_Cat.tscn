@@ -1,4 +1,4 @@
-[gd_scene load_steps=158 format=3 uid="uid://dqn434s77upla"]
+[gd_scene load_steps=143 format=3 uid="uid://dqn434s77upla"]
 
 [ext_resource type="Script" uid="uid://cogu4vwsf7m11" path="res://Scripts/player_cat_movement.gd" id="1_ycb3p"]
 [ext_resource type="Script" uid="uid://bxeg32cyr2ngn" path="res://Scripts/Line2D_TrailingParts.gd" id="2_a5dnt"]
@@ -16,9 +16,8 @@
 [ext_resource type="Shader" uid="uid://ccat2ubc1xwd7" path="res://Shaders/Damage_Flicker.gdshader" id="19_yvgxb"]
 [ext_resource type="Script" uid="uid://b560cpwi6pacp" path="res://Scripts/constraint_flippers.gd" id="20_0uxdi"]
 [ext_resource type="Script" uid="uid://xibxir2gy3tp" path="res://addons/soupik/modifications/soup_group.gd" id="20_gnf74"]
-[ext_resource type="Script" uid="uid://cyie48fowrrr0" path="res://addons/soupik/utility/soup_bone.gd" id="20_habd7"]
 [ext_resource type="Texture2D" uid="uid://1y8f1aw7koim" path="res://Art/UIResources/HealthGlass_Alpha_5.png" id="20_wr4nh"]
-[ext_resource type="Script" uid="uid://cxrgp04nygwus" path="res://addons/soupik/resources/zm_constraint_data.gd" id="21_db3pd"]
+[ext_resource type="Script" uid="uid://dv0jwy6qemn6v" path="res://addons/bone_ik/nodes/bone_ik.gd" id="21_habd7"]
 [ext_resource type="Texture2D" uid="uid://71fm1qth2efq" path="res://Art/UIResources/Glass_Noise.png" id="21_pst0c"]
 [ext_resource type="Script" uid="uid://d2lrxokihxias" path="res://Scripts/paw_to_floor_snap.gd" id="22_ermt0"]
 [ext_resource type="Texture2D" uid="uid://ddvhhyblpxn3a" path="res://Art/UIResources/HealthGlass_5.png" id="22_gnf74"]
@@ -650,132 +649,6 @@ height = 15
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="Resource" id="Resource_hhs5k"]
-script = ExtResource("21_db3pd")
-rotation_direction_degrees = 36.5
-rotation_half_arc_degrees = 110.5
-area_offset = Vector2(0, 0)
-area_rotation_degrees = 0.0
-proportions = Vector2(1, 1)
-metadata/_custom_type_script = "uid://cxrgp04nygwus"
-
-[sub_resource type="Resource" id="Resource_qt7io"]
-script = ExtResource("21_db3pd")
-rotation_direction_degrees = 18.0
-rotation_half_arc_degrees = 60.0
-area_offset = Vector2(0, 0)
-area_rotation_degrees = 0.0
-proportions = Vector2(1, 1)
-metadata/_custom_type_script = "uid://cxrgp04nygwus"
-
-[sub_resource type="Resource" id="Resource_iastp"]
-script = ExtResource("21_db3pd")
-rotation_direction_degrees = 61.0
-rotation_half_arc_degrees = 45.0
-area_offset = Vector2(0, 0)
-area_rotation_degrees = 0.0
-proportions = Vector2(1, 1)
-metadata/_custom_type_script = "uid://cxrgp04nygwus"
-
-[sub_resource type="Resource" id="Resource_db3pd"]
-script = ExtResource("21_db3pd")
-rotation_direction_degrees = 36.5
-rotation_half_arc_degrees = 110.5
-area_offset = Vector2(0, 0)
-area_rotation_degrees = 0.0
-proportions = Vector2(1, 1)
-metadata/_custom_type_script = "uid://cxrgp04nygwus"
-
-[sub_resource type="Resource" id="Resource_kxqe8"]
-script = ExtResource("21_db3pd")
-rotation_direction_degrees = 18.0
-rotation_half_arc_degrees = 60.0
-area_offset = Vector2(0, 0)
-area_rotation_degrees = 0.0
-proportions = Vector2(1, 1)
-metadata/_custom_type_script = "uid://cxrgp04nygwus"
-
-[sub_resource type="Resource" id="Resource_dn5mg"]
-script = ExtResource("21_db3pd")
-rotation_direction_degrees = 61.0
-rotation_half_arc_degrees = 45.0
-area_offset = Vector2(0, 0)
-area_rotation_degrees = 0.0
-proportions = Vector2(1, 1)
-metadata/_custom_type_script = "uid://cxrgp04nygwus"
-
-[sub_resource type="Resource" id="Resource_0uxdi"]
-script = ExtResource("21_db3pd")
-rotation_direction_degrees = 87.5
-rotation_half_arc_degrees = 45.0
-area_offset = Vector2(0, 0)
-area_rotation_degrees = 0.0
-proportions = Vector2(1, 1)
-metadata/_custom_type_script = "uid://cxrgp04nygwus"
-
-[sub_resource type="Resource" id="Resource_ckcwr"]
-script = ExtResource("21_db3pd")
-rotation_direction_degrees = 110.0
-rotation_half_arc_degrees = 42.0
-area_offset = Vector2(0, 0)
-area_rotation_degrees = 0.0
-proportions = Vector2(1, 1)
-metadata/_custom_type_script = "uid://cxrgp04nygwus"
-
-[sub_resource type="Resource" id="Resource_pc25d"]
-script = ExtResource("21_db3pd")
-rotation_direction_degrees = 70.5
-rotation_half_arc_degrees = 45.0
-area_offset = Vector2(0, 0)
-area_rotation_degrees = 0.0
-proportions = Vector2(1, 1)
-metadata/_custom_type_script = "uid://cxrgp04nygwus"
-
-[sub_resource type="Resource" id="Resource_spfg7"]
-script = ExtResource("21_db3pd")
-rotation_direction_degrees = 61.0
-rotation_half_arc_degrees = 45.0
-area_offset = Vector2(0, 0)
-area_rotation_degrees = 0.0
-proportions = Vector2(1, 1)
-metadata/_custom_type_script = "uid://cxrgp04nygwus"
-
-[sub_resource type="Resource" id="Resource_fbuha"]
-script = ExtResource("21_db3pd")
-rotation_direction_degrees = 111.0
-rotation_half_arc_degrees = 63.5
-area_offset = Vector2(0, 0)
-area_rotation_degrees = 0.0
-proportions = Vector2(1, 1)
-metadata/_custom_type_script = "uid://cxrgp04nygwus"
-
-[sub_resource type="Resource" id="Resource_vq6c3"]
-script = ExtResource("21_db3pd")
-rotation_direction_degrees = 110.0
-rotation_half_arc_degrees = 42.0
-area_offset = Vector2(0, 0)
-area_rotation_degrees = 0.0
-proportions = Vector2(1, 1)
-metadata/_custom_type_script = "uid://cxrgp04nygwus"
-
-[sub_resource type="Resource" id="Resource_5c6m7"]
-script = ExtResource("21_db3pd")
-rotation_direction_degrees = 70.5
-rotation_half_arc_degrees = 45.0
-area_offset = Vector2(0, 0)
-area_rotation_degrees = 0.0
-proportions = Vector2(1, 1)
-metadata/_custom_type_script = "uid://cxrgp04nygwus"
-
-[sub_resource type="Resource" id="Resource_veqjv"]
-script = ExtResource("21_db3pd")
-rotation_direction_degrees = 61.0
-rotation_half_arc_degrees = 45.0
-area_offset = Vector2(0, 0)
-area_rotation_degrees = 0.0
-proportions = Vector2(1, 1)
-metadata/_custom_type_script = "uid://cxrgp04nygwus"
-
 [sub_resource type="Animation" id="Animation_ermt0"]
 length = 0.001
 tracks/0/type = "value"
@@ -1186,7 +1059,7 @@ metadata/_edit_lock_ = true
 visible = false
 position = Vector2(7.97385, 55.4555)
 rotation = 1.68493
-scale = Vector2(0.99997, 0.99997)
+scale = Vector2(0.999969, 0.999969)
 shape = SubResource("CapsuleShape2D_ermt0")
 metadata/_edit_lock_ = true
 
@@ -1202,15 +1075,15 @@ metadata/_edit_lock_ = true
 visible = false
 position = Vector2(-5.92155, 56.3957)
 rotation = 1.66869
-scale = Vector2(0.99997, 0.99997)
+scale = Vector2(0.999969, 0.999969)
 shape = SubResource("CapsuleShape2D_ermt0")
 metadata/_edit_lock_ = true
 
 [node name="Head_Collider" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(15.9781, -39.2638)
-rotation = 0.0717868
-scale = Vector2(0.999952, 0.999952)
+rotation = 0.0717867
+scale = Vector2(0.999951, 0.999951)
 shape = SubResource("CircleShape2D_pst0c")
 metadata/_edit_lock_ = true
 
@@ -1516,7 +1389,7 @@ metadata/_edit_lock_ = true
 [node name="Paw_FB_Sprite" type="Sprite2D" parent="Flippables_Container/BodyContainer"]
 position = Vector2(7.97385, 55.4555)
 rotation = 1.68493
-scale = Vector2(0.99997, 0.99997)
+scale = Vector2(0.999969, 0.999969)
 texture = SubResource("GradientTexture2D_yvgxb")
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
@@ -1604,8 +1477,8 @@ remote_path = NodePath("../../../../PawBF_Collider")
 
 [node name="CatHeadPrototype" type="Sprite2D" parent="Flippables_Container/BodyContainer"]
 position = Vector2(15.9781, -39.2638)
-rotation = 0.0717868
-scale = Vector2(0.999952, 0.999952)
+rotation = 0.0717867
+scale = Vector2(0.999951, 0.999951)
 texture = ExtResource("17_583vg")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
@@ -1632,7 +1505,7 @@ metadata/_edit_lock_ = true
 [node name="Paw_FF_Sprite" type="Sprite2D" parent="Flippables_Container/BodyContainer"]
 position = Vector2(-5.92155, 56.3957)
 rotation = 1.66869
-scale = Vector2(0.99997, 0.99997)
+scale = Vector2(0.999969, 0.999969)
 texture = SubResource("GradientTexture2D_4pv3c")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
@@ -1646,129 +1519,84 @@ script = ExtResource("20_0uxdi")
 root_body = NodePath("../../..")
 affected_bones = [NodePath("Spine1/Shoulders/UpperFrontLeg"), NodePath("Spine1/Shoulders/UpperFrontBackLeg"), NodePath("Spine1/Spine2/Spine3/Pelvis/UpperBackLeg"), NodePath("Spine1/Spine2/Spine3/Pelvis/UpperBackBackLeg"), NodePath("Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg"), NodePath("Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg"), NodePath("Spine1/Spine2/Spine3/Pelvis/UpperBackLeg/MidBackLeg"), NodePath("Spine1/Spine2/Spine3/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg"), NodePath("Spine1/Spine2/Spine3/Pelvis/UpperBackBackLeg/MidBackBackLeg"), NodePath("Spine1/Spine2/Spine3/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg")]
 
-[node name="Spine1" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D"]
+[node name="Spine1" type="Node2D" parent="Flippables_Container/BodyContainer/Skeleton2D"]
 position = Vector2(-62, 47)
 rotation = 0.143365
 scale = Vector2(0.999986, 0.999986)
-rest = Transform2D(0.989727, 0.142872, -0.142872, 0.989727, -62, 47)
-script = ExtResource("20_habd7")
-transform_mode = 0
-target_rotation = 0.143365
-target_position = Vector2(-62, 47)
-metadata/_custom_type_script = "uid://cyie48fowrrr0"
+script = ExtResource("21_habd7")
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1"]
 remote_path = NodePath("../../../../../Body_Collider")
 update_rotation = false
 metadata/_edit_lock_ = true
 
-[node name="Shoulders" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1"]
+[node name="Shoulders" type="Node2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1"]
 position = Vector2(7.91803, -1.14301)
-rest = Transform2D(1, 0, 0, 1, 7.91803, -1.14301)
-script = ExtResource("20_habd7")
-transform_mode = 0
-target_position = Vector2(7.91803, -1.14301)
-metadata/_custom_type_script = "uid://cyie48fowrrr0"
+script = ExtResource("21_habd7")
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
 
-[node name="Neck1" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders"]
+[node name="Neck1" type="Node2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders"]
 position = Vector2(5.51572, -4.64525)
 rotation = 0.130637
 scale = Vector2(0.999978, 0.999978)
-rest = Transform2D(0.991457, 0.130263, -0.130263, 0.991457, 5.51572, -4.64525)
-script = ExtResource("20_habd7")
-transform_mode = 0
-target_rotation = 0.130637
-target_position = Vector2(5.51572, -4.64525)
-metadata/_custom_type_script = "uid://cyie48fowrrr0"
+script = ExtResource("21_habd7")
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
 
-[node name="Neck2" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/Neck1"]
+[node name="Neck2" type="Node2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/Neck1"]
 position = Vector2(-2.64489, -11.875)
-rotation = 0.0687608
+rotation = 0.0687607
 scale = Vector2(0.999998, 0.999998)
-rest = Transform2D(0.997635, 0.0687065, -0.0687065, 0.997635, -2.64489, -11.875)
-script = ExtResource("20_habd7")
-transform_mode = 0
-target_rotation = 0.0687608
-target_position = Vector2(-2.64489, -11.875)
-metadata/_custom_type_script = "uid://cyie48fowrrr0"
+script = ExtResource("21_habd7")
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
 
-[node name="Neck3" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/Neck1/Neck2"]
+[node name="Neck3" type="Node2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/Neck1/Neck2"]
 position = Vector2(1.41401, -8.42647)
 rotation = -0.715023
 scale = Vector2(0.999994, 0.999994)
-rest = Transform2D(0.755074, -0.655631, 0.655631, 0.755074, 1.41401, -8.42647)
-auto_calculate_length_and_angle = false
-length = 15.0
+script = ExtResource("21_habd7")
 bone_angle = -80.0
-script = ExtResource("20_habd7")
-transform_mode = 0
-target_rotation = -0.715023
-target_position = Vector2(1.41401, -8.42647)
-metadata/_custom_type_script = "uid://cyie48fowrrr0"
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
 
-[node name="Head" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/Neck1/Neck2/Neck3"]
+[node name="Head" type="Node2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/Neck1/Neck2/Neck3"]
 position = Vector2(4.53609, -8.79957)
 rotation = 0.444047
 scale = Vector2(0.999996, 0.999996)
-rest = Transform2D(0.903017, 0.429596, -0.429596, 0.903017, 4.53609, -8.79957)
-auto_calculate_length_and_angle = false
-length = 25.0
+script = ExtResource("21_habd7")
+autocalculate_length_and_angle = false
 bone_angle = 25.0
-script = ExtResource("20_habd7")
-transform_mode = 0
-target_rotation = 0.444047
-target_position = Vector2(4.53609, -8.79957)
-metadata/_custom_type_script = "uid://cyie48fowrrr0"
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/Neck1/Neck2/Neck3/Head"]
 remote_path = NodePath("../../../../../../../../CatHeadPrototype")
 metadata/_edit_lock_ = true
 
-[node name="UpperFrontLeg" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders"]
+[node name="UpperFrontLeg" type="Node2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders"]
 position = Vector2(-4.62209, 12.5953)
 rotation = 0.0957317
-scale = Vector2(0.999996, 0.999996)
-rest = Transform2D(0.995417, 0.0955852, -0.0955852, 0.995417, -4.62209, 12.5953)
-script = ExtResource("20_habd7")
-transform_mode = 0
-target_rotation = 0.0957317
-target_position = Vector2(-4.62209, 12.5953)
-constraint_data = SubResource("Resource_hhs5k")
-metadata/_custom_type_script = "uid://cyie48fowrrr0"
+scale = Vector2(0.999995, 0.999995)
+script = ExtResource("21_habd7")
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
 
-[node name="LowerFrontLeg" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/UpperFrontLeg"]
+[node name="LowerFrontLeg" type="Node2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/UpperFrontLeg"]
 position = Vector2(-2.90812, 22.6033)
 rotation = -0.44258
 scale = Vector2(0.999996, 0.999996)
-rest = Transform2D(0.903646, -0.428271, 0.428271, 0.903646, -2.90812, 22.6033)
-auto_calculate_length_and_angle = false
-length = 25.0
+script = ExtResource("21_habd7")
 bone_angle = 85.0
-script = ExtResource("20_habd7")
-transform_mode = 0
-target_rotation = -0.44258
-target_position = Vector2(-2.90812, 22.6033)
-constraint_data = SubResource("Resource_qt7io")
-metadata/_custom_type_script = "uid://cyie48fowrrr0"
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg"]
 remote_path = NodePath("../../../../../../../../LegFF_Collider")
 metadata/_edit_lock_ = true
 
-[node name="FrontFrontPaw" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg"]
+[node name="FrontFrontPaw" type="Node2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg"]
 position = Vector2(-5.50608, 29.4182)
 rotation = 0.30137
 scale = Vector2(0.999992, 0.999992)
-rest = Transform2D(0.954923, 0.296827, -0.296827, 0.954923, -6.36883, 31.2907)
-auto_calculate_length_and_angle = false
-length = 10.0
-bone_angle = 0.0
-script = ExtResource("20_habd7")
-transform_mode = 0
-target_rotation = 0.30137
-target_position = Vector2(-5.50608, 29.4182)
-constraint_data = SubResource("Resource_iastp")
-metadata/_custom_type_script = "uid://cyie48fowrrr0"
+script = ExtResource("21_habd7")
+autocalculate_length_and_angle = false
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/UpperFrontLeg/LowerFrontLeg/FrontFrontPaw"]
 position = Vector2(4, -1)
@@ -1782,51 +1610,32 @@ update_rotation = false
 update_scale = false
 metadata/_edit_lock_ = true
 
-[node name="UpperFrontBackLeg" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders"]
+[node name="UpperFrontBackLeg" type="Node2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders"]
 position = Vector2(7.63809, 14.2361)
 rotation = -0.0684076
 scale = Vector2(0.999996, 0.999996)
-rest = Transform2D(0.997657, -0.0683539, 0.0683539, 0.997657, 7.63809, 14.2361)
-script = ExtResource("20_habd7")
-transform_mode = 0
-target_rotation = -0.0684076
-target_position = Vector2(7.63809, 14.2361)
-constraint_data = SubResource("Resource_db3pd")
-metadata/_custom_type_script = "uid://cyie48fowrrr0"
+script = ExtResource("21_habd7")
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
 
-[node name="LowerFrontBackLeg" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/UpperFrontBackLeg"]
+[node name="LowerFrontBackLeg" type="Node2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/UpperFrontBackLeg"]
 position = Vector2(-6.68932, 19.112)
 rotation = -0.247241
 scale = Vector2(0.999994, 0.999994)
-rest = Transform2D(0.969585, -0.244729, 0.244729, 0.969585, -6.68932, 19.112)
-auto_calculate_length_and_angle = false
-length = 25.0
+script = ExtResource("21_habd7")
 bone_angle = 80.0
-script = ExtResource("20_habd7")
-transform_mode = 0
-target_rotation = -0.247241
-target_position = Vector2(-6.68932, 19.112)
-constraint_data = SubResource("Resource_kxqe8")
-metadata/_custom_type_script = "uid://cyie48fowrrr0"
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg"]
 remote_path = NodePath("../../../../../../../../LegFB_Collider")
 metadata/_edit_lock_ = true
 
-[node name="FrontBackPaw" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg"]
+[node name="FrontBackPaw" type="Node2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg"]
 position = Vector2(-2.13579, 27.3005)
 rotation = 0.286416
-scale = Vector2(0.999994, 0.999994)
-rest = Transform2D(0.959257, 0.282515, -0.282515, 0.959257, -2.44402, 31.0495)
-auto_calculate_length_and_angle = false
-length = 10.0
-bone_angle = 0.0
-script = ExtResource("20_habd7")
-transform_mode = 0
-target_rotation = 0.286416
-target_position = Vector2(-2.13579, 27.3005)
-constraint_data = SubResource("Resource_dn5mg")
-metadata/_custom_type_script = "uid://cyie48fowrrr0"
+scale = Vector2(0.999993, 0.999993)
+script = ExtResource("21_habd7")
+autocalculate_length_and_angle = false
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Shoulders/UpperFrontBackLeg/LowerFrontBackLeg/FrontBackPaw"]
 position = Vector2(4, 0)
@@ -1840,97 +1649,60 @@ update_rotation = false
 update_scale = false
 metadata/_edit_lock_ = true
 
-[node name="Spine2" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1"]
+[node name="Spine2" type="Node2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1"]
 position = Vector2(-15.4849, -1.74031)
-rest = Transform2D(1, 0, 0, 1, -15.4849, -1.74031)
-script = ExtResource("20_habd7")
-transform_mode = 0
-target_position = Vector2(-15.4849, -1.74031)
-metadata/_custom_type_script = "uid://cyie48fowrrr0"
+script = ExtResource("21_habd7")
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
 
-[node name="Spine3" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2"]
+[node name="Spine3" type="Node2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2"]
 position = Vector2(-13.0855, -0.19768)
 rotation = -0.0893915
 scale = Vector2(0.999897, 0.999897)
-rest = Transform2D(0.995905, -0.0892633, 0.0892633, 0.995905, -18.0343, 0.516703)
-script = ExtResource("20_habd7")
-target_rotation = -0.0893915
-target_position = Vector2(-13.0855, -0.19768)
-metadata/_custom_type_script = "uid://cyie48fowrrr0"
+script = ExtResource("21_habd7")
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
 
-[node name="Pelvis" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Spine3"]
+[node name="Pelvis" type="Node2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Spine3"]
 position = Vector2(-14.0352, -0.24331)
 rotation = -0.00725629
 scale = Vector2(0.999827, 0.999827)
-rest = Transform2D(0.999801, -0.00725497, 0.00725497, 0.999801, -16.0325, -0.135404)
-auto_calculate_length_and_angle = false
-length = 16.0
+script = ExtResource("21_habd7")
 bone_angle = 180.0
-script = ExtResource("20_habd7")
-target_rotation = -0.00725629
-target_position = Vector2(-14.0352, -0.24331)
-metadata/_custom_type_script = "uid://cyie48fowrrr0"
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
 
-[node name="UpperBackLeg" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Spine3/Pelvis"]
+[node name="UpperBackLeg" type="Node2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Spine3/Pelvis"]
 position = Vector2(-6.80692, 11.7759)
 rotation = -0.349596
 scale = Vector2(1.00001, 1.00001)
-rest = Transform2D(0.939521, -0.342522, 0.342522, 0.939521, -6.80692, 11.7759)
-script = ExtResource("20_habd7")
-transform_mode = 0
-target_rotation = -0.349596
-target_position = Vector2(-6.80692, 11.7759)
-constraint_data = SubResource("Resource_0uxdi")
-metadata/_custom_type_script = "uid://cyie48fowrrr0"
+script = ExtResource("21_habd7")
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
 
-[node name="MidBackLeg" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Spine3/Pelvis/UpperBackLeg"]
+[node name="MidBackLeg" type="Node2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Spine3/Pelvis/UpperBackLeg"]
 position = Vector2(-2, 19)
 rotation = -0.119691
 scale = Vector2(0.999992, 0.999992)
-rest = Transform2D(0.992837, -0.119404, 0.119404, 0.992837, -2, 19)
-auto_calculate_length_and_angle = false
-length = 45.0
+script = ExtResource("21_habd7")
 bone_angle = 86.0
-script = ExtResource("20_habd7")
-transform_mode = 0
-target_rotation = -0.119691
-target_position = Vector2(-2, 19)
-constraint_data = SubResource("Resource_ckcwr")
-metadata/_custom_type_script = "uid://cyie48fowrrr0"
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
 
-[node name="LowerBackLeg" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Spine3/Pelvis/UpperBackLeg/MidBackLeg"]
+[node name="LowerBackLeg" type="Node2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Spine3/Pelvis/UpperBackLeg/MidBackLeg"]
 position = Vector2(-16.4935, 8.8504)
 rotation = -0.228107
 scale = Vector2(0.999993, 0.999993)
-rest = Transform2D(0.974089, -0.226132, 0.226132, 0.974089, -16.4935, 8.8504)
-auto_calculate_length_and_angle = false
-length = 20.0
+script = ExtResource("21_habd7")
 bone_angle = 92.0
-script = ExtResource("20_habd7")
-transform_mode = 0
-target_rotation = -0.228107
-target_position = Vector2(-16.4935, 8.8504)
-constraint_data = SubResource("Resource_pc25d")
-metadata/_custom_type_script = "uid://cyie48fowrrr0"
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Spine3/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg"]
 remote_path = NodePath("../../../../../../../../../../../LegBF_Collider")
 metadata/_edit_lock_ = true
 
-[node name="BackFrontPaw" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Spine3/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg"]
+[node name="BackFrontPaw" type="Node2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Spine3/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg"]
 position = Vector2(-15.1476, 19.8977)
 rotation = 0.556093
 scale = Vector2(0.999996, 0.999996)
-rest = Transform2D(0.84932, 0.52787, -0.52787, 0.84932, -18.9084, 17.0022)
-auto_calculate_length_and_angle = false
-length = 10.0
-bone_angle = 0.0
-script = ExtResource("20_habd7")
-transform_mode = 0
-target_rotation = 0.556093
-target_position = Vector2(-15.1476, 19.8977)
-constraint_data = SubResource("Resource_spfg7")
-metadata/_custom_type_script = "uid://cyie48fowrrr0"
+script = ExtResource("21_habd7")
+autocalculate_length_and_angle = false
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Spine3/Pelvis/UpperBackLeg/MidBackLeg/LowerBackLeg/BackFrontPaw"]
 position = Vector2(5, 0)
@@ -1945,63 +1717,39 @@ update_rotation = false
 update_scale = false
 metadata/_edit_lock_ = true
 
-[node name="UpperBackBackLeg" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Spine3/Pelvis"]
+[node name="UpperBackBackLeg" type="Node2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Spine3/Pelvis"]
 position = Vector2(7.63909, 15.2857)
 rotation = 0.0171255
 scale = Vector2(1.00001, 1.00001)
-rest = Transform2D(0.999863, 0.0171248, -0.0171248, 0.999863, 7.63909, 15.2857)
-script = ExtResource("20_habd7")
-transform_mode = 0
-target_rotation = 0.0171255
-target_position = Vector2(7.63909, 15.2857)
-constraint_data = SubResource("Resource_fbuha")
-metadata/_custom_type_script = "uid://cyie48fowrrr0"
+script = ExtResource("21_habd7")
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
 
-[node name="MidBackBackLeg" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Spine3/Pelvis/UpperBackBackLeg"]
+[node name="MidBackBackLeg" type="Node2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Spine3/Pelvis/UpperBackBackLeg"]
 position = Vector2(5.07015, 18.42)
 rotation = -0.414277
 scale = Vector2(0.99999, 0.99999)
-rest = Transform2D(0.915398, -0.402524, 0.402524, 0.915398, 5.07015, 18.42)
-script = ExtResource("20_habd7")
-transform_mode = 0
-target_rotation = -0.414277
-target_position = Vector2(5.07015, 18.42)
-constraint_data = SubResource("Resource_vq6c3")
-metadata/_custom_type_script = "uid://cyie48fowrrr0"
+script = ExtResource("21_habd7")
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
 
-[node name="LowerBackBackLeg" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Spine3/Pelvis/UpperBackBackLeg/MidBackBackLeg"]
+[node name="LowerBackBackLeg" type="Node2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Spine3/Pelvis/UpperBackBackLeg/MidBackBackLeg"]
 position = Vector2(-12.5291, 5.72766)
 rotation = -0.0272163
 scale = Vector2(0.999988, 0.999988)
-rest = Transform2D(0.999618, -0.0272126, 0.0272126, 0.999618, -12.5291, 5.72766)
-auto_calculate_length_and_angle = false
-length = 20.0
+script = ExtResource("21_habd7")
 bone_angle = 85.0
-script = ExtResource("20_habd7")
-transform_mode = 0
-target_rotation = -0.0272163
-target_position = Vector2(-12.5291, 5.72766)
-constraint_data = SubResource("Resource_5c6m7")
-metadata/_custom_type_script = "uid://cyie48fowrrr0"
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Spine3/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg"]
 remote_path = NodePath("../../../../../../../../../../../LegBB_Collider")
 metadata/_edit_lock_ = true
 
-[node name="BackBackPaw" type="Bone2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Spine3/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg"]
+[node name="BackBackPaw" type="Node2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Spine3/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg"]
 position = Vector2(-6.06292, 23.4221)
 rotation = 0.339011
 scale = Vector2(0.999983, 0.999983)
-rest = Transform2D(0.943068, 0.332549, -0.332549, 0.943068, -10.6179, 22.2633)
-auto_calculate_length_and_angle = false
-length = 10.0
-bone_angle = 0.0
-script = ExtResource("20_habd7")
-transform_mode = 0
-target_rotation = 0.339011
-target_position = Vector2(-6.06292, 23.4221)
-constraint_data = SubResource("Resource_veqjv")
-metadata/_custom_type_script = "uid://cyie48fowrrr0"
+script = ExtResource("21_habd7")
+autocalculate_length_and_angle = false
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Flippables_Container/BodyContainer/Skeleton2D/Spine1/Spine2/Spine3/Pelvis/UpperBackBackLeg/MidBackBackLeg/LowerBackBackLeg/BackBackPaw"]
 position = Vector2(5, 0)
